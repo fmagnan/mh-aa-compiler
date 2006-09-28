@@ -8,11 +8,11 @@
 			'nom' => 'DIAPPE',
 			'race' => 'Skrim',
 			'vie' => 'Excellent (entre 115 et 135)',
-			'attaque' => 'Jamais vu (supérieur à 20)',
+			'attaque' => 'Jamais vu (supÃ©rieur Ã  20)',
 			'esquive' => 'Impressionant (entre 14 et 16)',
 			'degats' => 'Incroyable (entre 18 et 20)',
 			'regeneration' => 'Remarquable (entre 4 et 5)',
-			'vue' => 'inférieur à 3',
+			'vue' => 'infÃ©rieur Ã  3',
 			'armure' => 'Excellent (entre 12 et 14)',
 			'sortileges' => '',
 		);
@@ -44,11 +44,11 @@
 			$this->assertEqual('DIAPPE', $troll->getNom());
 			$this->assertEqual('Skrim', $troll->getRace());
 			$this->assertEqual('entre 115 et 135', $troll->getVie());
-			$this->assertEqual('supérieur à 20', $troll->getAttaque());
+			$this->assertEqual('supÃ©rieur Ã  20', $troll->getAttaque());
 			$this->assertEqual('entre 14 et 16', $troll->getEsquive());
 			$this->assertEqual('entre 18 et 20', $troll->getDegats());
 			$this->assertEqual('entre 4 et 5', $troll->getRegeneration());
-			$this->assertEqual('inférieur à 3', $troll->getVue());
+			$this->assertEqual('infÃ©rieur Ã  3', $troll->getVue());
 			$this->assertEqual('entre 12 et 14', $troll->getArmure());
 		}
 		
