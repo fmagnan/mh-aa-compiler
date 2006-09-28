@@ -44,16 +44,16 @@
 		
 		function test_ecritureTrollEnBaseSansTableau() {
 			$result = createTrollInDB('donnee non valide');
-			$this->assertError('error: input data not an array');
+			$this->assertError('error[createOrUpdateTrollInDB()]: input data not an array');
 		} 
 		
 		function test_ecritureTrollEnBaseAvecTableauVide() {
 			$result = createTrollInDB(array());
-			$this->assertError('error: input array data is empty');
+			$this->assertError('error[createOrUpdateTrollInDB()]: input array data is empty');
 		}
 		
-		function test_ecritureTrollEnBaseNormale() {
-			$result = createTrollInDB($this->donneesDeTest);
+		function test_ecritureTrollEnBase() {
+			createTrollInDB($this->donneesDeTest);
 			shell_exec($this->getMySQLTemporaryDump());
 			$diffCommandLine = 'diff '.$this->getAbsolutePathForFile('donnees_apres_insertion.sql').' '.$this->getTemporaryMySQLDumpFile(); 
 			$output = shell_exec($diffCommandLine);
@@ -61,6 +61,42 @@
 			shell_exec('rm ' . $this->getTemporaryMySQLDumpFile());
 		}
 		
+		function test_suppressionTrollEnBaseAvecIdentifiantInconnu() {
+			deleteTrollInDB('identifiant inconnu');
+			shell_exec($this->getMySQLTemporaryDump());
+			$diffCommandLine = 'diff '.$this->getAbsolutePathForFile('donnees_initiales.sql').' '.$this->getTemporaryMySQLDumpFile(); 
+			$output = shell_exec($diffCommandLine);
+			$this->assertEqual('', $output);
+			shell_exec('rm ' . $this->getTemporaryMySQLDumpFile());
+		}
+		
+		function test_suppressionTrollEnBase() {
+			deleteTrollInDB('29201');
+			shell_exec($this->getMySQLTemporaryDump());
+			$diffCommandLine = 'diff '.$this->getAbsolutePathForFile('donnees_apres_suppression.sql').' '.$this->getTemporaryMySQLDumpFile(); 
+			$output = shell_exec($diffCommandLine);
+			$this->assertEqual('', $output);
+			shell_exec('rm ' . $this->getTemporaryMySQLDumpFile());
+		}
+		
+		function test_ModificationTrollEnBaseSansTableau() {
+			updateTrollInDB('donnée non valide');
+			$this->assertError('error[createOrUpdateTrollInDB()]: input data not an array');
+		}
+		
+		function test_ModificationTrollEnBaseAvecTableauVide() {
+			updateTrollInDB(array());
+			$this->assertError('error[createOrUpdateTrollInDB()]: input array data is empty');
+		}
+		
+		function test_ModificationTrollEnBase() {
+			$donneesDeModification = array('numero'=> '29201', 'degats' => 'entre 13 et 15','regeneration' => '5');
+			updateTrollInDB($donneesDeModification);
+			shell_exec($this->getMySQLTemporaryDump());
+			$diffCommandLine = 'diff '.$this->getAbsolutePathForFile('donnees_apres_modification.sql').' '.$this->getTemporaryMySQLDumpFile(); 
+			$output = shell_exec($diffCommandLine);
+			$this->assertEqual('', $output);
+			shell_exec('rm ' . $this->getTemporaryMySQLDumpFile());
+		}
 	}
-	
 ?>
