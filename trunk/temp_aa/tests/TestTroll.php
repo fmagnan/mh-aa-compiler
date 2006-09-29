@@ -19,13 +19,13 @@
     	
     	var $troll;
     	
-    	function test_creationTrollAvecChaineVide() {
+    	function test_creationTrollSansTableau() {
     		$troll = new Troll('Ceci n\'est pas une chaine valide');
     		$this->troll = $troll;
-    		$this->assertError('error: input data are not an array');
+    		$this->assertError('error: input data is not an array');
 		}
 		
-		function test_creationTrollSansDonnees() {
+		function test_creationTrollAvecTableauVide() {
 			$troll = new Troll(array());
 			$this->troll = $troll;
     		$this->assertError('error: input data array is empty');
@@ -50,6 +50,29 @@
 			$this->assertEqual('entre 4 et 5', $troll->getRegeneration());
 			$this->assertEqual('inférieur à 3', $troll->getVue());
 			$this->assertEqual('entre 12 et 14', $troll->getArmure());
+		}
+		
+		function test_miseAJourTrollSansTableau() {
+			$troll = new Troll($this->donneesDeTest);
+			$this->troll = $troll;
+			$troll->update('donnees invalides');
+			$this->assertError('error: input data is not an array');
+		}
+		
+		function test_miseAJourTrollAvecTableauVide() {
+			$troll = new Troll($this->donneesDeTest);
+			$this->troll = $troll;
+			$troll->update(array());
+			$this->assertError('error: input data array is empty');
+		}
+		
+		function test_miseAJourTrollAvecResultatUnique() {
+			$troll = new Troll($this->donneesDeTest);
+			$this->troll = $troll;
+			$donneesDeMiseAJour = array('attaque' => 'entre 18 et 20', 'degats' => 'entre 16 et 18');
+			$troll->update($donneesDeMiseAJour);
+			$this->assertEqual('20', $troll->getAttaque());
+			$this->assertEqual('18', $troll->getDegats());
 		}
 		
 		function tearDown() {
