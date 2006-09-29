@@ -1,6 +1,20 @@
 <?
 require_once('variables.inc.php');
 
+function isNotEmptyInputArray($inputArray) {
+	$isNotEmptyInputArray = FALSE;
+	if (!is_array($inputArray)) {
+		trigger_error('error: input data is not an array');
+	}
+	elseif (empty($inputArray)) {
+		trigger_error('error: input data array is empty');
+	}
+	else {
+		$isNotEmptyInputArray = TRUE;
+	}
+	return $isNotEmptyInputArray;
+}
+
 function getInfosTrollFromDB($numero) {
 	connectToDB();
 	$query = 'SELECT * FROM mountyhall_troll WHERE mountyhall_troll.numero = ' . $numero . ';';
@@ -20,13 +34,7 @@ function getInfosTrollFromDB($numero) {
 }
 
 function createOrUpdateTrollInDB($infosTroll, $getQueryFunctionName) {
-	if (!is_array($infosTroll)) {
-		trigger_error('error[createOrUpdateTrollInDB()]: input data not an array');
-	}
-	elseif (empty($infosTroll)) {
-		trigger_error('error[createOrUpdateTrollInDB()]: input array data is empty');
-	}
-	else {
+	if (isNotEmptyInputArray($infosTroll)) {
 		connectToDB();
 		$result = mysql_query($getQueryFunctionName($infosTroll));
 		disconnectFromDB();
@@ -34,23 +42,28 @@ function createOrUpdateTrollInDB($infosTroll, $getQueryFunctionName) {
 }
 
 function getQueryForCreate($infosTroll) {
-	$createTrollQuery = 'INSERT INTO `mountyhall_troll` (`numero`, `nom`, `race`, `vie`, `attaque`, `esquive`,'.
-		' `degats`, `regeneration`, `vue`, `armure`, `date_compilation`, `sortileges`)'.
-		' VALUES (\''.$infosTroll['numero'].'\',\''.$infosTroll['nom'].'\',\''.$infosTroll['race'].
-		'\',\''.$infosTroll['vie'].'\',\''.$infosTroll['attaque'].'\',\''.$infosTroll['esquive'].
-		'\',\''.$infosTroll['degats'].'\',\''.$infosTroll['regeneration'].'\',\''.$infosTroll['vue'].
-		'\',\''.$infosTroll['armure'].'\',\''.$infosTroll['date_compilation'].'\',\''.$infosTroll['sortileges'].'\')';
+	$createTrollQuery = "INSERT INTO `mountyhall_troll` (`numero`, `nom`, `race`, `vie`, `attaque`, `esquive`,".
+		"`degats`, `regeneration`, `vue`, `armure`, `date_compilation`, `sortileges`) VALUES (".
+		"'{$infosTroll['numero']}','{$infosTroll['nom']}','{$infosTroll['race']}',".
+		"'{$infosTroll['vie']}','{$infosTroll['attaque']}','{$infosTroll['esquive']}',".
+		"'{$infosTroll['degats']}','{$infosTroll['regeneration']}','{$infosTroll['vue']}',".
+		"'{$infosTroll['armure']}',CURDATE(),'{$infosTroll['sortileges']}')";
 	return $createTrollQuery;
 }
 
 function getQueryForUpdate($infosTroll) {
 	$updateFieldsArray = array();
-	$updateTrollQuery = 'UPDATE `mountyhall_troll` SET ';
+	$updateTrollQuery = "UPDATE `mountyhall_troll` SET ";
 	foreach($infosTroll AS $clefChamp => $valeurChamp) {
-		$updateFieldsArray[] = '`' . $clefChamp . '`=\'' . $valeurChamp . '\'';
+		$updateFieldsArray[] = "`$clefChamp`='$valeurChamp'";
 	}
-	$updateTrollQuery .= implode(',', $updateFieldsArray) . ' WHERE `numero` = \'' . $infosTroll['numero']. '\'';
+	$updateTrollQuery .= implode(",", $updateFieldsArray) . ",`date_compilation`=CURDATE() WHERE ".
+		"`numero`='{$infosTroll['numero']}'";
 	return $updateTrollQuery;
+}
+
+function getQueryForDelete($trollId) {
+	return 'DELETE FROM `mountyhall_troll` WHERE `numero` = \''.$trollId.'\'';
 }
 
 function createTrollInDB($infosTroll) {
@@ -63,8 +76,7 @@ function updateTrollInDB($infosTroll) {
 
 function deleteTrollInDB($trollId) {
 	connectToDB();
-	$query = 'DELETE FROM `mountyhall_troll` WHERE `numero` = \''.$trollId.'\'';
-	$result = mysql_query($query);
+	$result = mysql_query(getQueryForDelete($trollId));
 	disconnectFromDB();
 }
 
