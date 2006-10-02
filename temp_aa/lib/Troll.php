@@ -6,7 +6,7 @@ require_once 'core.inc.php';
 class Troll {
 	
 	var $primaryKeyFieldsNames = array('numero','nom','race');
-	var $dataFieldsNames = array('vie','attaque','esquive','degats','regeneration','vue','armure');
+	var $dataFieldsNames = array('niveau', 'vie','attaque','esquive','degats','regeneration','armure','vue');
 	var $data;
 	
 	function Troll($donnees) {
@@ -60,6 +60,10 @@ class Troll {
 	
 	function getRace() {
 		return $this->data['race'];
+	}
+	
+	function getNiveau() {
+		return $this->data['niveau'];
 	}
 	
 	function getVie() {
