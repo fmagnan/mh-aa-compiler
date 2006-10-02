@@ -4,16 +4,17 @@
 	class TestTroll extends UnitTestCase {
     	
     	var $donneesDeTest = array(
-			'numero' => '3573',
+			'numero' => 3573,
 			'nom' => 'DIAPPE',
 			'race' => 'Skrim',
+			'niveau' => 40,
 			'vie' => 'Excellent (entre 115 et 135)',
 			'attaque' => 'Jamais vu (supérieur à 20)',
 			'esquive' => 'Impressionant (entre 14 et 16)',
 			'degats' => 'Incroyable (entre 18 et 20)',
 			'regeneration' => 'Remarquable (entre 4 et 5)',
-			'vue' => 'inférieur à 3',
 			'armure' => 'Excellent (entre 12 et 14)',
+			'vue' => 'inférieur à 3',
 			'sortileges' => '',
 		);
     	
@@ -40,9 +41,10 @@
 		function test_accesseurs() {
 			$troll = new Troll($this->donneesDeTest);
 			$this->troll = $troll;
-			$this->assertEqual('3573', $troll->getNumero());
+			$this->assertEqual(3573, $troll->getNumero());
 			$this->assertEqual('DIAPPE', $troll->getNom());
 			$this->assertEqual('Skrim', $troll->getRace());
+			$this->assertEqual(40, $troll->getNiveau());
 			$this->assertEqual('entre 115 et 135', $troll->getVie());
 			$this->assertEqual('supérieur à 20', $troll->getAttaque());
 			$this->assertEqual('entre 14 et 16', $troll->getEsquive());
