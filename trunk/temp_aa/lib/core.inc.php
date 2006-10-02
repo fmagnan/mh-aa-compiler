@@ -42,12 +42,13 @@ function createOrUpdateTrollInDB($infosTroll, $getQueryFunctionName) {
 }
 
 function getQueryForCreate($infosTroll) {
-	$createTrollQuery = "INSERT INTO `mountyhall_troll` (`numero`, `nom`, `race`, `vie`, `attaque`, `esquive`,".
-		"`degats`, `regeneration`, `vue`, `armure`, `date_compilation`, `sortileges`) VALUES (".
-		"'{$infosTroll['numero']}','{$infosTroll['nom']}','{$infosTroll['race']}',".
+	$createTrollQuery = "INSERT INTO `mountyhall_troll` (`numero`, `nom`, `race`, `niveau`, `vie`, `attaque`, ".
+		"`esquive`, `degats`, `regeneration`, `armure`, `vue`, `date_compilation`, `sortileges`) VALUES (".
+		"{$infosTroll['numero']},'{$infosTroll['nom']}','{$infosTroll['race']}',{$infosTroll['niveau']},".
 		"'{$infosTroll['vie']}','{$infosTroll['attaque']}','{$infosTroll['esquive']}',".
-		"'{$infosTroll['degats']}','{$infosTroll['regeneration']}','{$infosTroll['vue']}',".
-		"'{$infosTroll['armure']}',CURDATE(),'{$infosTroll['sortileges']}')";
+		"'{$infosTroll['degats']}','{$infosTroll['regeneration']}','{$infosTroll['armure']}',".
+		"'{$infosTroll['vue']}',CURDATE(),'{$infosTroll['sortileges']}')";
+		error_log('new: ' . $createTrollQuery);
 	return $createTrollQuery;
 }
 
@@ -55,15 +56,19 @@ function getQueryForUpdate($infosTroll) {
 	$updateFieldsArray = array();
 	$updateTrollQuery = "UPDATE `mountyhall_troll` SET ";
 	foreach($infosTroll AS $clefChamp => $valeurChamp) {
-		$updateFieldsArray[] = "`$clefChamp`='$valeurChamp'";
+		if ('numero' != $clefChamp && 'niveau' != $clefChamp) {
+			$valeurChamp = "'$valeurChamp'";
+		}
+		$updateFieldsArray[] = "`$clefChamp`=$valeurChamp";
+		
 	}
 	$updateTrollQuery .= implode(",", $updateFieldsArray) . ",`date_compilation`=CURDATE() WHERE ".
-		"`numero`='{$infosTroll['numero']}'";
+		"`numero`={$infosTroll['numero']}";
 	return $updateTrollQuery;
 }
 
 function getQueryForDelete($trollId) {
-	return 'DELETE FROM `mountyhall_troll` WHERE `numero` = \''.$trollId.'\'';
+	return 'DELETE FROM `mountyhall_troll` WHERE `numero` = '.$trollId;
 }
 
 function createTrollInDB($infosTroll) {
