@@ -1,0 +1,27 @@
+Citation:
+# [32277] Epée Courte de la Salamandre en Mithril (DEG : +2 | REG : +1), 5 min
++
+[1756388] Armure : Tunique (ESQ : +1 | RM : +6 % | MM : +10 %), 3 min
+--> contre un gorgeron en cuir du vent avec gronausaure(73065)
+
+
+Citation:
+# [1706707] Bouclier à Pointes (ATT : +1 | ESQ : -1 | DEG : +1 | Armure : +4), 35 min
+# [2641481] Gantelet des Enragés (ATT : -1 | DEG : +2 | Armure : +2), 8 min
+# [1683756] Cotte de Mailles en Mithril (ESQ : -1 | Armure : +7 | RM : +54 %), 35 min
+# [447026] Jambières en maille (ESQ : -1 | Armure : +3 | RM : +8 %), 20 min
+--> avec Drure (42641) contre
+# [1959267] Lame d'Obsidienne des Vampires (ATT : +3 | DEG : +6 | REG : -2 | RM : -36 % | MM : -17 %), 20 min
+# [1498975] Pagne de Mailles des Enragés (ATT : +1 | ESQ : +1 | DEG : +1 | Armure : +1), 8 min
+# [1307390] Targe des Cyclopes (ATT : +1 | ESQ : +1 | DEG : +1 | Vue : -1), 5 min
+# [1823380] Bottes des Enragés (ATT : +1 | ESQ : +1 | DEG : +1), 5 min
+
+
+Citation:
+# [537253] Gorgeron en cuir (Armure : +1), 3 min
+# [2137185] Rondache en bois (ESQ : +1 | Armure : +1), 15 min
+# [2624010] Casque en cuir (Armure : +1 | RM : +10 %), 5 min
+# [2868642] Idées Confuses (ATT : -5 D3 | TOUR : +150 min), 3 min
+# [2223453] Idées Confuses (ATT : -5 D3 | TOUR : +150 min), 3 min
+# [2932866] Plan Génial (ATT : +4 D3 | DEG : +4 | TOUR : -60 min), 3 min
+--> contre un gorgeron en cuir du vent avec ysandrin(73978)
