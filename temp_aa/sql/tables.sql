@@ -10,7 +10,7 @@ CREATE TABLE mountyhall_troll (
 	regeneration VARCHAR(20) NOT NULL,
 	armure VARCHAR(20) NOT NULL,
 	vue VARCHAR(20) NOT NULL,
-	date_compilation DATE NOT NULL,
+	date_compilation DATETIME NOT NULL,
 	sortileges TINYTEXT DEFAULT '',
 	PRIMARY KEY (numero, nom, race)
 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
