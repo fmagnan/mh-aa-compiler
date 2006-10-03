@@ -1,0 +1,35 @@
+
+[MountyHall] Sort AA sur GROBIDE - N° 31629)
+Expéditeur (Id) 	MountyHall 	Date d'envoi 	01/03/2006 17:51:34
+Destinataire(s) 	alacasar
+ 
+================================
+MOUNTYHALL - La Terre des Trõlls
+================================
+
+Troll n°27441 : alacasar
+
+Vous avez été impliqué dans un événement : SORT.
+Il était alors : 01/03/2006 17:51:34.
+***********************************************************
+
+Le Troll Ciblé : GROBIDE - N° 31629)
+Niveau : 22
+Points de Vie : Excellent (entre 70 et 90)
+Blessure (Approximatif) : 0 %
+Dés d'Attaque : Remarquable (entre 14 et 16)
+Dés d'Esquive : Très Fort (entre 12 et 14)
+Dés de Dégât : Très Fort (entre 10 et 12)
+Dés de Régénération : Moyen (entre 3 et 4)
+Armure : Exceptionnel (entre 12 et 14)
+Vue : Moyen (entre 3 et 4)
+
+***********************************************************
+Vous avez configuré votre compte pour recevoir un Email
+lorsque votre Troll est impliqué dans un événement.
+Si vous ne désirez plus recevoir ces Emails, veuillez changer
+cette configuration dans le profil de votre Troll.
+
+Le Site : http://www.mountyhall.com
+Pour Jouer : http://games.mountyhall.com
+***********************************************************
