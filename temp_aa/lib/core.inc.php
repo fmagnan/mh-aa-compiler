@@ -1,94 +1,40 @@
 <?
-require_once('variables.inc.php');
+require_once 'Parser.php';
+require_once 'Troll.php';
+require_once 'database.inc.php';
 
-function isNotEmptyInputArray($inputArray) {
-	$isNotEmptyInputArray = FALSE;
-	if (!is_array($inputArray)) {
-		trigger_error('error: input data is not an array');
-	}
-	elseif (empty($inputArray)) {
-		trigger_error('error: input data array is empty');
-	}
-	else {
-		$isNotEmptyInputArray = TRUE;
-	}
-	return $isNotEmptyInputArray;
+function getTimeStampFromTrollDate($dateCompilation) {
+	$date = explode('-', trim(substr($dateCompilation, 0, 10)));
+    $time = explode(':', trim(substr($dateCompilation,11,strlen($dateCompilation))));
+    return mktime($time[0], $time[1], $time[2], $date[1], $date[2], $date[0]);
 }
 
-function getInfosTrollFromDB($numero) {
-	connectToDB();
-	$query = 'SELECT * FROM mountyhall_troll WHERE mountyhall_troll.numero = ' . $numero . ';';
-	$result = mysql_query($query);
-	$nombreDeReponses = mysql_num_rows($result); 
-	if ($nombreDeReponses == 0) {
-		$infos = FALSE;
-	}
-	elseif ($nombreDeReponses != 1) {
-		trigger_error('error[getInfosTrollFromDB()]: too many responses for query "' . $query . '"');
-	}
-	else {
-		$infos = mysql_fetch_array($result);
-	}
-	disconnectFromDB();
-	return $infos;
+function processAnalysis($analysis) {
+	$parser = new Parser($analysis);
+    $infosTroll = $parser->getInfosTroll();
+    $infosFromDB = getInfosTrollFromDB($infosTroll['numero']);
+    if ($infosFromDB == FALSE) {
+    	createOrUpdateTrollInDB($infosTroll, 'getQueryForCreate');
+    }
+    else {
+    	$timeStamp = getTimeStampFromTrollDate($infosTroll['date_compilation']);
+    	$timeStampInDB = getTimeStampFromTrollDate($infosFromDB['date_compilation']);
+    	if ($timeStamp > $timeStampInDB) {
+    		$referenceInfos = $infosFromDB;
+    		$updatingInfos = $infosTroll;
+    	}
+    	else {
+    		$referenceInfos = $infosTroll;
+    		$updatingInfos = $infosFromDB;
+    	}
+    	$troll = new Troll($referenceInfos);
+    	$troll->update($updatingInfos);
+    	$updateData = $troll->getDonnees();
+    	$updateData['date_compilation'] = $updatingInfos['date_compilation'];
+    	createOrUpdateTrollInDB($updateData, 'getQueryForUpdate');
+    	return $updateData;
+    }
+	return $infosTroll;
 }
 
-function createOrUpdateTrollInDB($infosTroll, $getQueryFunctionName) {
-	if (isNotEmptyInputArray($infosTroll)) {
-		connectToDB();
-		$result = mysql_query($getQueryFunctionName($infosTroll));
-		disconnectFromDB();
-	}
-}
-
-function getQueryForCreate($infosTroll) {
-	$createTrollQuery = "INSERT INTO `mountyhall_troll` (`numero`, `nom`, `race`, `niveau`, `vie`, `attaque`, ".
-		"`esquive`, `degats`, `regeneration`, `armure`, `vue`, `date_compilation`, `sortileges`) VALUES (".
-		"{$infosTroll['numero']},'{$infosTroll['nom']}','{$infosTroll['race']}',{$infosTroll['niveau']},".
-		"'{$infosTroll['vie']}','{$infosTroll['attaque']}','{$infosTroll['esquive']}',".
-		"'{$infosTroll['degats']}','{$infosTroll['regeneration']}','{$infosTroll['armure']}',".
-		"'{$infosTroll['vue']}','{$infosTroll['date_compilation']}','{$infosTroll['sortileges']}')";
-	return $createTrollQuery;
-}
-
-function getQueryForUpdate($infosTroll) {
-	$updateFieldsArray = array();
-	$updateTrollQuery = "UPDATE `mountyhall_troll` SET ";
-	foreach($infosTroll AS $clefChamp => $valeurChamp) {
-		if ('numero' != $clefChamp && 'niveau' != $clefChamp) {
-			$valeurChamp = "'$valeurChamp'";
-		}
-		$updateFieldsArray[] = "`$clefChamp`=$valeurChamp";
-		
-	}
-	$updateTrollQuery .= implode(",", $updateFieldsArray) . " WHERE `numero`={$infosTroll['numero']}";
-	return $updateTrollQuery;
-}
-
-function getQueryForDelete($trollId) {
-	return 'DELETE FROM `mountyhall_troll` WHERE `numero` = '.$trollId;
-}
-
-function createTrollInDB($infosTroll) {
-	createOrUpdateTrollInDB($infosTroll, 'getQueryForCreate');
-}
-
-function updateTrollInDB($infosTroll) {
-	createOrUpdateTrollInDB($infosTroll, 'getQueryForUpdate');
-}
-
-function deleteTrollInDB($trollId) {
-	connectToDB();
-	$result = mysql_query(getQueryForDelete($trollId));
-	disconnectFromDB();
-}
-
-function connectToDB() {
-	@mysql_connect( _HOST_ , _USER_ , _PWD_ ) or trigger_error('error[connectToDB()]: unable to connect to database');
- 	@mysql_select_db( _DB_ ) or trigger_error('error[connectToDB()]: unable to select a database');
-}
-
-function disconnectFromDB() {
-	@mysql_close();
-}
 ?>
