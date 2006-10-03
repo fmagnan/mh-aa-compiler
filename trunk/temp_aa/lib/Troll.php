@@ -1,11 +1,11 @@
 <?php
 
 require_once 'Compiler.php';
-require_once 'core.inc.php';
+require_once 'database.inc.php';
 
 class Troll {
 	
-	var $primaryKeyFieldsNames = array('numero','nom','race');
+	var $primaryKeyFieldsNames = array('numero','nom','race','date_compilation','sortileges');
 	var $dataFieldsNames = array('niveau', 'vie','attaque','esquive','degats','regeneration','armure','vue');
 	var $data;
 	
@@ -14,7 +14,7 @@ class Troll {
 			$allFieldsNames = array_merge($this->primaryKeyFieldsNames, $this->dataFieldsNames);
 	
 			foreach ($allFieldsNames AS $fieldName) {
-				$this->data[$fieldName] = $this->formateDonnee($donnees[$fieldName]);
+				$this->data[$fieldName] = $donnees[$fieldName];
 			}
 		}
 	}
@@ -22,27 +22,20 @@ class Troll {
 	function update($infos) {
 		if (isNotEmptyInputArray($infos)) {
 			foreach ($infos AS $fieldName => $fieldValue) {
-				$compiler = new Compiler($this->data[$fieldName]);
-				$compiler->analyse($fieldValue);
-				$minimumValue = $compiler->getMinimumValue();
-				$maximumValue = $compiler->getMaximumValue();
-				if ($minimumValue == $maximumValue) {
-					$this->data[$fieldName] = $minimumValue;
-				}
-				else {
-					$this->data[$fieldName] = 'entre ' . $minimumValue . ' et ' . $maximumValue;
+				if (!in_array($fieldName, $this->primaryKeyFieldsNames) &&
+					in_array($fieldName, $this->dataFieldsNames)) {
+					$compiler = new Compiler($this->data[$fieldName]);
+					$compiler->analyse($fieldValue);
+					$minimumValue = $compiler->getMinimumValue();
+					$maximumValue = $compiler->getMaximumValue();
+					if ($minimumValue == $maximumValue) {
+						$this->data[$fieldName] = $minimumValue;
+					}
+					else {
+						$this->data[$fieldName] = 'entre ' . $minimumValue . ' et ' . $maximumValue;
+					}
 				}
 			}
-		}
-	}
-	
-	function formateDonnee($donnee) {
-		$chaineEntreParentheses = strstr($donnee, '(');
-		if ($chaineEntreParentheses == FALSE) {
-			return $donnee;
-		}else {
-			$suppressionDesParentheses = substr($chaineEntreParentheses, 1, strlen($chaineEntreParentheses)-2);
-			return $suppressionDesParentheses;
 		}
 	}
 	
@@ -92,6 +85,10 @@ class Troll {
 	
 	function getArmure() {
 		return $this->data['armure'];
+	}
+	
+	function getDonnees() {
+		return $this->data;
 	}
 	
 }
