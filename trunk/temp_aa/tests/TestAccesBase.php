@@ -26,15 +26,14 @@
 				'regeneration' => 'entre 3 et 4',
 				'armure' => 'entre 12 et 14',
 				'vue' => 'entre 2 et 4',
-				'date_compilation' => '2006-06-25',  
+				'date_compilation' => '2006-06-25 14:09:23',  
 				'sortileges' => '',
 			);
 			$createQuery = getQueryForCreate($grobide);
 			$referenceQuery = "INSERT INTO `mountyhall_troll` (`numero`, `nom`, `race`, `niveau`, `vie`, `attaque`, ".
 				"`esquive`, `degats`, `regeneration`, `armure`, `vue`, `date_compilation`, `sortileges`) VALUES (".
 				"31629,'GROBIDE','Skrim',28,'entre 95 et 115','entre 17 et 19','entre 10 et 12','entre 12 et 14',".
-				"'entre 3 et 4','entre 12 et 14','entre 2 et 4',CURDATE(),'')";
-			error_log('ref: ' . $referenceQuery);
+				"'entre 3 et 4','entre 12 et 14','entre 2 et 4','2006-06-25 14:09:23','')";
 			$this->assertEqual($referenceQuery, $createQuery);
 		}
 		
@@ -58,12 +57,13 @@
 				'numero'=> 31629,
 				'niveau' => 29,
 				'degats' => 'entre 13 et 15',
-				'regeneration' => '5'
+				'regeneration' => '5',
+				'date_compilation' => '2006-10-02 08:52:45',
 			);
 			$updateQuery = getQueryForUpdate($donneesDeModification);
 			$this->assertEqual(
 				"UPDATE `mountyhall_troll` SET `numero`=31629,`niveau`=29,`degats`='entre 13 et 15',`regeneration`='5',".
-				"`date_compilation`=CURDATE() WHERE `numero`=31629", $updateQuery);
+				"`date_compilation`='2006-10-02 08:52:45' WHERE `numero`=31629", $updateQuery);
 		}
 	}
 ?>

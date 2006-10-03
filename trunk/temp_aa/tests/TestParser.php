@@ -41,7 +41,8 @@
     			'degats' => 'Excellent (entre 11 et 13)',
     			'regeneration' => 'Remarquable (entre 4 et 5)',
     			'armure' => 'Exceptionnel (entre 16 et 18)',
-    			'vue' => 'Moyen (entre 3 et 5)'
+    			'vue' => 'Moyen (entre 3 et 5)',
+    			'date_compilation' => '2006-09-30 16:12:05',
     		);
     		$infosTroll = $parser->getInfosTroll();
     		$diff = array_diff($referenceInfos, $infosTroll);

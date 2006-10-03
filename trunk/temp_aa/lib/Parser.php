@@ -13,7 +13,13 @@ class Parser {
 			$fileDescriptor = fopen($fileName, "r");
 			while (!feof($fileDescriptor)) {
      			$entireLine = fgets($fileDescriptor, 4096);
-				switch (true) {
+     			switch (true) {
+					case (ereg("^Expéditeur", $entireLine)):
+						preg_match ("/[0-9]{1,2}\/[01]?[0-9]\/[0-9]{4}/",$entireLine, $dateMatches);
+						preg_match ("/[0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2}/",$entireLine, $timeMatches);
+						$formattedDate = implode('-', array_reverse(explode('/', $dateMatches['0'])));
+						$infosTroll['date_compilation'] = $formattedDate . ' ' . $timeMatches['0']; 
+   					break;
 					case (ereg("^Le Troll Ciblé", $entireLine)):
    						$lineArray = explode(':', $entireLine);
    						$nomEtNumeroEnLigne = trim($lineArray[1]);

@@ -47,8 +47,7 @@ function getQueryForCreate($infosTroll) {
 		"{$infosTroll['numero']},'{$infosTroll['nom']}','{$infosTroll['race']}',{$infosTroll['niveau']},".
 		"'{$infosTroll['vie']}','{$infosTroll['attaque']}','{$infosTroll['esquive']}',".
 		"'{$infosTroll['degats']}','{$infosTroll['regeneration']}','{$infosTroll['armure']}',".
-		"'{$infosTroll['vue']}',CURDATE(),'{$infosTroll['sortileges']}')";
-		error_log('new: ' . $createTrollQuery);
+		"'{$infosTroll['vue']}','{$infosTroll['date_compilation']}','{$infosTroll['sortileges']}')";
 	return $createTrollQuery;
 }
 
@@ -62,8 +61,7 @@ function getQueryForUpdate($infosTroll) {
 		$updateFieldsArray[] = "`$clefChamp`=$valeurChamp";
 		
 	}
-	$updateTrollQuery .= implode(",", $updateFieldsArray) . ",`date_compilation`=CURDATE() WHERE ".
-		"`numero`={$infosTroll['numero']}";
+	$updateTrollQuery .= implode(",", $updateFieldsArray) . " WHERE `numero`={$infosTroll['numero']}";
 	return $updateTrollQuery;
 }
 
