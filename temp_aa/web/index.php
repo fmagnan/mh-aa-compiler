@@ -3,6 +3,7 @@
 // put full path to Smarty.class.php
 require(dirname(__FILE__).'/../lib/Smarty/Smarty.class.php');
 
+
 $smarty = new Smarty();
 
 $smarty->template_dir = dirname(__FILE__).'/smarty/templates';

@@ -16,20 +16,25 @@ function isNotEmptyInputArray($inputArray) {
 }
 
 function getInfosTrollFromDB($numero) {
-	connectToDB();
-	$query = 'SELECT * FROM mountyhall_troll WHERE mountyhall_troll.numero = ' . $numero . ';';
-	$result = mysql_query($query);
-	$nombreDeReponses = mysql_num_rows($result); 
-	if ($nombreDeReponses == 0) {
-		$infos = FALSE;
-	}
-	elseif ($nombreDeReponses != 1) {
-		trigger_error('error[getInfosTrollFromDB()]: too many responses for query "' . $query . '"');
+	if (!is_int($numero)) {
+		trigger_error('error: input data needs a valid troll number');
 	}
 	else {
-		$infos = mysql_fetch_array($result);
+		connectToDB();
+		$query = 'SELECT * FROM mountyhall_troll WHERE mountyhall_troll.numero = ' . $numero . ';';
+		$result = mysql_query($query);
+		$nombreDeReponses = mysql_num_rows($result); 
+		if ($nombreDeReponses == 0) {
+			$infos = FALSE;
+		}
+		elseif ($nombreDeReponses != 1) {
+			trigger_error('error[getInfosTrollFromDB()]: too many responses for query "' . $query . '"');
+		}
+		else {
+			$infos = mysql_fetch_array($result);
+		}
+		disconnectFromDB();
 	}
-	disconnectFromDB();
 	return $infos;
 }
 
