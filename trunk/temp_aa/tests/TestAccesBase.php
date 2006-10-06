@@ -20,6 +20,10 @@
 			'sortileges' => '',
 		);
 		
+		function setUp() {
+			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('truncateTable.sql'));
+		}
+		
 		function test_ecritureTrollEnBaseSansTableau() {
 			$result = createTrollInDB('donnee non valide');
 			$this->assertError('error: input data is not an array');
@@ -66,6 +70,11 @@
 			$this->assertEqual(
 				"UPDATE `mountyhall_troll` SET `numero`=31629,`niveau`=29,`degats`='entre 13 et 15',`regeneration`='5',".
 				"`date_compilation`='2006-10-02 08:52:45' WHERE `numero`=31629", $updateQuery);
+		}
+		
+		function test_recuperationInfosTrollEnBaseSansNumero() {
+			$infosTrolls = getInfosTrollFromDB('');
+			$this->assertError('error: input data needs a valid troll number');
 		}
 		
 		function test_recuperationInfosTrollEnBase() {

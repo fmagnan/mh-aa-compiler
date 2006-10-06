@@ -3,6 +3,10 @@ require_once 'Parser.php';
 require_once 'Troll.php';
 require_once 'database.inc.php';
 
+function debugArray($array) {
+	error_log(print_r($array, TRUE));
+}
+
 function getTimeStampFromTrollDate($dateCompilation) {
 	$date = explode('-', trim(substr($dateCompilation, 0, 10)));
     $time = explode(':', trim(substr($dateCompilation,11,strlen($dateCompilation))));
@@ -11,7 +15,9 @@ function getTimeStampFromTrollDate($dateCompilation) {
 
 function processAnalysis($analysis) {
 	$parser = new Parser($analysis);
-    $infosTroll = $parser->getInfosTroll();
+	$parser->parseData();
+	$infosTroll = $parser->getInfosTroll();
+	
     $infosFromDB = getInfosTrollFromDB($infosTroll['numero']);
     if ($infosFromDB == FALSE) {
     	createOrUpdateTrollInDB($infosTroll, 'getQueryForCreate');
