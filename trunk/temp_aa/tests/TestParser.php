@@ -11,12 +11,17 @@
     		$this->assertEqual("entre 4 et 6", $value);
     	}
     	
+    	function test_recuperationRace() {
+    		$parser = new Parser('rien');
+    		$this->assertEqual('Durakuir', $parser->getRaceFromPublicList(6807));
+    	}
+    	
     	function test_creationAvecBonFichier() {
     		$parser = new Parser(file_get_contents(dirname(__FILE__).'/messageBotAASquatman.txt'));
     		$referenceInfos = array(
     			'numero' => 62465,
     			'nom' => 'SQUATMAN',
-    			'race' => 'Inconnue',
+    			'race' => 'Durakuir',
     			'niveau' => 22,
     			'vie' => 'entre 120 et 140',
     			'attaque' => 'entre 4 et 6',

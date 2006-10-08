@@ -9,7 +9,7 @@
     		$referenceInfosTroll = array(
 	    		'numero' => 62465,
     			'nom' => 'SQUATMAN',
-    			'race' => 'Inconnue',
+    			'race' => 'Durakuir',
 	    		'niveau' => 22,
     			'vie' => 'entre 120 et 140',
     			'attaque' => 'entre 4 et 6',
@@ -37,7 +37,7 @@
 	    		'niveau' => 29,
     			'vie' => 'entre 110 et 120',
     			'attaque' => 'entre 18 et 20',
-    			'esquive' => '10',
+    			'esquive' => 'entre 10 et 12',
     			'degats' => 'entre 12 et 13',
     			'regeneration' => 'entre 4 et 5',
     			'armure' => 'entre 12 et 14',
@@ -47,6 +47,8 @@
     		
     		shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
     		$infosTroll = processAnalysis(file_get_contents(dirname(__FILE__).'/messageBotAAGrobide.txt'));
+    		
+    		debugArray($infosTroll);
     		
     		$array_diff = array_diff_assoc($compiledInfosTroll, $infosTroll);
     		$this->assertTrue(empty($array_diff));
@@ -58,7 +60,7 @@
     		$compiledInfosTroll = array(
 	    		'numero' => 31629,
     			'nom' => 'GROBIDE',
-    			'race' => 'Inconnue',
+    			'race' => 'Skrim',
 	    		'niveau' => 28,
     			'vie' => 'entre 95 et 115',
     			'attaque' => 'entre 17 et 19',
