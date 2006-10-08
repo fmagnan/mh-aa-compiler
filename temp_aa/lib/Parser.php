@@ -51,7 +51,7 @@ class Parser {
 		$this->infosTroll = array(
 			'numero' => $numberAndName['numero'],
 			'nom' => $numberAndName['nom'],
-			'race' => 'Inconnue',
+			'race' => $this->getRaceFromPublicList($numberAndName['numero']),
 			'niveau' => $this->getSimpleValue("/^Niveau/"),
 			'vie' => $this->getParenthesisValue("/^Points de Vie/"),
 			'attaque' => $this->getParenthesisValue("/Attaque/"),
@@ -68,5 +68,22 @@ class Parser {
 	function getInfosTroll() {
 		return $this->infosTroll;
 	}
+	
+	function getRaceFromPublicList($numero) {
+		$race = 'Inconnue';
+		$handle = @fopen(dirname(__FILE__).'/../tests/Public_Trolls.txt', "r");
+		if ($handle) {
+   			while (!feof($handle)) {
+     			$line = fgets($handle);
+     			$trollInfosArray = explode(';', $line);
+     			if ($numero == intval($trollInfosArray[0])) {
+	     			$race = $trollInfosArray[2]; 
+    	 		}
+	   		}
+		}
+   		fclose($handle);
+   		return $race;
+	}
+	
 }
 ?>
