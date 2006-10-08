@@ -86,5 +86,13 @@
 			$this->assertTrue(empty($array_diff_assoc));
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('truncateTable.sql'));
 		}
+		
+		function test_recupereTousLesTrolls() {
+			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
+			$tousLesTrolls = getTousLesTrolls();
+			$this->assertEqual(1, count($tousLesTrolls));
+			$this->assertEqual($this->grobide, $tousLesTrolls[0]);
+			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('truncateTable.sql'));
+		}
 	}
 ?>

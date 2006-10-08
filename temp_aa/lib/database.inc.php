@@ -15,6 +15,20 @@ function isNotEmptyInputArray($inputArray) {
 	return $isNotEmptyInputArray;
 }
 
+function getTousLesTrolls() {
+	$tousLesTrolls = array();
+	connectToDB();
+	$query = 'SELECT * FROM mountyhall_troll WHERE 1=1';
+	$result = mysql_query($query);
+	if ($result != FALSE) {
+		while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+			$tousLesTrolls[] = $row;
+		}
+	}
+	disconnectFromDB();
+	return $tousLesTrolls;
+}
+
 function getInfosTrollFromDB($numero) {
 	if (!is_int($numero)) {
 		trigger_error('error: input data needs a valid troll number');
