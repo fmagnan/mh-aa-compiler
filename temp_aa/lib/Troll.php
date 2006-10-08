@@ -39,10 +39,6 @@ class Troll {
 		}
 	}
 	
-	function delete() {
-		$this = null;
-	}
-	
 	function getNumero() {
 		return $this->data['numero'];
 	}

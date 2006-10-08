@@ -44,7 +44,8 @@ class Compiler {
 	function analyse($newData) {
 		$newValues = $this->getValuesFromString($newData);
 		if ($newValues['maximum'] < $this->getMinimumValue()) {
-			trigger_error('error[Compiler->analyse()]: wrong input data');
+			trigger_error('Compiler->analyse(): valeur maximale['.$newValues['maximum'].
+			'] < valeur minimale['.$this->getMinimumValue().']');
 		}
 		else {
 			$referenceMinimumValue = $this->getMinimumValue();
