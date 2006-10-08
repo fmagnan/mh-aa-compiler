@@ -11,7 +11,8 @@ $smarty->compile_dir = dirname(__FILE__).'/smarty/templates_c';
 $smarty->cache_dir = dirname(__FILE__).'/smarty/cache';
 $smarty->config_dir = dirname(__FILE__).'/smarty/configs';
 
-$analysis = utf8_encode(stripslashes($_POST['aa'])); 
+//$analysis = utf8_encode(stripslashes($_POST['aa'])); 
+$analysis = stripslashes($_POST['aa']);
 
 if ($analysis != '') {
 	$infosTroll = processAnalysis($analysis);
