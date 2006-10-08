@@ -88,9 +88,5 @@
 			$this->assertEqual('18', $troll->getDegats());
 		}
 		
-		function tearDown() {
-			$this->troll->delete();	
-		}
-		
 	}
 ?>
