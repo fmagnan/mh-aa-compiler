@@ -35,19 +35,19 @@
     	function test_nouvelleDonneeInferieureAReferenceSimple() {
     		$compiler = new Compiler('100');
     		$compiler->analyse('entre 80 et 90');
-    		$this->assertError('error[Compiler->analyse()]: wrong input data');
+    		$this->assertError('Compiler->analyse(): valeur maximale[90] < valeur minimale[100]');
 		}
 		
 		function test_nouvelleDonneeInferieureAReferenceDouble() {
     		$compiler = new Compiler('entre 80 et 90');
     		$compiler->analyse('entre 60 et 70');
-    		$this->assertError('error[Compiler->analyse()]: wrong input data');
+    		$this->assertError('Compiler->analyse(): valeur maximale[70] < valeur minimale[80]');
 		}
 	
 		function test_nouvelleDonneeInferieureATout() {
     		$compiler = new Compiler('entre 5 et 6');
     		$compiler->analyse('inférieur à 3');
-    		$this->assertError('error[Compiler->analyse()]: wrong input data');
+    		$this->assertError('Compiler->analyse(): valeur maximale[3] < valeur minimale[5]');
 		}
 		
 		function test_nouvelleDonneeInferieureEtEgaleAReferenceSimple() {
@@ -76,6 +76,13 @@
     		$compiler->analyse('entre 110 et 130');
     		$this->assertEqual('120', $compiler->getMinimumValue());
     		$this->assertEqual('130', $compiler->getMaximumValue());
+		}
+		
+		function test_nouvelleDonneeInferieureDonneResultatSimple() {
+    		$compiler = new Compiler('entre 12 et 14');
+    		$compiler->analyse('entre 10 et 12');
+    		$this->assertEqual('12', $compiler->getMinimumValue());
+    		$this->assertEqual('12', $compiler->getMaximumValue());
 		}
 		
 		function test_nouvelleDonneeSuperieureEtEgaleAReferenceDouble() {

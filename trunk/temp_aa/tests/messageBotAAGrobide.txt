@@ -18,7 +18,7 @@ Niveau : 29
 Points de Vie : Excellent (entre 110 et 120)
 Blessure (Approximatif) : 0 %
 Dés d'Attaque : Moyen (entre 18 et 20)
-Dés d'Esquive : Très Fort (entre 8 et 10)
+Dés d'Esquive : Très Fort (entre 10 et 12)
 Dés de Dégât : Excellent (entre 11 et 13)
 Dés de Régénération : Remarquable (entre 4 et 5)
 Armure : Exceptionnel (entre 12 et 14)
