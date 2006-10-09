@@ -2,7 +2,7 @@
 <html>
 	<head>
 	 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	 	<link rel="stylesheet" type="text/css" href="/AA/web/css/screen.css" media="screen" title="Normal" />
+	 	<link rel="stylesheet" type="text/css" href="css/screen.css" media="screen" title="Normal" />
 	</head>
 	<body>
 		<h2>{$messageResultat}</h2>
