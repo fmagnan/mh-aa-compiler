@@ -1,14 +1,20 @@
 <?php
-	require_once(dirname(__FILE__).'/../lib/Parser.php');
+	require_once(dirname(__FILE__).'/../lib/Parser.class.php');
 	include dirname(__FILE__).'/../lib/core.inc.php';
 	require_once 'functionsForTests.inc.php';
 	
 	class TestRecetteInsertion extends UnitTestCase {
     	
+    	function test_insertionImpossibleCarChampManquant() {
+    		$infosTroll = processAnalysis(file_get_contents(dirname(__FILE__).'/messageBotAAChampManquantSquatman.txt'));
+    		$this->assertError('isDataOk(): date_compilation is null, AA creation is aborted');
+    		$this->assertNull($infosTroll);
+    	}
+    	
     	function test_insertionNouveauTroll() {
     		$referenceInfosTroll = array(
 	    		'numero' => 62465,
-    			'nom' => 'SQUATMAN',
+    			'nom' => 'Squatman',
     			'race' => 'Durakuir',
 	    		'niveau' => 22,
     			'vie' => 'entre 120 et 140',
@@ -25,14 +31,12 @@
 			
 			$array_diff_assoc = array_diff_assoc($referenceInfosTroll, $infosTroll);
     		$this->assertTrue(empty($array_diff_assoc));
-    		
-    		shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('truncateTable.sql'));
     	}
     	
     	function test_miseAJourTrollAvecDatePlusRecente() {
     		$compiledInfosTroll = array(
 	    		'numero' => 31629,
-    			'nom' => 'GROBIDE',
+    			'nom' => 'Grobide',
     			'race' => 'Skrim',
 	    		'niveau' => 29,
     			'vie' => 'entre 110 et 120',
@@ -48,18 +52,14 @@
     		shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
     		$infosTroll = processAnalysis(file_get_contents(dirname(__FILE__).'/messageBotAAGrobide.txt'));
     		
-    		debugArray($infosTroll);
-    		
     		$array_diff = array_diff_assoc($compiledInfosTroll, $infosTroll);
     		$this->assertTrue(empty($array_diff));
-    		
-    		shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('truncateTable.sql'));
     	}
     	
     	function test_miseAJourTrollAvecDatePlusAncienne() {
     		$compiledInfosTroll = array(
 	    		'numero' => 31629,
-    			'nom' => 'GROBIDE',
+    			'nom' => 'Grobide',
     			'race' => 'Skrim',
 	    		'niveau' => 28,
     			'vie' => 'entre 95 et 115',
@@ -77,8 +77,10 @@
     		
     		$array_diff = array_diff_assoc($compiledInfosTroll, $infosTroll);
     		$this->assertTrue(empty($array_diff));
-    		
-    		shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('truncateTable.sql'));
+    	}
+    	
+    	function tearDown() {
+    		shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('truncateTable.sql'));	
     	}
 	}
 ?>

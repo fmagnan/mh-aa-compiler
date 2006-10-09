@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Compiler.php';
+require_once 'Compiler.class.php';
 require_once 'database.inc.php';
 
 class Troll {

@@ -1,5 +1,5 @@
 <?php
-	require_once(dirname(__FILE__).'/../lib/Compiler.php');
+	require_once(dirname(__FILE__).'/../lib/Compiler.class.php');
 		
 	class TestCompiler extends UnitTestCase {
     	
