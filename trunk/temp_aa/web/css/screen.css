@@ -1,0 +1,27 @@
+div.log_result {
+	border:1px solid black;
+	width:70%;
+	margin-left:20%;
+	padding-left:10px;
+	background-color:#FFFFE0;
+}
+
+table#tous_les_trolls {
+	width:90%;
+	margin-left:5%;
+	border:1px #8B4513 solid;
+	border-collapse:collapse;
+	color:#8B4513;
+	font-size:0.8em;
+	text-align:center;
+}
+
+table#tous_les_trolls th {
+	background-color:#8B4513;
+	color:white;
+	font-weight:bold;
+}
+
+table#tous_les_trolls td {
+	border: 1px dotted #8B4513;
+}
