@@ -51,6 +51,7 @@ function processAnalysis($analysis) {
     		$updateData = $troll->getDonnees();
     		$updateData['date_compilation'] = $updatingInfos['date_compilation'];
     		$updateData['nom'] = $infosTroll['nom'];
+    		$updateData['race'] = $infosTroll['race'];
     		createOrUpdateTrollInDB($updateData, 'getQueryForUpdate');
     		return $updateData;
     	}
