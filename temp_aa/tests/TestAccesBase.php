@@ -80,9 +80,7 @@
 		function test_recuperationInfosTrollEnBase() {
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
 			$infosTrolls = getInfosTrollFromDB(31629);
-			$array_diff = array_diff($this->grobide, $infosTrolls);
 			$array_diff_assoc = array_diff_assoc($this->grobide, $infosTrolls);
-			$this->assertTrue(empty($array_diff));
 			$this->assertTrue(empty($array_diff_assoc));
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('truncateTable.sql'));
 		}

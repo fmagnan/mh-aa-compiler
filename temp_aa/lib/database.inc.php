@@ -1,5 +1,5 @@
 <?
-require_once 'variables.inc.php';
+require_once 'config.inc.php';
 
 function isNotEmptyInputArray($inputArray) {
 	$isNotEmptyInputArray = FALSE;

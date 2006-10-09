@@ -1,6 +1,6 @@
 <?
-require_once 'Parser.php';
-require_once 'Troll.php';
+require_once 'Parser.class.php';
+require_once 'Troll.class.php';
 require_once 'database.inc.php';
 
 function debugArray($array) {
@@ -13,34 +13,51 @@ function getTimeStampFromTrollDate($dateCompilation) {
     return mktime($time[0], $time[1], $time[2], $date[1], $date[2], $date[0]);
 }
 
+function isDataOk($infosTroll) {
+	$isDataOk = TRUE;
+	foreach($infosTroll AS $key => $value) {
+		if ($value == null) {
+			trigger_error('isDataOk(): '.$key.' is null, AA creation is aborted');
+			$isDataOk = FALSE;
+		}
+	}
+	return $isDataOk;
+}
+
 function processAnalysis($analysis) {
 	$parser = new Parser($analysis);
 	$parser->parseData();
 	$infosTroll = $parser->getInfosTroll();
 	
-    $infosFromDB = getInfosTrollFromDB($infosTroll['numero']);
-    if ($infosFromDB == FALSE) {
-    	createOrUpdateTrollInDB($infosTroll, 'getQueryForCreate');
-    }
-    else {
-    	$timeStamp = getTimeStampFromTrollDate($infosTroll['date_compilation']);
-    	$timeStampInDB = getTimeStampFromTrollDate($infosFromDB['date_compilation']);
-    	if ($timeStamp > $timeStampInDB) {
-    		$referenceInfos = $infosFromDB;
-    		$updatingInfos = $infosTroll;
+	if (isDataOk($infosTroll)) {
+		$infosFromDB = getInfosTrollFromDB($infosTroll['numero']);
+    	if ($infosFromDB == FALSE) {
+    		createOrUpdateTrollInDB($infosTroll, 'getQueryForCreate');
     	}
     	else {
-    		$referenceInfos = $infosTroll;
-    		$updatingInfos = $infosFromDB;
+    		$timeStamp = getTimeStampFromTrollDate($infosTroll['date_compilation']);
+    		$timeStampInDB = getTimeStampFromTrollDate($infosFromDB['date_compilation']);
+    		if ($timeStamp > $timeStampInDB) {
+	    		$referenceInfos = $infosFromDB;
+   		 		$updatingInfos = $infosTroll;
+	    	}
+    		else {
+	    		$referenceInfos = $infosTroll;
+    			$updatingInfos = $infosFromDB;
+    		}
+    		$referencesInfos['nom'] = $infosTroll['nom'];
+    		$troll = new Troll($referenceInfos);
+    		$troll->update($updatingInfos);
+    		$updateData = $troll->getDonnees();
+    		$updateData['date_compilation'] = $updatingInfos['date_compilation'];
+    		$updateData['nom'] = $infosTroll['nom'];
+    		createOrUpdateTrollInDB($updateData, 'getQueryForUpdate');
+    		return $updateData;
     	}
-    	$troll = new Troll($referenceInfos);
-    	$troll->update($updatingInfos);
-    	$updateData = $troll->getDonnees();
-    	$updateData['date_compilation'] = $updatingInfos['date_compilation'];
-    	createOrUpdateTrollInDB($updateData, 'getQueryForUpdate');
-    	return $updateData;
-    }
-	return $infosTroll;
+		return $infosTroll;
+	}
+	else {
+		return null;
+	}
 }
-
 ?>

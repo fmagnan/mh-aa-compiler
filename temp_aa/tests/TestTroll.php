@@ -1,5 +1,5 @@
 <?php
-	require_once(dirname(__FILE__).'/../lib/Troll.php');
+	require_once(dirname(__FILE__).'/../lib/Troll.class.php');
 	require_once 'functionsForTests.inc.php';
 	
 	class TestTroll extends UnitTestCase {
