@@ -1,2 +1,2 @@
 INSERT INTO `mountyhall_troll` ( `numero` , `nom` , `race` , `niveau` , `vie` , `attaque` , `esquive` , `degats` , `regeneration` , `armure` , `vue` , `date_compilation` , `sortileges` )
-VALUES ( 31629, 'GROBIDE', 'Skrim', 28, 'entre 95 et 115', 'entre 17 et 19', 'entre 10 et 12', 'entre 12 et 14', 'entre 3 et 4', 'entre 12 et 14', 'entre 2 et 4', '2006-06-25 14:09:23', '' ) 
+VALUES ( 31629, 'GROBIDE', 'Inconnue', 28, 'entre 95 et 115', 'entre 17 et 19', 'entre 10 et 12', 'entre 12 et 14', 'entre 3 et 4', 'entre 12 et 14', 'entre 2 et 4', '2006-06-25 14:09:23', '' ) 
