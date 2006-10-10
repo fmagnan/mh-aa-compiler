@@ -62,9 +62,9 @@ function createOrUpdateTrollInDB($infosTroll, $getQueryFunctionName) {
 }
 
 function getQueryForCreate($infosTroll) {
-	$createTrollQuery = "INSERT INTO `mountyhall_troll` (`numero`, `nom`, `race`, `niveau`, `vie`, `attaque`, ".
+	$createTrollQuery = "INSERT INTO `mountyhall_troll` (`numero`, `nom`, `race`, `numero_guilde`, `guilde`, `niveau`, `vie`, `attaque`, ".
 		"`esquive`, `degats`, `regeneration`, `armure`, `vue`, `date_compilation`, `sortileges`) VALUES (".
-		"{$infosTroll['numero']},'{$infosTroll['nom']}','{$infosTroll['race']}',{$infosTroll['niveau']},".
+		"{$infosTroll['numero']},'{$infosTroll['nom']}','{$infosTroll['race']}',{$infosTroll['numero_guilde']},'{$infosTroll['guilde']}',{$infosTroll['niveau']},".
 		"'{$infosTroll['vie']}','{$infosTroll['attaque']}','{$infosTroll['esquive']}',".
 		"'{$infosTroll['degats']}','{$infosTroll['regeneration']}','{$infosTroll['armure']}',".
 		"'{$infosTroll['vue']}','{$infosTroll['date_compilation']}','{$infosTroll['sortileges']}')";
