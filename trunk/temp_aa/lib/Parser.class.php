@@ -62,6 +62,8 @@ class Parser {
 			'numero' => $number,
 			'nom' => $publicInfos['nom'],
 			'race' => $publicInfos['race'],
+			'numero_guilde' => $publicInfos['numero_guilde'],
+			'guilde' => $publicInfos['guilde'],
 			'niveau' => $this->extractValue("/^Niveau/", 'extractSimpleMethod'),
 			'vie' => $this->extractValue("/^Points de Vie/", 'extractParenthesisMethod'),
 			'attaque' => $this->extractValue("/Attaque/", 'extractParenthesisMethod'),
@@ -89,11 +91,30 @@ class Parser {
      			if ($numero == intval($trollInfosArray[0])) {
      				$publicInfos['nom'] = $trollInfosArray[1];
      				$publicInfos['race'] = $trollInfosArray[2];
+     				$publicInfos['numero_guilde'] = $trollInfosArray[6];
 	     			break;
     	 		}
 	   		}
 		}
    		fclose($handle);
+   		
+   		if ('1' == $publicInfos['numero_guilde']) {
+   			$publicInfos['guilde'] = '-';
+   		}
+   		else {
+   			$handle = @fopen(dirname(__FILE__).'/../tests/Public_Guildes.txt', "r");
+			if ($handle) {
+	   			while (!feof($handle)) {
+     				$line = fgets($handle);
+     				$trollInfosArray = explode(';', $line);
+     				if ($publicInfos['numero_guilde'] == intval($trollInfosArray[0])) {
+	     				$publicInfos['guilde'] = $trollInfosArray[1];
+	     				break;
+    	 			}
+	   			}
+			}
+   			fclose($handle);
+   		}
    		return $publicInfos;
 	}
 	
