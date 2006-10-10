@@ -82,8 +82,9 @@ class Parser {
 	}
 	
 	function getPublicInfos($numero) {
+		$pathToPublicFiles = dirname(__FILE__).'/../txt/';
 		$publicInfos = array();
-		$handle = @fopen(dirname(__FILE__).'/../tests/Public_Trolls.txt', "r");
+		$handle = @fopen($pathToPublicFiles.'Public_Trolls.txt', "r");
 		if ($handle) {
    			while (!feof($handle)) {
      			$line = fgets($handle);
@@ -102,7 +103,7 @@ class Parser {
    			$publicInfos['guilde'] = '-';
    		}
    		else {
-   			$handle = @fopen(dirname(__FILE__).'/../tests/Public_Guildes.txt', "r");
+   			$handle = @fopen($pathToPublicFiles.'Public_Guildes.txt', "r");
 			if ($handle) {
 	   			while (!feof($handle)) {
      				$line = fgets($handle);
