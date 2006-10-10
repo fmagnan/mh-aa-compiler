@@ -36,6 +36,7 @@ div#fiche_troll {
 	background-color:#FFFFE0;
 	color:#8B4513;
 	font-size:0.8em;
+	-moz-border-radius:10px;
 }
 
 div#fiche_troll li {
