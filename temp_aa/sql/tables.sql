@@ -2,6 +2,8 @@ CREATE TABLE mountyhall_troll (
 	numero INT(5) NOT NULL,
 	nom VARCHAR(50) NOT NULL,
 	race ENUM('Inconnue', 'Durakuir', 'Kastar', 'Skrim', 'Tomawak') NOT NULL,
+	numero_guilde INT(5) NOT NULL,
+	guilde VARCHAR(50) NOT NULL,
 	niveau int NOT NULL,
 	vie VARCHAR(20) NOT NULL,
 	attaque VARCHAR(20) NOT NULL,

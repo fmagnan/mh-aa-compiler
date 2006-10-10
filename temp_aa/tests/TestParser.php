@@ -72,6 +72,17 @@
     		$publicInfos = $parser->getPublicInfos(6807);
     		$this->assertEqual("Herb'", $publicInfos['nom']);
     		$this->assertEqual('Durakuir', $publicInfos['race']);
+    		$this->assertEqual('3053', $publicInfos['numero_guilde']);
+    		$this->assertEqual('Les 12 salopards', $publicInfos['guilde']);
+    	}
+    	
+    	function test_recuperationInfosPubliquesSansGuilde() {
+    		$parser = new Parser('rien');
+    		$publicInfos = $parser->getPublicInfos(31725);;;;10;15;2;1;10;
+    		$this->assertEqual('Madjestoet', $publicInfos['nom']);
+    		$this->assertEqual('Skrim', $publicInfos['race']);
+    		$this->assertEqual('1', $publicInfos['numero_guilde']);
+    		$this->assertEqual('-', $publicInfos['guilde']);
     	}
     	
     	function test_creationAvecBonFichier() {
@@ -80,6 +91,8 @@
     			'numero' => 62465,
     			'nom' => 'Squatman',
     			'race' => 'Durakuir',
+    			'numero_guilde' => '147',
+    			'guilde' => 'X-Trolls',
     			'niveau' => 22,
     			'vie' => 'entre 120 et 140',
     			'attaque' => 'entre 4 et 6',
@@ -92,8 +105,6 @@
     		);
     		$parser->parseData();
     		$infosTroll = $parser->getInfosTroll();
-    		
-    		//error_log(print_r($infosTroll), TRUE);
     		
     		$diff_assoc = array_diff_assoc($referenceInfos, $infosTroll);
     		$this->assertTrue(empty($diff_assoc));
