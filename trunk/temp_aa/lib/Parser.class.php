@@ -57,6 +57,10 @@ class Parser {
 	function parseData() {
 		$number = $this->extractValue("/^Le Troll Ciblé/", 'extractNumberMethod');
 		$publicInfos = $this->getPublicInfos($number);
+		$dateCompilation = $this->extractValue("/Date/", 'extractDateMethod');
+		if ($dateCompilation == null) {
+			$dateCompilation = $this->extractValue("/^Il était/", 'extractDateMethod');
+		}
 		
 		$this->infosTroll = array(
 			'numero' => $number,
@@ -72,7 +76,7 @@ class Parser {
 			'regeneration' => $this->extractValue("/Régénération/", 'extractParenthesisMethod'),
 			'armure' => $this->extractValue("/^Armure/", 'extractParenthesisMethod'),
 			'vue' => $this->extractValue("/^Vue/", 'extractParenthesisMethod'),
-			'date_compilation' => $this->extractValue("/Date/", 'extractDateMethod'),
+			'date_compilation' => $dateCompilation,
 		);
 		
 	}

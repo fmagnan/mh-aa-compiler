@@ -91,7 +91,7 @@
     			'numero' => 62465,
     			'nom' => 'Squatman',
     			'race' => 'Durakuir',
-    			'numero_guilde' => '147',
+    			'numero_guilde' => 147,
     			'guilde' => 'X-Trolls',
     			'niveau' => 22,
     			'vie' => 'entre 120 et 140',
@@ -102,6 +102,31 @@
     			'armure' => 'entre 16 et 18',
     			'vue' => 'entre 3 et 5',
     			'date_compilation' => '2006-09-30 16:12:05',
+    		);
+    		$parser->parseData();
+    		$infosTroll = $parser->getInfosTroll();
+    		
+    		$diff_assoc = array_diff_assoc($referenceInfos, $infosTroll);
+    		$this->assertTrue(empty($diff_assoc));
+    	}
+    	
+    	function test_creationAvecSelectionALaMain() {
+    		$parser = new Parser(file_get_contents(dirname(__FILE__).'/messageBotAABoorajEnSelectionALaMain.txt'));
+    		$referenceInfos = array(
+    			'numero' => 30905,
+    			'nom' => 'Boohraj Dekrane',
+    			'race' => 'Kastar',
+    			'numero_guilde' => 2435,
+    			'guilde' => 'Les questeurs du Vent',
+    			'niveau' => 28,
+    			'vie' => 'entre 95 et 115',
+    			'attaque' => 'entre 3 et 5',
+    			'esquive' => 'entre 12 et 14',
+    			'degats' => 'supérieur à 20',
+    			'regeneration' => 'entre 4 et 5',
+    			'armure' => 'entre 2 et 4',
+    			'vue' => 'entre 5 et 7',
+    			'date_compilation' => '2006-10-07 18:49:44', 
     		);
     		$parser->parseData();
     		$infosTroll = $parser->getInfosTroll();
