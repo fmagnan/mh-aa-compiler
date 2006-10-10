@@ -27,11 +27,8 @@ table#tous_les_trolls td {
 	background-color:#FFFFE0;
 }
 
-div#fiche_troll {
-	top:10%;
-	right:5%;
-	position:fixed;
-	width:30%;
+ul#menu, ul#fiche_troll {
+	padding-left:10px;
 	border:1px #8B4513 solid;
 	background-color:#FFFFE0;
 	color:#8B4513;
@@ -39,6 +36,18 @@ div#fiche_troll {
 	-moz-border-radius:10px;
 }
 
-div#fiche_troll li {
+ul#menu {
+	width:20%;
+	margin-left:5%;
+}
+
+ul#fiche_troll {
+	width:30%;
+	top:10%;
+	right:5%;
+	position:fixed;
+}
+
+ul#menu li, ul#fiche_troll li {
 	list-style-type:none;
 }
