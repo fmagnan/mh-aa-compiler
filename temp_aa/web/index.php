@@ -23,6 +23,6 @@ if ($id != '') {
 	$smarty->assign('ficheTroll', $infosTrollFromDB);
 }
 
-$smarty->display('index.tpl');
+$smarty->display('main_template.tpl');
 
 ?>
