@@ -7,8 +7,8 @@ div.log_result {
 }
 
 table#tous_les_trolls {
-	width:90%;
-	margin-left:5%;
+	width:60%;
+	margin-left:2%;
 	border:1px #8B4513 solid;
 	border-collapse:collapse;
 	color:#8B4513;
@@ -25,4 +25,19 @@ table#tous_les_trolls th {
 table#tous_les_trolls td {
 	border: 1px dotted #8B4513;
 	background-color:#FFFFE0;
+}
+
+div#fiche_troll {
+	top:10%;
+	right:5%;
+	position:fixed;
+	width:30%;
+	border:1px #8B4513 solid;
+	background-color:#FFFFE0;
+	color:#8B4513;
+	font-size:0.8em;
+}
+
+div#fiche_troll li {
+	list-style-type:none;
 }
