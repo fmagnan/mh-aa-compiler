@@ -59,7 +59,7 @@ class Parser {
 		$publicInfos = $this->getPublicInfos($number);
 		$dateCompilation = $this->extractValue("/Date/", 'extractDateMethod');
 		if ($dateCompilation == null) {
-			$dateCompilation = $this->extractValue("/^Il était/", 'extractDateMethod');
+			$dateCompilation = $this->extractValue("/Il était/", 'extractDateMethod');
 		}
 		
 		$this->infosTroll = array(
@@ -68,14 +68,14 @@ class Parser {
 			'race' => $publicInfos['race'],
 			'numero_guilde' => $publicInfos['numero_guilde'],
 			'guilde' => $publicInfos['guilde'],
-			'niveau' => $this->extractValue("/^Niveau/", 'extractSimpleMethod'),
-			'vie' => $this->extractValue("/^Points de Vie/", 'extractParenthesisMethod'),
+			'niveau' => $this->extractValue("/Niveau/", 'extractSimpleMethod'),
+			'vie' => $this->extractValue("/Points de Vie/", 'extractParenthesisMethod'),
 			'attaque' => $this->extractValue("/Attaque/", 'extractParenthesisMethod'),
 			'esquive' => $this->extractValue("/Esquive/", 'extractParenthesisMethod'),
 			'degats' => $this->extractValue("/Dégât/", 'extractParenthesisMethod'),
 			'regeneration' => $this->extractValue("/Régénération/", 'extractParenthesisMethod'),
-			'armure' => $this->extractValue("/^Armure/", 'extractParenthesisMethod'),
-			'vue' => $this->extractValue("/^Vue/", 'extractParenthesisMethod'),
+			'armure' => $this->extractValue("/Armure/", 'extractParenthesisMethod'),
+			'vue' => $this->extractValue("/Vue/", 'extractParenthesisMethod'),
 			'date_compilation' => $dateCompilation,
 		);
 		

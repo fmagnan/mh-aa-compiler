@@ -32,7 +32,7 @@ function processAnalysis($analysis) {
 	if (isDataOk($infosTroll)) {
 		$infosFromDB = getInfosTrollFromDB($infosTroll['numero']);
     	if ($infosFromDB == FALSE) {
-    		createOrUpdateTrollInDB($infosTroll, 'getQueryForCreate');
+    		createTrollInDB($infosTroll);
     	}
     	else {
     		$timeStamp = getTimeStampFromTrollDate($infosTroll['date_compilation']);
@@ -54,7 +54,8 @@ function processAnalysis($analysis) {
     		$updateData['race'] = $infosTroll['race'];
     		$updateData['numero_guilde'] = $infosTroll['numero_guilde'];
     		$updateData['guilde'] = $infosTroll['guilde'];
-    		createOrUpdateTrollInDB($updateData, 'getQueryForUpdate');
+    		
+    		updateTrollInDB($updateData);
     		return $updateData;
     	}
 		return $infosTroll;
