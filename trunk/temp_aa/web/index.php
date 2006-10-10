@@ -14,8 +14,15 @@ $smarty->cache_dir = dirname(__FILE__).'/smarty/cache';
 $smarty->config_dir = dirname(__FILE__).'/smarty/configs';
 
 $tousLesTrolls = getTousLesTrolls();
-
 $smarty->assign('trolls', $tousLesTrolls);
+
+$id = $_GET['id'];
+if ($id != '') {
+	$infosTrollFromDB = getInfosTrollFromDB(intval($id));
+	$smarty->assign('id', $id);
+	$smarty->assign('ficheTroll', $infosTrollFromDB);
+}
+
 $smarty->display('index.tpl');
 
 ?>
