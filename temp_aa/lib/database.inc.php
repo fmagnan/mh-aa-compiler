@@ -54,15 +54,17 @@ function getInfosTrollFromDB($numero) {
 
 function createOrUpdateTrollInDB($infosTroll, $getQueryFunctionName) {
 	if (isNotEmptyInputArray($infosTroll)) {
-		connectToDB();
-		$result = mysql_query($getQueryFunctionName($infosTroll));
+		$link = connectToDB();
+		$query = $getQueryFunctionName($infosTroll);
+		$result = mysql_query($query);
 		disconnectFromDB();
 	}
+	
 	return $result;
 }
 
 function getQueryForCreate($infosTroll) {
-	$createTrollQuery = "INSERT INTO `mountyhall_troll` (`numero`, `nom`, `race`, `numero_guilde`, `guilde`, `niveau`, `vie`, `attaque`, ".
+	$createTrollQuery = "INSERT INTO `mountyhall_troll` (`numero`, `nom`, `race`, `numero_guilde`, `guilde`, `niveau`, `vie`, `attaque`, ".
 		"`esquive`, `degats`, `regeneration`, `armure`, `vue`, `date_compilation`, `sortileges`) VALUES (".
 		"{$infosTroll['numero']},'{$infosTroll['nom']}','{$infosTroll['race']}',{$infosTroll['numero_guilde']},'{$infosTroll['guilde']}',{$infosTroll['niveau']},".
 		"'{$infosTroll['vie']}','{$infosTroll['attaque']}','{$infosTroll['esquive']}',".
@@ -103,8 +105,9 @@ function deleteTrollInDB($trollId) {
 }
 
 function connectToDB() {
-	@mysql_connect( _HOST_ , _USER_ , _PWD_ ) or trigger_error('error[connectToDB()]: unable to connect to database');
+	$link = mysql_connect( _HOST_ , _USER_ , _PWD_ ) or trigger_error('error[connectToDB()]: unable to connect to database');
  	@mysql_select_db( _DB_ ) or trigger_error('error[connectToDB()]: unable to select a database');
+ 	return $link;
 }
 
 function disconnectFromDB() {

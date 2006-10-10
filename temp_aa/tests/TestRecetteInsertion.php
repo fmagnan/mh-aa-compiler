@@ -35,6 +35,30 @@
     		$this->assertTrue(empty($array_diff_assoc));
     	}
     	
+    	function test_insertionNouveauTrollAvecSelectionALaMain() {
+    		$referenceInfosTroll = array(
+    			'numero' => 30905,
+    			'nom' => 'Boohraj Dekrane',
+    			'race' => 'Kastar',
+    			'numero_guilde' => 2435,
+    			'guilde' => 'Les questeurs du Vent',
+    			'niveau' => 28,
+    			'vie' => 'entre 95 et 115',
+    			'attaque' => 'entre 3 et 5',
+    			'esquive' => 'entre 12 et 14',
+    			'degats' => 'supérieur à 20',
+    			'regeneration' => 'entre 4 et 5',
+    			'armure' => 'entre 2 et 4',
+    			'vue' => 'entre 5 et 7',
+    			'date_compilation' => '2006-10-07 18:49:44', 
+    		);
+    	
+			$infosTroll = processAnalysis(file_get_contents(dirname(__FILE__).'/messageBotAABoorajEnSelectionALaMain.txt'));
+			
+			$array_diff_assoc = array_diff_assoc($referenceInfosTroll, $infosTroll);
+    		$this->assertTrue(empty($array_diff_assoc));
+    	}
+    	
     	function test_miseAJourTrollAvecDatePlusRecente() {
     		$compiledInfosTroll = array(
 	    		'numero' => 31629,
