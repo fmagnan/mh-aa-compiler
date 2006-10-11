@@ -16,7 +16,7 @@ $smarty->config_dir = dirname(__FILE__).'/smarty/configs';
 $analysis = stripslashes($_POST['aa']);
 
 if ($analysis != '') {
-	$infosTroll = processAnalysis($analysis);
+	$infosTroll = processAnalysis($analysis, dirname(__FILE__). '/../pub');
 	if ($infosTroll != null) {
 		$messageResultat = "Enregistrement pris en compte avec les infos suivantes :";
 		$log_content = print_r($infosTroll, TRUE);
