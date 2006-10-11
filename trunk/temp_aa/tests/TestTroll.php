@@ -8,7 +8,27 @@
 			'numero' => 3573,
 			'nom' => 'DIAPPE',
 			'race' => 'Skrim',
+			'numero_guilde' => 2441,
+			'guilde' => 'Saigneurs des Profondeurs',
 			'niveau' => 40,
+			'niveau_actuel' => 40,
+			'vie' => 'entre 115 et 135',
+			'attaque' => 'supérieur à 20',
+			'esquive' => 'entre 14 et 16',
+			'degats' => 'entre 18 et 20',
+			'regeneration' => 'entre 4 et 5',
+			'armure' => 'entre 12 et 14',
+			'vue' => 'inférieur à 3',
+			'date_compilation' => '2006-03-10 15:12:45',
+			'sortileges' => '',
+		);
+    	
+    	var $donneesTronquees = array(
+			'numero' => 3573,
+			'nom' => 'DIAPPE',
+			'race' => 'Skrim',
+			'niveau' => 40,
+			'niveau_actuel' => 40,
 			'vie' => 'entre 115 et 135',
 			'attaque' => 'supérieur à 20',
 			'esquive' => 'entre 14 et 16',
@@ -30,6 +50,12 @@
 			$troll = new Troll(array());
 			$this->troll = $troll;
     		$this->assertError('error: input data array is empty');
+		}
+		
+		function test_creationTrollAvecDonneesTronquees() {
+			$troll = new Troll($this->donneesTronquees);
+			$this->troll = $troll;
+			$this->assertError('unable to instanciate Troll, data is missing (numero_guilde;guilde;date_compilation;sortileges)');
 		}
 		
 		function test_creationTrollAvecDonnees() {

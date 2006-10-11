@@ -12,6 +12,7 @@
 			'guilde' => '-',
 			'vie' => 'entre 95 et 115',
 			'niveau' => 28,
+			'niveau_actuel' => 29,
 			'attaque' => 'entre 17 et 19',
 			'esquive' => 'entre 10 et 12',
 			'degats' => 'entre 12 et 14',
@@ -38,10 +39,11 @@
 		
 		function test_ecritureTrollEnBase() {
 			$createQuery = getQueryForCreate($this->grobide);
-			$referenceQuery = "INSERT INTO `mountyhall_troll` (`numero`, `nom`, `race`, `numero_guilde`, `guilde`, `niveau`, `vie`, `attaque`, ".
-				"`esquive`, `degats`, `regeneration`, `armure`, `vue`, `date_compilation`, `sortileges`) VALUES (".
-				"31629,'GROBIDE','Inconnue',1,'-',28,'entre 95 et 115','entre 17 et 19','entre 10 et 12','entre 12 et 14',".
-				"'entre 3 et 4','entre 12 et 14','entre 2 et 4','2006-06-25 14:09:23','')";
+			$referenceQuery = "INSERT INTO `mountyhall_troll` (`numero`, `nom`, `race`, `numero_guilde`,".
+				" `guilde`, `niveau`, `niveau_actuel`, `vie`, `attaque`, `esquive`, `degats`, `regeneration`,".
+				" `armure`, `vue`, `date_compilation`, `sortileges`) VALUES ".
+				"(31629,'GROBIDE','Inconnue',1,'-',28,29,'entre 95 et 115','entre 17 et 19','entre 10 et 12',".
+				"'entre 12 et 14','entre 3 et 4','entre 12 et 14','entre 2 et 4','2006-06-25 14:09:23','')";
 			$this->assertEqual($referenceQuery, $createQuery);
 		}
 		

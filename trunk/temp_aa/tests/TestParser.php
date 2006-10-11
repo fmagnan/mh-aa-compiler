@@ -6,79 +6,80 @@
     	
     	function test_champAttaqueIntrouvable() {
     		$inputData = "Points de Vie : Excellent (entre 120 et 140) \nBlessure (Approximatif) : 0 %";
-    		$parser = new Parser($inputData);
+    		$parser = new Parser($inputData,dirname(__FILE__));
     		$value = $parser->extractValue("/Dés d'Attaque/", 'extractParenthesisMethod');
     		$this->assertNull($value);
     	}
     	
     	function test_champVie() {
     		$inputData = "Points de Vie : Excellent (entre 120 et 140)";
-    		$parser = new Parser($inputData);
+    		$parser = new Parser($inputData,dirname(__FILE__));
     		$value = $parser->extractValue("/^Points de Vie/", 'extractParenthesisMethod');
     		$this->assertEqual("entre 120 et 140", $value);
     	}
     	
     	function test_champNiveauIntrouvable() {
     		$inputData = "Points de Vie : Excellent (entre 120 et 140) \nBlessure (Approximatif) : 0 %";
-    		$parser = new Parser($inputData);
+    		$parser = new Parser($inputData,dirname(__FILE__));
     		$value = $parser->extractValue("/^Niveau/", 'extractSimpleMethod');
     		$this->assertNull($value);
     	}
     	   	
     	function test_champNiveau() {
     		$inputData = "Niveau : 22";
-    		$parser = new Parser($inputData);
+    		$parser = new Parser($inputData,dirname(__FILE__));
     		$value = $parser->extractValue('/^Niveau/', 'extractSimpleMethod');
     		$this->assertEqual(22, $value);
     	}
     	
     	function test_champDate() {
     		$inputData = "Expéditeur (Id) 	MountyHall 	Date d'envoi 	30/09/2006 16:12:05";
-    		$parser = new Parser($inputData);
+    		$parser = new Parser($inputData,dirname(__FILE__));
     		$value = $parser->extractValue('/Date/', 'extractDateMethod');
     		$this->assertEqual("2006-09-30 16:12:05", $value);
     	}
     	
     	function test_champDateIntrouvable() {
     		$inputData = "Expéditeur (Id)";
-    		$parser = new Parser($inputData);
+    		$parser = new Parser($inputData,dirname(__FILE__));
     		$value = $parser->extractValue('/Date/', 'extractDateMethod');
     		$this->assertNull($value);
     	}
     	
     	function test_champNumero() {
     		$inputData = "Le Troll Ciblé : SQUATMAN - N° 62465)";
-    		$parser = new Parser($inputData);
+    		$parser = new Parser($inputData,dirname(__FILE__));
     		$value = $parser->extractValue('/^Le Troll/', 'extractNumberMethod');
     		$this->assertEqual(62465, $value);
     	}
     	
     	function test_champNumeroIntrouvable() {
     		$inputData = "TMAN - N° 62465)";
-    		$parser = new Parser($inputData);
+    		$parser = new Parser($inputData,dirname(__FILE__));
     		$value = $parser->extractValue('/^Le Troll/', 'extractNumberMethod');
     		$this->assertNull($value);
     	}
     		
     	function test_reconnaitLigneDansChaineInitiale() {
     		$inputData = "Points de Vie : Excellent (entre 120 et 140) \nBlessure (Approximatif) : 0 % \nDés d'Attaque : Moyen (entre 4 et 6)";
-    		$parser = new Parser($inputData);
+    		$parser = new Parser($inputData,dirname(__FILE__));
     		$value = $parser->extractValue("/Dés d'Attaque/", 'extractSimpleMethod');
     		$this->assertEqual("entre 4 et 6", $value);
     	}
     	
     	function test_recuperationInfosPubliques() {
-    		$parser = new Parser('rien');
+    		$parser = new Parser('rien',dirname(__FILE__));
     		$publicInfos = $parser->getPublicInfos(6807);
-    		$this->assertEqual("Herb'", $publicInfos['nom']);
+			$this->assertEqual("Herb'", $publicInfos['nom']);
     		$this->assertEqual('Durakuir', $publicInfos['race']);
     		$this->assertEqual('3053', $publicInfos['numero_guilde']);
     		$this->assertEqual('Les 12 salopards', $publicInfos['guilde']);
+    		$this->assertEqual(42, $publicInfos['niveau_actuel']);
     	}
     	
     	function test_recuperationInfosPubliquesSansGuilde() {
-    		$parser = new Parser('rien');
-    		$publicInfos = $parser->getPublicInfos(31725);;;;10;15;2;1;10;
+    		$parser = new Parser('rien',dirname(__FILE__));
+    		$publicInfos = $parser->getPublicInfos(31725);
     		$this->assertEqual('Madjestoet', $publicInfos['nom']);
     		$this->assertEqual('Skrim', $publicInfos['race']);
     		$this->assertEqual('1', $publicInfos['numero_guilde']);
@@ -86,7 +87,7 @@
     	}
     	
     	function test_creationAvecBonFichier() {
-    		$parser = new Parser(file_get_contents(dirname(__FILE__).'/messageBotAASquatman.txt'));
+    		$parser = new Parser(file_get_contents(dirname(__FILE__).'/messageBotAASquatman.txt'), dirname(__FILE__));
     		$referenceInfos = array(
     			'numero' => 62465,
     			'nom' => 'Squatman',
@@ -94,6 +95,7 @@
     			'numero_guilde' => 147,
     			'guilde' => 'X-Trolls',
     			'niveau' => 22,
+    			'niveau_actuel' => 22,
     			'vie' => 'entre 120 et 140',
     			'attaque' => 'entre 4 et 6',
     			'esquive' => 'entre 7 et 9',
@@ -111,7 +113,7 @@
     	}
     	
     	function test_creationAvecSelectionALaMain() {
-    		$parser = new Parser(file_get_contents(dirname(__FILE__).'/messageBotAABoorajEnSelectionALaMain.txt'));
+    		$parser = new Parser(file_get_contents(dirname(__FILE__).'/messageBotAABoorajEnSelectionALaMain.txt'),dirname(__FILE__));
     		$referenceInfos = array(
     			'numero' => 30905,
     			'nom' => 'Boohraj Dekrane',
@@ -119,6 +121,7 @@
     			'numero_guilde' => 2435,
     			'guilde' => 'Les questeurs du Vent',
     			'niveau' => 28,
+    			'niveau_actuel' => 28,
     			'vie' => 'entre 95 et 115',
     			'attaque' => 'entre 3 et 5',
     			'esquive' => 'entre 12 et 14',
