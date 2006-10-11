@@ -1,7 +1,7 @@
 <?php
 
 // put full path to Smarty.class.php
-require(dirname(__FILE__).'/../lib/Smarty/Smarty.class.php');
+require(dirname(__FILE__).'/../Smarty/Smarty.class.php');
 require(dirname(__FILE__).'/../lib/core.inc.php');
 
 header('Content-type: text/html; charset=utf-8');
