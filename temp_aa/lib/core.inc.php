@@ -103,4 +103,24 @@ function getPublicInfos($numero, $pathToPublicFiles) {
    	}
    	return $publicInfos;
 }
+
+function getAgeAnalyse($dateCompilation) {
+	$dateDuJour = explode('-', date('Y-m-d', time()));
+	$dateAnalyse = explode('-', substr($dateCompilation, 0, 10));
+	$timeDateDuJour = mktime(0, 0, 0, $dateDuJour[1], $dateDuJour[2], $dateDuJour[0]);
+	$timeAnalyse = mktime(0, 0, 0, $dateAnalyse[1], $dateAnalyse[2], $dateAnalyse[0]);
+	
+	$valeurAge = ($timeDateDuJour - $timeAnalyse) / 3600 / 24;
+	
+	if ($valeurAge == 0) {
+		return 'analyse du jour';
+	}
+	elseif ($valeurAge == 1) {
+		return 'analyse de la veille';
+	} 
+	else {
+		return $valeurAge . ' jours';
+	} 
+}
+
 ?>
