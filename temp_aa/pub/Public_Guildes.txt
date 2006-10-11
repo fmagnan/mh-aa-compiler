@@ -9,7 +9,7 @@
 35;Les Trollonisateurs;47;
 36;L'armée des 4 mousquetaires;5;
 37;La TRIAD Sudiste;2;
-43;Les Farouches Mercenaires;16;
+43;Les Farouches Mercenaires;15;
 47;L'Eglise de la Fertilité;14;
 56;Les Trolls de Troy;38;
 59;Guilde de l'ile rouge;14;
@@ -31,7 +31,7 @@
 107;La brigade des trolls;10;
 113;Iron Maiden;1;
 114;Les trolls de Barback;22;
-117;La Confrérie de Mortelune;33;
+117;La Confrérie de Mortelune;32;
 123;L'Eglise du Manger;18;
 124;X;10;
 128;Le clan des Karlaaki;11;
@@ -133,7 +133,7 @@
 629;Guilde des Trolls Allumés;6;
 639;Légion Invisible;14;
 645;Guilde du Moignon perdu;3;
-651;La Guilde d’Hadès;20;
+651;La Guilde dHadès;20;
 655;Les Sages de l'Obscur;7;
 656;Les Anges Déchus;3;
 657;Clan de l'Orage;1;
@@ -151,7 +151,7 @@
 708;Habemus Killers;6;
 709;§Les TrõllMagnons§;1;
 720;La Guilde Des Trolls;5;
-723;Les Chevaliers Fantômes;45;
+723;Les Chevaliers Fantômes;46;
 727;Trolls Rooteux;10;
 729;LA MEUTE;8;
 732;Trollaclass;3;
@@ -174,7 +174,7 @@
 811;Les 4 Fantastrolls;2;
 814;Les Trollistes;41;
 824;Barons Glenfiddish;7;
-827;Les Adorateurs de la Lune;2;
+827;Les Adorateurs de la Lune;1;
 837;ATLANTIS;59;
 838;La Compagnie des Trolls DCD;4;
 851;skatos mazo schisme;24;
@@ -251,7 +251,7 @@
 1283;L\' écume des coups...;8;
 1285;Kult De La Hach;13;
 1286;Le Cercle des ImmorTrölls;13;
-1294;L\'Ultime Alliance;24;
+1294;L\'Ultime Alliance;25;
 1298;Death Provider;1;
 1300;Troll Revival Universal Crew;6;
 1303;Les Gloutons Gourmets;14;
@@ -259,15 +259,14 @@
 1324;GCDTT;6;
 1338;Nique Tes Mouches;27;
 1340;MultiBouf\'Distribution;1;
-1346;- La Nation des Dieux -;2;
+1346;- La Nation des Dieux -;1;
 1349;Caterva Daemonica;8;
 1351;Perforator Sanctis Dominus;23;
 1353;Ta de Gros (dé)Bill;3;
 1362;Les marguerites nucléaires;15;
 1366;les sharingan;1;
 1375;La malerage des Berserkers de KRÖLM;14;
-1387;Les Pilleurs des Ombres;6;
-1390;Apprentis Magiciens;1;
+1387;Les Pilleurs des Ombres;5;
 1394;Les Commandos Fadas;1;
 1395;R.H.C.P. guilde;1;
 1400;o¤°`°¤o,¸¸¸,o¤° SLASHING CIRCUS °¤o,¸¸¸,o¤°`°¤o;3;
@@ -276,7 +275,7 @@
 1410;Les Trolls du Littoral;3;
 1413;Army of HardTrõll;1;
 1418;La Coopérative Du Beauj\'Hallais;1;
-1419;Orgy;22;
+1419;Orgy;23;
 1421;Association Malfaisante des Irréductibles Sociopat;2;
 1423;Trolling Secours;7;
 1424;Bagors;1;
@@ -337,14 +336,14 @@
 1707;L'âme de Lyandria;8;
 1709;Ze Confrérie Ofeuh BouleZ (aY, eT, etc...);2;
 1710;LES DEMONS DU NIFHELM;4;
-1729;les ElecTrolls Libres;18;
+1729;les ElecTrolls Libres;17;
 1735;Chevaliers Teutrolliques;14;
 1736;Detarey;16;
 1752;Asile &quot;LAFOLIE&quot;;11;
 1753;TIB : Trolls In Black;7;
 1754;Fondation Max Trollvaer;13;
 1758;Le Royaume Troll d'Aubrane;50;
-1772;Inferno Natives Guild;52;
+1772;Inferno Natives Guild;51;
 1779;Les Pêcheurs Cassidains;8;
 1780;~°oOo°~ Trôles de Soirées Mousse ~°oOo°~;6;
 1782;~~ SEA SEX &amp; TR¤LLS ~~;25;
@@ -449,11 +448,11 @@
 2182;--(*Gardiens des Enfers*)--;2;
 2186;Les ragnarok;1;
 2190;Les Exilés de la Horde;2;
-2191;Tayoko my goubert tea;3;
+2191;Tayoko my goubert tea;2;
 2195;*confrérie des saigneurs de schtroumpfs*;20;
 2200;Les TactiTrolls;2;
 2202;FRACASSEUR DE TROLL;1;
-2203;La Grosse Guilde Ahdûddûlh;13;
+2203;La Grosse Guilde Ahdûddûlh;14;
 2210;Kabulanobak Ôbaklanabulo;20;
 2215;Les Conquistadors;1;
 2221;The C-Team;1;
@@ -609,7 +608,7 @@
 2610;{{{¤¤ =*LTE*= SounZSysteM ¤¤}}};2;
 2611;PâForTïsH;4;
 2616;Lonesome Cowtroll;7;
-2617;Des Gnu, des Armes, de la Bière, Nom de Dieu;9;
+2617;Des Gnu, des Armes, de la Bière, Nom de Dieu;10;
 2619;TAWART'HAGUEUL  CORPORATION;21;
 2624;D.T. Mangetout;16;
 2630;troll pour tous, dents pourries;17;
@@ -633,7 +632,7 @@
 2679;AMI : Amicale des Massacreurs d'Insecte;2;
 2681;Les Troupes du Lac Otha;8;
 2682;Sömbres Pröphètes;3;
-2683;Shadows of Underworlds;10;
+2683;Shadows of Underworlds;11;
 2690;Les Régulateurs Garsttriques;4;
 2691;WolF's Hall;4;
 2692;Styx &amp; Prüt, Le Cercle des Trolls Disparus;16;
@@ -644,7 +643,7 @@
 2699;Les Trolls du Tabouret Carré;9;
 2702;Patroll de Trouille;5;
 2706;Trollinets en Colère;15;
-2709;les troll'ment fort;22;
+2709;les troll'ment fort;23;
 2714;Là Trõmpé-Trõllétté Tàlént-Tûéûsé.;1;
 2715;anarcholèptik;1;
 2718;Hogwarts;2;
@@ -656,7 +655,7 @@
 2742;G.I   troll's;4;
 2743;No Brain;9;
 2744;Trollattitude;6;
-2749;J'lui pet sa GUEULE;1;
+2749;J'lui pet sa GUEULE;2;
 2751;Clan de la Lune Noire;1;
 2753;La Secte du Grand Lezard Sacré;5;
 2754;Yggdrasil;9;
@@ -686,7 +685,7 @@
 2802;Les Kochonators;7;
 2804;OveRien;12;
 2806;tro'lyon;1;
-2808;L.W.D.S : Les Warhunters De Skaven;14;
+2808;L.W.D.S : Les Warhunters De Skaven;13;
 2810;ViVenDi UniVerSaLe GuiLde;16;
 2811;Véda;18;
 2812;Les Disciples de Kounalis;6;
@@ -722,7 +721,7 @@
 2867;Le secret de la montagne des trölls pëdés;8;
 2870;Qu'est-ce que tu fous sur ma case ?;4;
 2871;l'A.N.P.E;13;
-2872;Les Orgues de C'te Ligne;13;
+2872;Les Orgues de C'te Ligne;12;
 2873;la guild'bar, club echangiste de trolls et autres;1;
 2875;Free-T-Stylers;1;
 2878;A.K.P.;5;
@@ -767,7 +766,7 @@
 2962;OmbreNoire;4;
 2963;Les Marchands de Gnons;2;
 2965;Poutres In Black;5;
-2966;†I.N.R.I†;2;
+2966;I.N.R.I;2;
 2969;Nauthylus;4;
 2971;SombrAngels;3;
 2974;Recto, Verso, la Tranche et cie...;8;
@@ -778,7 +777,7 @@
 2983;l'Ordre des Trollpliers;12;
 2984;Les Calimetroll;3;
 2988;Khäwrtõgwàph' Jùñkîës;6;
-2989;Åkkí ™;2;
+2989;Åkkí ;2;
 2991;G.I. Troll;4;
 2993;Les Rois du Pet-troll;10;
 3000;Les protecteur du marteau de Thor;6;
@@ -815,7 +814,7 @@
 3065;Trolls Chips' Troopers;5;
 3066;Nesquick Team;1;
 3067;Les Zékumeurs;4;
-3068;Les Compagnons de la Marelle.;4;
+3068;Les Compagnons de la Marelle.;3;
 3069;les fils de Shambhala;5;
 3070;WWE - ECW;1;
 3071;Troll &amp; Co;1;
@@ -895,7 +894,7 @@
 3159;dagobah airlines;1;
 3160;Les Evadés du Pénitencier;5;
 3161;Boltorakeuse;1;
-3162;Hall-K-ïdaH;5;
+3162;Hall-K-ïdaH;6;
 3163;Kingdom Hearth;1;
-3164;Affreux, Sales et Gentils;3;
+3164;Affreux, Sales et Gentils;4;
 3165;BADASOUND;1;
