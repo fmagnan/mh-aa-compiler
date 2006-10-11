@@ -1,6 +1,6 @@
 <?php
-	require_once(dirname(__FILE__).'/../lib/Parser.class.php');
-	include dirname(__FILE__).'/../lib/core.inc.php';
+	require_once dirname(__FILE__).'/../lib/Parser.class.php';
+	require_once dirname(__FILE__).'/../lib/core.inc.php';
 	require_once 'functionsForTests.inc.php';
 	
 	class TestRecetteInsertion extends UnitTestCase {

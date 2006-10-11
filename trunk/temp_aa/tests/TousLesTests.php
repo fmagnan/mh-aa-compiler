@@ -7,6 +7,7 @@
         	$this->addTestFile(dirname(__FILE__).'/TestCompiler.php');
         	$this->addTestFile(dirname(__FILE__).'/TestParser.php');
         	$this->addTestFile(dirname(__FILE__).'/TestRecetteInsertion.php');
+        	$this->addTestFile(dirname(__FILE__).'/TestPublicInfos.php');
         }
 	}
 ?>

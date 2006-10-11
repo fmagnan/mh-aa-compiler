@@ -25,8 +25,8 @@ function isDataOk($infosTroll) {
 }
 
 function processAnalysis($analysis, $pathToPublicFiles) {
-	$parser = new Parser($analysis, $pathToPublicFiles);
-	$parser->parseData();
+	$parser = new Parser($analysis);
+	$parser->parseData($pathToPublicFiles);
 	$infosTroll = $parser->getInfosTroll();
 	
 	if (isDataOk($infosTroll)) {
@@ -63,5 +63,44 @@ function processAnalysis($analysis, $pathToPublicFiles) {
 	else {
 		return null;
 	}
+}
+
+function getPublicInfos($numero, $pathToPublicFiles) {
+	$publicInfos = array();
+	$handle = @fopen($pathToPublicFiles.'/Public_Trolls.txt', "r");
+	if ($handle) {
+		while (!feof($handle)) {
+   			$line = fgets($handle);
+    		$trollInfosArray = explode(';', $line);
+    		if ($numero == intval($trollInfosArray[0])) {
+    			$publicInfos['nom'] = $trollInfosArray[1];
+    			$publicInfos['race'] = $trollInfosArray[2];
+    			$publicInfos['niveau_actuel'] = intval($trollInfosArray[3]);
+    			$publicInfos['numero_guilde'] = intval($trollInfosArray[6]);
+    			fclose($handle);
+	   			break;
+     		}
+		}
+	}
+   	
+   		
+   	if (1 == $publicInfos['numero_guilde']) {
+   		$publicInfos['guilde'] = '-';
+   	}
+   	else {
+   		$handle = @fopen($pathToPublicFiles.'/Public_Guildes.txt', "r");
+		if ($handle) {
+  			while (!feof($handle)) {
+   				$line = fgets($handle);
+   				$trollInfosArray = explode(';', $line);
+   				if ($publicInfos['numero_guilde'] == intval($trollInfosArray[0])) {
+     				$publicInfos['guilde'] = $trollInfosArray[1];
+     				fclose($handle);
+     				break;
+   	 			}
+   			}
+		}
+   	}
+   	return $publicInfos;
 }
 ?>

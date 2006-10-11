@@ -4,12 +4,10 @@ class Parser {
 
 	var $inputData;
 	var $infosTroll;
-	var $pathToPublicFiles;
 
-	function Parser($content, $pathToPublicFiles) {
+	function Parser($content) {
 		$contentArray = explode("\n", $content);
 		$this->inputData = $contentArray;
-		$this->pathToPublicFiles = $pathToPublicFiles;
 	}
 	
 	function extractValue($pattern, $methodName) {
@@ -56,9 +54,9 @@ class Parser {
 		return $numero;
 	}
 	
-	function parseData() {
+	function parseData($pathToPublicFiles) {
 		$number = $this->extractValue("/^Le Troll Ciblé/", 'extractNumberMethod');
-		$publicInfos = $this->getPublicInfos($number);
+		$publicInfos = getPublicInfos($number, $pathToPublicFiles);
 		$dateCompilation = $this->extractValue("/Date/", 'extractDateMethod');
 		if ($dateCompilation == null) {
 			$dateCompilation = $this->extractValue("/Il était/", 'extractDateMethod');
@@ -86,44 +84,6 @@ class Parser {
 
 	function getInfosTroll() {
 		return $this->infosTroll;
-	}
-	
-	function getPublicInfos($numero) {
-		$publicInfos = array();
-		$handle = @fopen($this->pathToPublicFiles.'/Public_Trolls.txt', "r");
-		if ($handle) {
-   			while (!feof($handle)) {
-     			$line = fgets($handle);
-     			$trollInfosArray = explode(';', $line);
-     			if ($numero == intval($trollInfosArray[0])) {
-     				$publicInfos['nom'] = $trollInfosArray[1];
-     				$publicInfos['race'] = $trollInfosArray[2];
-     				$publicInfos['niveau_actuel'] = intval($trollInfosArray[3]);
-     				$publicInfos['numero_guilde'] = intval($trollInfosArray[6]);
-	     			break;
-    	 		}
-	   		}
-		}
-   		fclose($handle);
-   		
-   		if (1 == $publicInfos['numero_guilde']) {
-   			$publicInfos['guilde'] = '-';
-   		}
-   		else {
-   			$handle = @fopen($this->pathToPublicFiles.'/Public_Guildes.txt', "r");
-			if ($handle) {
-	   			while (!feof($handle)) {
-     				$line = fgets($handle);
-     				$trollInfosArray = explode(';', $line);
-     				if ($publicInfos['numero_guilde'] == intval($trollInfosArray[0])) {
-	     				$publicInfos['guilde'] = $trollInfosArray[1];
-	     				break;
-    	 			}
-	   			}
-			}
-   			fclose($handle);
-   		}
-   		return $publicInfos;
 	}
 	
 }
