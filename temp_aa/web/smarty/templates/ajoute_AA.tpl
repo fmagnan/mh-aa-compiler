@@ -3,19 +3,19 @@
 	{include file='header.tpl'}
 	<body>
 		{include file='menu.tpl'}
+		<form method="post">
+			<fieldset id="ajout_AA">
+				<legend>Message du Bot</legend>
+				<textarea name="aa"></textarea>
+				<br />
+				<input type="submit" name="valider" value="Valider" />
+			</fieldset>
+		</form>
+		<h3>{$messageResultat}</h3>
 		{if $logContent != ""}
 			<div class="log_result">
 				<pre>{$logContent}</pre>
 			</div>
 		{/if}
-		<form method="post">
-			<fieldset>
-				<legend>Message du Bot</legend>
-				<textarea name="aa" rows="10" cols="60"></textarea>
-				<br />
-				<input type="submit" name="valider" value="Valider" />
-			</fieldset>
-		</form>
-		<h3>{$messageResultat}</h3> 
 	</body>
 </html>
