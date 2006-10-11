@@ -15,6 +15,7 @@ $smarty->config_dir = dirname(__FILE__).'/smarty/configs';
 
 $tousLesTrolls = getTousLesTrolls();
 $smarty->assign('trolls', $tousLesTrolls);
+$smarty->assign('nombreDeLignes', count($tousLesTrolls));
 
 $id = $_GET['id'];
 if ($id != '') {
