@@ -21,6 +21,8 @@ if ($id != '') {
 	$infosTrollFromDB = getInfosTrollFromDB(intval($id));
 	$smarty->assign('id', $id);
 	$smarty->assign('ficheTroll', $infosTrollFromDB);
+	$ageAnalyse = getAgeAnalyse($infosTrollFromDB['date_compilation']);
+	$smarty->assign('ageAnalyse', $ageAnalyse);
 }
 
 $smarty->display('main_template.tpl');
