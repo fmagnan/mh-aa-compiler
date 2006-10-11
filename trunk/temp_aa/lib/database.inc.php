@@ -1,5 +1,5 @@
 <?
-require_once 'config.inc.php';
+require_once dirname(__FILE__).'/../etc/config.inc.php';
 
 function isNotEmptyInputArray($inputArray) {
 	$isNotEmptyInputArray = FALSE;
@@ -64,9 +64,11 @@ function createOrUpdateTrollInDB($infosTroll, $getQueryFunctionName) {
 }
 
 function getQueryForCreate($infosTroll) {
-	$createTrollQuery = "INSERT INTO `mountyhall_troll` (`numero`, `nom`, `race`, `numero_guilde`, `guilde`, `niveau`, `vie`, `attaque`, ".
-		"`esquive`, `degats`, `regeneration`, `armure`, `vue`, `date_compilation`, `sortileges`) VALUES (".
-		"{$infosTroll['numero']},'{$infosTroll['nom']}','{$infosTroll['race']}',{$infosTroll['numero_guilde']},'{$infosTroll['guilde']}',{$infosTroll['niveau']},".
+	$createTrollQuery = "INSERT INTO `mountyhall_troll` (`numero`, `nom`, `race`, `numero_guilde`, `guilde`, ".
+		"`niveau`, `niveau_actuel`, `vie`, `attaque`, `esquive`, `degats`, `regeneration`, `armure`, `vue`, ".
+		"`date_compilation`, `sortileges`) VALUES ".
+		"({$infosTroll['numero']},'{$infosTroll['nom']}','{$infosTroll['race']}',{$infosTroll['numero_guilde']},".
+		"'{$infosTroll['guilde']}',{$infosTroll['niveau']},{$infosTroll['niveau_actuel']},".
 		"'{$infosTroll['vie']}','{$infosTroll['attaque']}','{$infosTroll['esquive']}',".
 		"'{$infosTroll['degats']}','{$infosTroll['regeneration']}','{$infosTroll['armure']}',".
 		"'{$infosTroll['vue']}','{$infosTroll['date_compilation']}','{$infosTroll['sortileges']}')";

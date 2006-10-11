@@ -5,7 +5,7 @@ require_once 'database.inc.php';
 
 class Troll {
 	
-	var $primaryKeyFieldsNames = array('numero','nom','race','date_compilation','sortileges');
+	var $primaryKeyFieldsNames = array('numero','nom','race','numero_guilde', 'guilde', 'date_compilation','sortileges', 'niveau_actuel');
 	var $dataFieldsNames = array('niveau', 'vie','attaque','esquive','degats','regeneration','armure','vue');
 	var $data;
 	
@@ -13,8 +13,16 @@ class Troll {
 		if (isNotEmptyInputArray($donnees)) {
 			$allFieldsNames = array_merge($this->primaryKeyFieldsNames, $this->dataFieldsNames);
 	
-			foreach ($allFieldsNames AS $fieldName) {
-				$this->data[$fieldName] = $donnees[$fieldName];
+			$missingData = array_diff($allFieldsNames, array_keys($donnees)); 
+			if ($missingData) {
+				$error_message = 'unable to instanciate Troll, data is missing (';
+				$error_message .= implode(';', $missingData) . ')';
+				trigger_error($error_message);
+			}
+			else {
+				foreach ($allFieldsNames AS $fieldName) {
+					$this->data[$fieldName] = $donnees[$fieldName];
+				}
 			}
 		}
 	}
