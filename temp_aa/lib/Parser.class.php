@@ -4,10 +4,12 @@ class Parser {
 
 	var $inputData;
 	var $infosTroll;
+	var $pathToPublicFiles;
 
-	function Parser($content) {
+	function Parser($content, $pathToPublicFiles) {
 		$contentArray = explode("\n", $content);
 		$this->inputData = $contentArray;
+		$this->pathToPublicFiles = $pathToPublicFiles;
 	}
 	
 	function extractValue($pattern, $methodName) {
@@ -69,6 +71,7 @@ class Parser {
 			'numero_guilde' => $publicInfos['numero_guilde'],
 			'guilde' => $publicInfos['guilde'],
 			'niveau' => $this->extractValue("/Niveau/", 'extractSimpleMethod'),
+			'niveau_actuel' => $publicInfos['niveau_actuel'],
 			'vie' => $this->extractValue("/Points de Vie/", 'extractParenthesisMethod'),
 			'attaque' => $this->extractValue("/Attaque/", 'extractParenthesisMethod'),
 			'esquive' => $this->extractValue("/Esquive/", 'extractParenthesisMethod'),
@@ -86,9 +89,8 @@ class Parser {
 	}
 	
 	function getPublicInfos($numero) {
-		$pathToPublicFiles = dirname(__FILE__).'/../txt/';
 		$publicInfos = array();
-		$handle = @fopen($pathToPublicFiles.'Public_Trolls.txt', "r");
+		$handle = @fopen($this->pathToPublicFiles.'/Public_Trolls.txt', "r");
 		if ($handle) {
    			while (!feof($handle)) {
      			$line = fgets($handle);
@@ -96,18 +98,19 @@ class Parser {
      			if ($numero == intval($trollInfosArray[0])) {
      				$publicInfos['nom'] = $trollInfosArray[1];
      				$publicInfos['race'] = $trollInfosArray[2];
-     				$publicInfos['numero_guilde'] = $trollInfosArray[6];
+     				$publicInfos['niveau_actuel'] = intval($trollInfosArray[3]);
+     				$publicInfos['numero_guilde'] = intval($trollInfosArray[6]);
 	     			break;
     	 		}
 	   		}
 		}
    		fclose($handle);
    		
-   		if ('1' == $publicInfos['numero_guilde']) {
+   		if (1 == $publicInfos['numero_guilde']) {
    			$publicInfos['guilde'] = '-';
    		}
    		else {
-   			$handle = @fopen($pathToPublicFiles.'Public_Guildes.txt', "r");
+   			$handle = @fopen($this->pathToPublicFiles.'/Public_Guildes.txt', "r");
 			if ($handle) {
 	   			while (!feof($handle)) {
      				$line = fgets($handle);

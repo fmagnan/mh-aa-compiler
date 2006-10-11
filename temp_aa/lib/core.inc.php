@@ -24,8 +24,8 @@ function isDataOk($infosTroll) {
 	return $isDataOk;
 }
 
-function processAnalysis($analysis) {
-	$parser = new Parser($analysis);
+function processAnalysis($analysis, $pathToPublicFiles) {
+	$parser = new Parser($analysis, $pathToPublicFiles);
 	$parser->parseData();
 	$infosTroll = $parser->getInfosTroll();
 	
@@ -45,7 +45,7 @@ function processAnalysis($analysis) {
 	    		$referenceInfos = $infosTroll;
     			$updatingInfos = $infosFromDB;
     		}
-    		$referencesInfos['nom'] = $infosTroll['nom'];
+    		$referenceInfos['sortileges'] = '';
     		$troll = new Troll($referenceInfos);
     		$troll->update($updatingInfos);
     		$updateData = $troll->getDonnees();
