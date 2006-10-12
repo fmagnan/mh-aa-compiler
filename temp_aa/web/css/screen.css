@@ -1,5 +1,5 @@
 body {
-	background-image:url(../images/fond3.gif);
+	background-color:#A9A9A9;
 }
 
 h3 {
@@ -14,37 +14,30 @@ div.log_result {
 	background-color:#FFFFE0;
 }
 
-table#tous_les_trolls, fieldset#ajout_AA {
-	width:55%;
-	margin-left:2%;
-	border:1px #8B4513 solid;
-	border-collapse:collapse;
-	font-size:0.8em;
-	text-align:center;
-}
-
 fieldset#ajout_AA {
 	color:#FFFFE0;
 	font-weight:bold;
 }
 
-table#tous_les_trolls {
-	color:#8B4513;
+
+table#tous_les_trolls, fieldset#ajout_AA {
+	width:55%;
+	margin-left:2%;
+	border:2px #7B68EE solid;
+	border-collapse:collapse;
+	font-size:0.8em;
+	text-align:left;
 }
 
 table#tous_les_trolls th {
-	background-color:#8B4513;
-	color:white;
+	background-color:#7B68EE;
+	color:#FFFFE0;
 	font-weight:bold;
+	text-align:center;
 }
 
 table#tous_les_trolls tr {
-	border:1px #8B4513 solid;
-}
-
-table#tous_les_trolls tr td a {
-	color:#8B4513;
-	text-decoration:none;
+	border:2px #7B68EE solid;
 }
 
 table#tous_les_trolls tr.odd {
@@ -52,7 +45,26 @@ table#tous_les_trolls tr.odd {
 }
 
 table#tous_les_trolls tr.even {
-	background-color:#F8E3C8;
+	background-color:#D8BFD8;
+}
+
+table#tous_les_trolls tr a {
+	color:black;
+	text-decoration:none;
+}
+
+table#tous_les_trolls tr.odd:hover, table#tous_les_trolls tr.even:hover {
+	color:#FFFFE0;
+	background-color:#7B68EE;
+}
+
+table#tous_les_trolls tr:hover a {
+	color:#FFFFE0;
+}
+
+table#tous_les_trolls tr td.numero {
+	font-weight:bold;
+	text-align:center;
 }
 
 fieldset#ajout_AA textarea {
@@ -60,26 +72,42 @@ fieldset#ajout_AA textarea {
 	height:300px;
 }
 
-ul#menu, ul#fiche_troll {
-	padding-left:10px;
-	border:1px #8B4513 solid;
-	background-color:#FFFFE0;
-	color:#8B4513;
-	font-size:0.8em;
-	-moz-border-radius:10px;
-	width:30%;
-	right:5%;
+ul#menu {
+	padding:30px;
+	right:15%;
 	position:fixed;
+	top:2%;
+	border:2px #7B68EE solid;
+	background-color:#D8BFD8;
+	-moz-border-radius:10px;
 }
 
-ul#menu {
-	top:5%;
+ul#menu li {
+	list-style-type:square;
+	color:#7B68EE;
+}
+
+ul#menu li a {
+	text-decoration:none;
+	color:#7B68EE;
+}
+
+ul#menu li a:hover {
+	color:#FFFFE0;
 }
 
 ul#fiche_troll {
-	top:15%;
+	padding:20px;
+	border:2px #7B68EE solid;
+	background-color:#D8BFD8;
+	font-size:0.8em;
+	-moz-border-radius:10px;
+	width:25%;
+	right:10%;
+	position:fixed;
+	top:20%;
 }
 
-ul#menu li, ul#fiche_troll li {
+ul#fiche_troll li {
 	list-style-type:none;
 }
