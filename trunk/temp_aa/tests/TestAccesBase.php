@@ -23,6 +23,24 @@
 			'sortileges' => '',
 		);
 		
+		var $ninja = array(
+			'numero' => 10368,
+    		'nom' => "Ninja R'din",
+    		'race' => "Skrim",
+    		'numero_guilde' => 1758,
+    		'guilde' => "Le Royaume Troll d'Aubrane",
+    		'niveau' => 29,
+    		'niveau_actuel' => 29,
+    		'vie' => "entre 85 et 105",
+    		'attaque' => "entre 17 et 19",
+    		'esquive' => "entre 12 et 14",
+    		'degats' => "entre 14 et 16",
+    		'regeneration' => "entre 6 et 7",
+    		'armure' => "entre 8 et 10",
+    		'vue' => "entre 4 et 6",
+    		'date_compilation' => "2006-10-12 11:57:40",
+		);
+		
 		function setUp() {
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('truncateTable.sql'));
 		}
@@ -44,6 +62,17 @@
 				" `armure`, `vue`, `date_compilation`, `sortileges`) VALUES ".
 				"(31629,'GROBIDE','Inconnue',1,'-',28,29,'entre 95 et 115','entre 17 et 19','entre 10 et 12',".
 				"'entre 12 et 14','entre 3 et 4','entre 12 et 14','entre 2 et 4','2006-06-25 14:09:23','')";
+			$this->assertEqual($referenceQuery, $createQuery);
+		}
+		
+		function test_ecritureTrollAvecApostrophesEnBase() {
+			$createQuery = getQueryForCreate($this->ninja);
+			$referenceQuery = "INSERT INTO `mountyhall_troll` (`numero`, `nom`, `race`, `numero_guilde`, `guilde`,".
+				" `niveau`, `niveau_actuel`, `vie`, `attaque`, `esquive`, `degats`, `regeneration`, `armure`,".
+				" `vue`, `date_compilation`, `sortileges`) VALUES ".
+				"(10368,'Ninja R\'din','Skrim',1758,'Le Royaume Troll d\'Aubrane',29,29,'entre 85 et 105',".
+				"'entre 17 et 19','entre 12 et 14','entre 14 et 16','entre 6 et 7','entre 8 et 10','entre 4 et 6',".
+				"'2006-10-12 11:57:40','')";
 			$this->assertEqual($referenceQuery, $createQuery);
 		}
 		
@@ -74,6 +103,18 @@
 			$this->assertEqual(
 				"UPDATE `mountyhall_troll` SET `numero`=31629,`niveau`=29,`degats`='entre 13 et 15',`regeneration`='5',".
 				"`date_compilation`='2006-10-02 08:52:45' WHERE `numero`=31629", $updateQuery);
+		}
+		
+		function test_ModificationTrollEnBaseAvecApostrophe() {
+			$donneesDeModification = array(
+				'numero'=> 31629,
+				'niveau' => 29,
+				'guilde' => "La guil'de des apo'strophes",
+			);
+			$updateQuery = getQueryForUpdate($donneesDeModification);
+			$this->assertEqual(
+				"UPDATE `mountyhall_troll` SET `numero`=31629,`niveau`=29,".
+				"`guilde`='La guil\'de des apo\'strophes' WHERE `numero`=31629", $updateQuery);
 		}
 		
 		function test_recuperationInfosTrollEnBaseSansNumero() {

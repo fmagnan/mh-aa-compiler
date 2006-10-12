@@ -63,22 +63,33 @@ function createOrUpdateTrollInDB($infosTroll, $getQueryFunctionName) {
 	return $result;
 }
 
+function addslashesForArray($inputArray) {
+	$escapedArray = array();
+	foreach ($inputArray AS $key => $value) {
+		$escapedArray[$key] = addslashes($value);
+	}
+	return $escapedArray;
+}
+
 function getQueryForCreate($infosTroll) {
+	$data = addslashesForArray($infosTroll);
+
 	$createTrollQuery = "INSERT INTO `mountyhall_troll` (`numero`, `nom`, `race`, `numero_guilde`, `guilde`, ".
 		"`niveau`, `niveau_actuel`, `vie`, `attaque`, `esquive`, `degats`, `regeneration`, `armure`, `vue`, ".
 		"`date_compilation`, `sortileges`) VALUES ".
-		"({$infosTroll['numero']},'{$infosTroll['nom']}','{$infosTroll['race']}',{$infosTroll['numero_guilde']},".
-		"'{$infosTroll['guilde']}',{$infosTroll['niveau']},{$infosTroll['niveau_actuel']},".
-		"'{$infosTroll['vie']}','{$infosTroll['attaque']}','{$infosTroll['esquive']}',".
-		"'{$infosTroll['degats']}','{$infosTroll['regeneration']}','{$infosTroll['armure']}',".
-		"'{$infosTroll['vue']}','{$infosTroll['date_compilation']}','{$infosTroll['sortileges']}')";
+		"({$data['numero']},'{$data['nom']}','{$data['race']}',{$data['numero_guilde']},".
+		"'{$data['guilde']}',{$data['niveau']},{$data['niveau_actuel']},".
+		"'{$data['vie']}','{$data['attaque']}','{$data['esquive']}',".
+		"'{$data['degats']}','{$data['regeneration']}','{$data['armure']}',".
+		"'{$data['vue']}','{$data['date_compilation']}','{$data['sortileges']}')";
 	return $createTrollQuery;
 }
 
 function getQueryForUpdate($infosTroll) {
+	$data = addslashesForArray($infosTroll);
 	$updateFieldsArray = array();
 	$updateTrollQuery = "UPDATE `mountyhall_troll` SET ";
-	foreach($infosTroll AS $clefChamp => $valeurChamp) {
+	foreach($data AS $clefChamp => $valeurChamp) {
 		if ('numero' != $clefChamp && 'niveau' != $clefChamp) {
 			$valeurChamp = "'$valeurChamp'";
 		}
