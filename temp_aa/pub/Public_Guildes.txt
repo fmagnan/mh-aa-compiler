@@ -2,7 +2,7 @@
 12;La tribu de JSCV;9;
 13;les lents papés trolls;13;
 14;Schtroumpfs Verts;8;
-19;La Guilde des Grospifs;4;
+19;La Guilde des Grospifs;5;
 24;Enfants de la Flamme;38;
 30;Farting Brothers;2;
 34;Les boustifailleurs;9;
@@ -27,7 +27,7 @@
 91;In Trollum Veritas;28;
 103;_.oO Armorique For Ever Oo._;1;
 104;Whog Trolls;36;
-106;Troll Connection;4;
+106;Troll Connection;3;
 107;La brigade des trolls;10;
 113;Iron Maiden;1;
 114;Les trolls de Barback;22;
@@ -41,7 +41,7 @@
 147;X-Trolls;37;
 151;Pittopati Obscuranti;19;
 152;La Lune Noire;17;
-156;Les Maraudeurs;6;
+156;Les Maraudeurs;7;
 158;Teubreu;44;
 163;la Crypte de la Moria;1;
 167;G.R.U.I.C.K.;6;
@@ -65,7 +65,7 @@
 256;Les fumeurs de trolls;2;
 261;Les Nécromunistes;10;
 266;Parti des Ragoûts Onctueux et de l'Utopie Trõllis;1;
-281;La Horde;67;
+281;La Horde;68;
 282;*Les Fourmis*;2;
 283;La tribu du Houblon;18;
 284;Nighthunters;22;
@@ -110,7 +110,7 @@
 513;Highland Trolls;30;
 514;Kornichon;2;
 523;Les Faucheurs d'Ame;8;
-525;MOUNTY TRöLL;40;
+525;MOUNTY TRöLL;39;
 530;O.T.A.N. Organisation des Trolls Adepts de Naheulb;48;
 533;Confrérie du Tonneau;26;
 534;L'Ordre des Princes Magifères;7;
@@ -259,7 +259,6 @@
 1324;GCDTT;6;
 1338;Nique Tes Mouches;27;
 1340;MultiBouf\'Distribution;1;
-1346;- La Nation des Dieux -;1;
 1349;Caterva Daemonica;8;
 1351;Perforator Sanctis Dominus;23;
 1353;Ta de Gros (dé)Bill;3;
@@ -378,7 +377,7 @@
 1892;Halat;1;
 1894;Chaos;1;
 1897;Angels Of Darkness;18;
-1900;Le Syndikat Vitiktroll;28;
+1900;Le Syndikat Vitiktroll;27;
 1901;Tröllerie &amp; co.;2;
 1903;The Z-Team;1;
 1906;Droll-2-Troll;2;
@@ -398,7 +397,7 @@
 1976;Third Age Club;10;
 1978;o==(::::::::::::::&gt; Zigoar's team of moon scht;9;
 1979;Orcheströll In The Dark;11;
-1980;C.R.A.P.A.X. - - - La non Guilde;14;
+1980;C.R.A.P.A.X. - - - La non Guilde;15;
 1981;Il était une fois le Troll;5;
 1983;SCHMECKT NET GUAT !;29;
 1985;Les frères de la côte de boeuf;7;
@@ -426,7 +425,7 @@
 2083;Trollignac;2;
 2085;B.C.C;9;
 2089;Les Chevaliers de la table basse;13;
-2098;De Trolliis Mysteriis;4;
+2098;De Trolliis Mysteriis;3;
 2102;Les Hédonistrolls;55;
 2103;Les trolls érants;4;
 2104;Ceux dont on ne pronoce pas le nom;1;
@@ -469,8 +468,7 @@
 2257;Les MénesTrolls;16;
 2258;Les Chasseurs de TK;9;
 2262;Les Amis du Marquis;1;
-2265;Hir Dor'Iaur;34;
-2269;Troll''d'enfeR;1;
+2265;Hir Dor'Iaur;31;
 2270;C.H.U.T.T;7;
 2271;Underworld;1;
 2274;Comité du Meurtre et de l'Anarchie;1;
@@ -571,7 +569,7 @@
 2518;U.C.A.;1;
 2521;les loups de kiev;8;
 2524;- Aucune Guilde -;4;
-2527;Trollopolis, le Royaume Ardent;29;
+2527;Trollopolis, le Royaume Ardent;30;
 2529;La Tribu de l'Oubli;3;
 2531;Les Parias;4;
 2534;Les même pas peur;6;
@@ -580,7 +578,7 @@
 2545;diplo;1;
 2546;Les Blanchisseurs;18;
 2554;Néan' Der Troll;11;
-2557;..::Trentenaire's Attack !::..;22;
+2557;..::Trentenaire's Attack !::..;21;
 2560;Access-list Mountyhall Permit Any Troll;14;
 2562;°°la goule team °°;1;
 2563;La Guilde Des POTES;12;
@@ -611,7 +609,7 @@
 2617;Des Gnu, des Armes, de la Bière, Nom de Dieu;10;
 2619;TAWART'HAGUEUL  CORPORATION;21;
 2624;D.T. Mangetout;16;
-2630;troll pour tous, dents pourries;17;
+2630;troll pour tous, dents pourries;16;
 2632;La S.E.C.T.E.;18;
 2633;Républik.;7;
 2635;L'Ordre des Chevaliers de la Tulipe Noire;3;
@@ -647,7 +645,7 @@
 2714;Là Trõmpé-Trõllétté Tàlént-Tûéûsé.;1;
 2715;anarcholèptik;1;
 2718;Hogwarts;2;
-2726;Les fumeurs de mouches;17;
+2726;Les fumeurs de mouches;19;
 2731;Les Incroyables Trolls Magiques;3;
 2732;Les PataTrolls;15;
 2734;Lilith &amp; Cie;1;
@@ -723,7 +721,6 @@
 2871;l'A.N.P.E;13;
 2872;Les Orgues de C'te Ligne;12;
 2873;la guild'bar, club echangiste de trolls et autres;1;
-2875;Free-T-Stylers;1;
 2878;A.K.P.;5;
 2879;Les Samouraîs Daïto Ryu Aïki Ju-Jutsu;2;
 2882;L'Escouade des Ombres;5;
@@ -769,7 +766,7 @@
 2966;I.N.R.I;2;
 2969;Nauthylus;4;
 2971;SombrAngels;3;
-2974;Recto, Verso, la Tranche et cie...;8;
+2974;Recto, Verso, la Tranche et cie...;9;
 2975;La tribu de Morrigan;9;
 2976;Les Trolls Du Sud;6;
 2978;Les Buzocs;2;
@@ -847,7 +844,7 @@
 3107;Réminiscence;9;
 3109;L'Arche Sinistre;3;
 3111;Kama Putra;6;
-3112;Les Trolls Mercenaires;11;
+3112;Les Trolls Mercenaires;12;
 3113;&lt;&lt;&lt;Les adorateurs de la patate chaude&gt;;3;
 3114;demons of the black hell;2;
 3115;les super trolls;1;

@@ -31,7 +31,8 @@ function processAnalysis($analysis, $pathToPublicFiles) {
 	
 	if (isDataOk($infosTroll)) {
 		$infosFromDB = getInfosTrollFromDB($infosTroll['numero']);
-    	if ($infosFromDB == FALSE) {
+		if ($infosFromDB == FALSE) {
+    		error_log('creation');
     		createTrollInDB($infosTroll);
     	}
     	else {
