@@ -3,7 +3,6 @@
 class Parser {
 
 	var $inputData;
-	var $infosTroll;
 
 	function Parser($content) {
 		$contentArray = explode("\n", $content);
@@ -54,15 +53,20 @@ class Parser {
 		return $numero;
 	}
 	
-	function parseData($pathToPublicFiles) {
+	function parseDataAndRetrieveInfos($pathToPublicFiles) {
 		$number = $this->extractValue("/^Le Troll Ciblé/", 'extractNumberMethod');
 		$publicInfos = getPublicInfos($number, $pathToPublicFiles);
+		
+		if ($publicInfos == null) {
+			return null;
+		}
+		
 		$dateCompilation = $this->extractValue("/Date/", 'extractDateMethod');
 		if ($dateCompilation == null) {
 			$dateCompilation = $this->extractValue("/Il était/", 'extractDateMethod');
 		}
 		
-		$this->infosTroll = array(
+		return array(
 			'numero' => $number,
 			'nom' => $publicInfos['nom'],
 			'race' => $publicInfos['race'],
@@ -79,11 +83,6 @@ class Parser {
 			'vue' => $this->extractValue("/Vue/", 'extractParenthesisMethod'),
 			'date_compilation' => $dateCompilation,
 		);
-		
-	}
-
-	function getInfosTroll() {
-		return $this->infosTroll;
 	}
 	
 }

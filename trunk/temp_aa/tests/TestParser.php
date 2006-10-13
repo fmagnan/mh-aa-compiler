@@ -5,6 +5,13 @@
 		
 	class TestParser extends UnitTestCase {
     	
+    	function test_recuperationInfosPubliquesTrollInconnu() {
+    		$parser = new Parser('rien');
+    		$publicInfos = getPublicInfos(1559, dirname(__FILE__));
+    		$this->assertError('Troll n°1559 does not exist');
+    		$this->assertNull($publicInfos);
+    	}
+    	
     	function test_champAttaqueIntrouvable() {
     		$inputData = "Points de Vie : Excellent (entre 120 et 140) \nBlessure (Approximatif) : 0 %";
     		$parser = new Parser($inputData);
@@ -106,8 +113,7 @@
     			'vue' => 'entre 3 et 5',
     			'date_compilation' => '2006-09-30 16:12:05',
     		);
-    		$parser->parseData(dirname(__FILE__));
-    		$infosTroll = $parser->getInfosTroll();
+    		$infosTroll = $parser->parseDataAndRetrieveInfos(dirname(__FILE__));
     		
     		$diff_assoc = array_diff_assoc($referenceInfos, $infosTroll);
     		$this->assertTrue(empty($diff_assoc));
@@ -132,8 +138,39 @@
     			'vue' => 'entre 5 et 7',
     			'date_compilation' => '2006-10-07 18:49:44', 
     		);
-    		$parser->parseData(dirname(__FILE__));
-    		$infosTroll = $parser->getInfosTroll();
+    		$infosTroll = $parser->parseDataAndRetrieveInfos(dirname(__FILE__));
+    		
+    		$diff_assoc = array_diff_assoc($referenceInfos, $infosTroll);
+    		$this->assertTrue(empty($diff_assoc));
+    	}
+    	
+    	function test_creationAvecTrollInconnu() {
+    		$parser = new Parser(file_get_contents(dirname(__FILE__).'/messageBotAATrollInconnu.txt'));
+    		$data = $parser->parseDataAndRetrieveInfos(dirname(__FILE__));
+    		$this->assertError('Troll n°1559 does not exist');
+    		$this->assertNull($data);
+    	}
+    	
+    	function test_creationAvecChampManquant() {
+    		$parser = new Parser(file_get_contents(dirname(__FILE__).'/messageBotAAChampManquantSquatman.txt'));
+    		$referenceInfos = array(
+    			'numero' => 62465,
+    			'nom' => 'Squatman',
+    			'race' => 'Durakuir',
+    			'numero_guilde' => 147,
+    			'guilde' => 'X-Trolls',
+    			'niveau' => 22,
+    			'niveau_actuel' => 22,
+    			'vie' => 'entre 120 et 140',
+    			'attaque' => 'entre 4 et 6',
+    			'esquive' => 'entre 7 et 9',
+    			'degats' => 'entre 11 et 13',
+    			'regeneration' => 'entre 4 et 5',
+    			'armure' => 'entre 16 et 18',
+    			'vue' => 'entre 3 et 5',
+    			'date_compilation' => '',
+    		);
+    		$infosTroll = $parser->parseDataAndRetrieveInfos(dirname(__FILE__));
     		
     		$diff_assoc = array_diff_assoc($referenceInfos, $infosTroll);
     		$this->assertTrue(empty($diff_assoc));

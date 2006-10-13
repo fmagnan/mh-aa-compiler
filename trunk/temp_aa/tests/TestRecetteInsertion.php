@@ -19,6 +19,12 @@
     		$this->assertNull($infosTroll);
     	}
     	
+    	function test_insertionImpossibleCarTrollInconnu() {
+    		$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAATrollInconnu.txt'), $this->pathToPublicFiles);
+    		$this->assertError('Troll n°1559 does not exist');
+    		$this->assertNull($infosTroll);
+    	}
+    	
     	function test_insertionNouveauTroll() {
     		$referenceInfosTroll = array(
 	    		'numero' => 62465,
