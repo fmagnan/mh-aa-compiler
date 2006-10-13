@@ -31,7 +31,7 @@ class PublicInfos {
     }
     
     function updatePublicInfos() {
-    	$tousLesTrolls = getTousLesTrolls();
+    	$tousLesTrolls = getTousLesTrolls('numero', 'ASC');
     	foreach($tousLesTrolls AS $infosTroll) {
     		$numero = intval($infosTroll['numero']);
     		$publicInfos = getPublicInfos($numero, dirname(__FILE__).'/../pub');

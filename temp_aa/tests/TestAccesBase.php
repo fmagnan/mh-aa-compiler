@@ -132,10 +132,23 @@
 		
 		function test_recupereTousLesTrolls() {
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
-			$tousLesTrolls = getTousLesTrolls();
+			$tousLesTrolls = getTousLesTrolls('numero', 'ASC');
 			$this->assertEqual(1, count($tousLesTrolls));
 			$this->assertEqual($this->grobide, $tousLesTrolls[0]);
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('truncateTable.sql'));
 		}
+		
+		function test_recupereTousLesTrollsDansLOrdre() {
+			$referenceQuery = "SELECT * FROM mountyhall_troll WHERE 1=1 ORDER BY numero ASC";
+			$query = getQueryForAllTrollsInOrder('numero', 'ASC');
+			$this->assertEqual($referenceQuery, $query);
+		}
+		
+		function test_recupereTousLesTrollsDansLOrdreDecroissantDesGuildes() {
+			$referenceQuery = "SELECT * FROM mountyhall_troll WHERE 1=1 ORDER BY guilde DESC";
+			$query = getQueryForAllTrollsInOrder('guilde', 'DESC');
+			$this->assertEqual($referenceQuery, $query);
+		}
+		
 	}
 ?>

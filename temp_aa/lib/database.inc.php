@@ -15,10 +15,14 @@ function isNotEmptyInputArray($inputArray) {
 	return $isNotEmptyInputArray;
 }
 
-function getTousLesTrolls() {
+function getQueryForAllTrollsInOrder($fieldSort, $typeSort) {
+	return 'SELECT * FROM mountyhall_troll WHERE 1=1 ORDER BY '.$fieldSort.' '.$typeSort; 
+}
+
+function getTousLesTrolls($fieldSort, $typeSort) {
 	$tousLesTrolls = array();
 	connectToDB();
-	$query = 'SELECT * FROM mountyhall_troll WHERE 1=1';
+	$query = getQueryForAllTrollsInOrder($fieldSort, $typeSort);
 	$result = mysql_query($query);
 	if ($result != FALSE) {
 		while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
