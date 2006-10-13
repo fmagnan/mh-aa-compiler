@@ -6,6 +6,21 @@ h3 {
 	color:#FFFFE0;
 }
 
+div.erreur {
+	margin-left:2%;
+	color:red;
+	border:2px dotted red;
+	text-align:center;
+	width:55%;
+	font-size:1.2em;
+	font-weight:bold;
+	margin-bottom:30px;
+}
+
+div.erreur pre:before {
+	content:"Erreur : ";
+}
+
 div.log_result {
 	border:1px solid black;
 	width:55%;

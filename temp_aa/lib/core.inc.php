@@ -3,6 +3,25 @@ require_once 'Parser.class.php';
 require_once 'Troll.class.php';
 require_once 'database.inc.php';
 
+function customErrorHandler($errno, $errstr, $errfile, $errline) {
+	$message = '<div class="erreur"><pre>'.$errstr.'</pre></div>';
+	switch ($errno) {
+		case E_USER_ERROR:
+			echo $message;
+   			exit(1);
+   		break;
+		case E_USER_WARNING:
+	   		echo $message;
+	   	break;
+	  	case E_USER_NOTICE:
+   			echo $message;
+   		break;
+  		default:
+	   		echo $message;
+	   	break;
+	}
+}
+
 function debugArray($array) {
 	error_log(print_r($array, TRUE));
 }
@@ -14,56 +33,57 @@ function getTimeStampFromTrollDate($dateCompilation) {
 }
 
 function isDataOk($infosTroll) {
-	$isDataOk = TRUE;
 	foreach($infosTroll AS $key => $value) {
 		if ($value == null) {
 			trigger_error('isDataOk(): '.$key.' is null, AA creation is aborted');
-			$isDataOk = FALSE;
+			return FALSE;
 		}
 	}
-	return $isDataOk;
+	return TRUE;
 }
 
 function processAnalysis($analysis, $pathToPublicFiles) {
 	$parser = new Parser($analysis);
-	$parser->parseData($pathToPublicFiles);
-	$infosTroll = $parser->getInfosTroll();
 	
-	if (isDataOk($infosTroll)) {
-		$infosFromDB = getInfosTrollFromDB($infosTroll['numero']);
-		if ($infosFromDB == FALSE) {
-    		error_log('creation');
-    		createTrollInDB($infosTroll);
-    	}
-    	else {
-    		$timeStamp = getTimeStampFromTrollDate($infosTroll['date_compilation']);
-    		$timeStampInDB = getTimeStampFromTrollDate($infosFromDB['date_compilation']);
-    		if ($timeStamp > $timeStampInDB) {
-	    		$referenceInfos = $infosFromDB;
-   		 		$updatingInfos = $infosTroll;
-	    	}
-    		else {
-	    		$referenceInfos = $infosTroll;
-    			$updatingInfos = $infosFromDB;
-    		}
-    		$referenceInfos['sortileges'] = '';
-    		$troll = new Troll($referenceInfos);
-    		$troll->update($updatingInfos);
-    		$updateData = $troll->getDonnees();
-    		$updateData['date_compilation'] = $updatingInfos['date_compilation'];
-    		$updateData['nom'] = $infosTroll['nom'];
-    		$updateData['race'] = $infosTroll['race'];
-    		$updateData['numero_guilde'] = $infosTroll['numero_guilde'];
-    		$updateData['guilde'] = $infosTroll['guilde'];
-    		
-    		updateTrollInDB($updateData);
-    		return $updateData;
-    	}
-		return $infosTroll;
-	}
-	else {
+	$infosTroll = $parser->parseDataAndRetrieveInfos($pathToPublicFiles);
+	if ($infosTroll == null) {
 		return null;
 	}
+	
+	if (!isDataOk($infosTroll)) {
+		return null;
+	}
+	
+	$infosFromDB = getInfosTrollFromDB($infosTroll['numero']);
+	if ($infosFromDB == FALSE) {
+    	createTrollInDB($infosTroll);
+    }
+    else {
+    	$timeStamp = getTimeStampFromTrollDate($infosTroll['date_compilation']);
+    	$timeStampInDB = getTimeStampFromTrollDate($infosFromDB['date_compilation']);
+    	if ($timeStamp > $timeStampInDB) {
+			$referenceInfos = $infosFromDB;
+   			$updatingInfos = $infosTroll;
+		}
+    	else {
+	  		$referenceInfos = $infosTroll;
+    		$updatingInfos = $infosFromDB;
+    	}
+    	$referenceInfos['sortileges'] = '';
+    	$troll = new Troll($referenceInfos);
+    	$troll->update($updatingInfos);
+    	$updateData = $troll->getDonnees();
+    	$updateData['date_compilation'] = $updatingInfos['date_compilation'];
+    	$updateData['nom'] = $infosTroll['nom'];
+    	$updateData['race'] = $infosTroll['race'];
+    	$updateData['numero_guilde'] = $infosTroll['numero_guilde'];
+    	$updateData['guilde'] = $infosTroll['guilde'];
+    		
+	    updateTrollInDB($updateData);
+    	return $updateData;
+    }
+	return $infosTroll;
+	
 }
 
 function getPublicInfos($numero, $pathToPublicFiles) {
@@ -83,7 +103,11 @@ function getPublicInfos($numero, $pathToPublicFiles) {
      		}
 		}
 	}
-   	
+
+	if (!array_key_exists('nom', $publicInfos)) {
+		trigger_error('Troll n°'.$numero.' does not exist');
+		return null;
+	}
    		
    	if (1 == $publicInfos['numero_guilde']) {
    		$publicInfos['guilde'] = '-';
