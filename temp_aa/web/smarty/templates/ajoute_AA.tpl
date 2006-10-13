@@ -12,7 +12,7 @@
 			</fieldset>
 		</form>
 		<h3>{$messageResultat}</h3>
-		{if $logContent != ""}
+		{if isset($logContent)}
 			<div class="log_result">
 				<pre>{$logContent}</pre>
 			</div>

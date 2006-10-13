@@ -16,9 +16,9 @@ $smarty->compile_dir = dirname(__FILE__).'/smarty/templates_c';
 $smarty->cache_dir = dirname(__FILE__).'/smarty/cache';
 $smarty->config_dir = dirname(__FILE__).'/smarty/configs';
 
-$analysis = stripslashes($_POST['aa']);
+if (array_key_exists('aa', $_POST)) {
+	$analysis = stripslashes($_POST['aa']);
 
-if ($analysis != '') {
 	$infosTroll = processAnalysis($analysis, dirname(__FILE__). '/../pub');
 	if ($infosTroll != null) {
 		$messageResultat = "Enregistrement pris en compte avec les infos suivantes :";
@@ -34,8 +34,10 @@ else {
 	$messageResultat = "Veuillez copier/coller l'intégralité du message du bot";
 }
 
+if (isset($log_content)) {
+	$smarty->assign('logContent', $log_content);
+}
 $smarty->assign('messageResultat', $messageResultat);
-$smarty->assign('logContent', $log_content);
 $smarty->display('ajoute_AA.tpl');
 
 ?>
