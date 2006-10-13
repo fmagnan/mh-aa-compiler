@@ -6,6 +6,8 @@ require(dirname(__FILE__).'/../lib/core.inc.php');
 
 header('Content-type: text/html; charset=utf-8');
 
+error_reporting(0);
+
 $smarty = new Smarty();
 
 $smarty->template_dir = dirname(__FILE__).'/smarty/templates';

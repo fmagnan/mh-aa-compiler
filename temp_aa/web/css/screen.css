@@ -1,5 +1,5 @@
 body {
-	background-color:#A9A9A9;
+	background-color:#C0C0C0;
 }
 
 h3 {
@@ -41,7 +41,7 @@ table#tous_les_trolls tr {
 }
 
 table#tous_les_trolls tr.odd {
-	background-color:#FFFFE0;
+	background-color:#FFE4E1;
 }
 
 table#tous_les_trolls tr.even {
@@ -54,12 +54,12 @@ table#tous_les_trolls tr a {
 }
 
 table#tous_les_trolls tr.odd:hover, table#tous_les_trolls tr.even:hover {
-	color:#FFFFE0;
+	color:#FFE4E1;
 	background-color:#7B68EE;
 }
 
 table#tous_les_trolls tr:hover a {
-	color:#FFFFE0;
+	color:#FFE4E1;
 }
 
 table#tous_les_trolls tr td.numero {
