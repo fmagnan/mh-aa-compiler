@@ -74,7 +74,7 @@ fieldset#ajout_AA textarea {
 
 ul#menu {
 	padding:30px;
-	right:15%;
+	left:60%;
 	position:fixed;
 	top:2%;
 	border:2px #7B68EE solid;
@@ -102,10 +102,10 @@ ul#fiche_troll {
 	background-color:#D8BFD8;
 	font-size:0.8em;
 	-moz-border-radius:10px;
-	width:25%;
-	right:10%;
+	width:30%;
+	left:60%;
 	position:fixed;
-	top:20%;
+	top:25%;
 }
 
 ul#fiche_troll li {
