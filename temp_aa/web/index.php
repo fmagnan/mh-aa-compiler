@@ -13,11 +13,24 @@ $smarty->compile_dir = dirname(__FILE__).'/smarty/templates_c';
 $smarty->cache_dir = dirname(__FILE__).'/smarty/cache';
 $smarty->config_dir = dirname(__FILE__).'/smarty/configs';
 
-$tousLesTrolls = getTousLesTrolls();
+$id = $_GET['id'];
+$fieldSort = $_GET['fieldSort'];
+if ('' == $fieldSort) {
+	$fieldSort = 'numero';
+}
+
+$typeSort = $_GET['typeSort'];
+if ('' == $typeSort) {
+	$typeSort = 'ASC';
+}
+
+$tousLesTrolls = getTousLesTrolls($fieldSort, $typeSort);
+
+$smarty->assign('typeSort', $typeSort);
 $smarty->assign('trolls', $tousLesTrolls);
 $smarty->assign('nombreDeLignes', count($tousLesTrolls));
 
-$id = $_GET['id'];
+
 if ($id != '') {
 	$infosTrollFromDB = getInfosTrollFromDB(intval($id));
 	$smarty->assign('id', $id);
