@@ -39,6 +39,12 @@ class Troll {
 					if ($minimumValue == $maximumValue) {
 						$this->data[$fieldName] = $minimumValue;
 					}
+					elseif($minimumValue == 0) {
+						$this->data[$fieldName] = 'inférieur à ' . $maximumValue;
+					}
+					elseif($maximumValue == 1000) {
+						$this->data[$fieldName] = 'supérieur à ' . $minimumValue;
+					}
 					else {
 						$this->data[$fieldName] = 'entre ' . $minimumValue . ' et ' . $maximumValue;
 					}

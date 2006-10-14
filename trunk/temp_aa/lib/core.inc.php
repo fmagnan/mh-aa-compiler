@@ -3,25 +3,6 @@ require_once 'Parser.class.php';
 require_once 'Troll.class.php';
 require_once 'database.inc.php';
 
-function customErrorHandler($errno, $errstr, $errfile, $errline) {
-	$message = '<div class="erreur"><pre>'.$errstr.'</pre></div>';
-	switch ($errno) {
-		case E_USER_ERROR:
-			echo $message;
-   			exit(1);
-   		break;
-		case E_USER_WARNING:
-	   		echo $message;
-	   	break;
-	  	case E_USER_NOTICE:
-   			echo $message;
-   		break;
-  		default:
-	   		echo $message;
-	   	break;
-	}
-}
-
 function debugArray($array) {
 	error_log(print_r($array, TRUE));
 }
