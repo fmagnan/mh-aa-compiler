@@ -1,13 +1,9 @@
 <?php
 
 // put full path to Smarty.class.php
-require(dirname(__FILE__).'/../Smarty/Smarty.class.php');
-require(dirname(__FILE__).'/../lib/core.inc.php');
-
-header('Content-type: text/html; charset=utf-8');
-
-error_reporting(E_USER_ERROR | E_USER_WARNING | E_USER_NOTICE);
-set_error_handler("customErrorHandler");
+require_once dirname(__FILE__).'/../Smarty/Smarty.class.php';
+require_once dirname(__FILE__).'/../lib/core.inc.php';
+require_once dirname(__FILE__).'/../etc/settings.inc.php';
 
 $smarty = new Smarty();
 
