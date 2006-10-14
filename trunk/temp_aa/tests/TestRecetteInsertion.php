@@ -127,6 +127,33 @@
     		$this->assertTrue(empty($array_diff));
     	}
     	
+    	function test_miseAJourTrollAvecValeurSuperieure() {
+    		$compiledInfosTroll = array(
+    		 	'numero' => 2097,
+    			'nom' => 'Nebuchadnezzar',
+    			'race' => 'Kastar',
+    			'numero_guilde' => 91,
+    			'guilde' => 'In Trollum Veritas',
+	    		'niveau' => 32,
+	    		'niveau_actuel' => 32,
+    			'vie' => 'entre 125 et 140',
+    			'attaque' => 'entre 15 et 17',
+    			'esquive' => 'entre 6 et 7',
+    			'degats' => 'supérieur à 20',
+    			'regeneration' => 'entre 5 et 6',
+    			'armure' => 'entre 16 et 18',
+    			'vue' => 'entre 5 et 6',
+    			'date_compilation' => '2006-10-13 18:27:18',
+    			'sortileges' => '',
+    		);
+    		
+    		shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
+    		$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAANebuchadnezzar.txt'), $this->pathToPublicFiles);
+    		
+    		$array_diff = array_diff_assoc($compiledInfosTroll, $infosTroll);
+    		$this->assertTrue(empty($array_diff));
+    	}
+    	
     	function tearDown() {
     		shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('truncateTable.sql'));	
     	}
