@@ -73,6 +73,7 @@ function getPublicInfos($numero, $pathToPublicFiles) {
 	if ($handle) {
 		while (!feof($handle)) {
    			$line = fgets($handle);
+   			
     		$trollInfosArray = explode(';', $line);
     		if ($numero == intval($trollInfosArray[0])) {
     			$publicInfos['nom'] = $trollInfosArray[1];

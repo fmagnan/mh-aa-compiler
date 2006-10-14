@@ -9,7 +9,7 @@
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('truncateTable.sql'));
     	}
     	
-    	function test_recupereListeTrolls() {
+    	/*function test_recupereListeTrolls() {
     		$publicInfos = new PublicInfos();
     		$result = $publicInfos->getTrollListByFTP();
     		$this->assertTrue($result);
@@ -20,7 +20,7 @@
     		$result = $publicInfos->getAllianceListByFTP();
     		$this->assertTrue($result);
     	}    		
-    	
+    	*/
     	function test_metAJourInfosPubliques() {
     		shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertIncompleteData.sql'));
     		$publicInfos = new PublicInfos();
