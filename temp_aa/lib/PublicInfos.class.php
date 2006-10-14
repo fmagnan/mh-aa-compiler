@@ -19,23 +19,27 @@ class PublicInfos {
     }
     
     function getFileByFTP($fileName) {
-    	$ftpFileName = "ftp://ftp.mountyhall.com/".$fileName;
+    	$remoteFileName = "http://www.mountyhall.com/ftp/".$fileName;
     	$localFileName = dirname(__FILE__).'/../pub/'.$fileName;
     	
-    	$contentsInISO = file_get_contents($ftpFileName);
-    	if (FALSE == $contentsInISO) {
-    		trigger_error("Unable to retrieve file " . $ftpFileName);
+    	$remoteHandle = @fopen($remoteFileName, "r");
+    	$localHandle = @fopen($localFileName, "w");
+    	if (FALSE == $remoteHandle) {
+    		trigger_error("Unable to open remote file " . $remoteFileName);
     		return FALSE;
     	}
-    	
-    	$contentsInUTF8 = utf8_encode($contentsInISO);
-    	$handle = @fopen($localFileName, "w");
-    	if (FALSE == $handle) {
+    	if (FALSE == $localHandle) {
     		trigger_error("Unable to open local file " . $localFileName);
     		return FALSE;
     	}
-    	fwrite($handle, $contentsInUTF8);
-    	fclose($handle);
+    	
+    	while (!feof($remoteHandle)) {
+     		$lineInUTF8 = utf8_encode(fgets($remoteHandle));
+     		fwrite($localHandle, $lineInUTF8);
+		}
+   		fclose($remoteHandle);
+   		fclose($localHandle);
+    	
     	return TRUE;	
      }
     
@@ -55,6 +59,7 @@ class PublicInfos {
 	    		$numero = intval($infosTroll['numero']);
 	    		
 	    		$publicInfos = getPublicInfos($numero, dirname(__FILE__).'/../pub');
+	    		$infosTroll['nom'] = $publicInfos['nom'];
     			$infosTroll['race'] = $publicInfos['race'];
     			$infosTroll['niveau_actuel'] = intval($publicInfos['niveau_actuel']);
     			$infosTroll['numero_guilde'] = intval($publicInfos['numero_guilde']);
