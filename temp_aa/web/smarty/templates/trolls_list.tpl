@@ -13,9 +13,9 @@
    			<tr class="odd">
 		{/if}
 			<td class="numero"><a name="{$trolls[tout].numero}" href="#" onClick="EnterPJView({$trolls[tout].numero});">{$trolls[tout].numero}</a></td>
-  			<td><a href="index.php?fieldSort={$fieldsort}&typeSort={$typeSort}&id={$trolls[tout].numero}#{$trolls[tout].numero}">{$trolls[tout].nom}</a></td>
-  			<td>{$trolls[tout].race}</td>
-  			<td>{$trolls[tout].niveau}</td>
+  			<td><a href="index.php?fieldSort={$fieldSort}&typeSort={$typeSort}&id={$trolls[tout].numero}#{$trolls[tout].numero}">{$trolls[tout].nom}</a></td>
+  			<td class="race">{$trolls[tout].race}</td>
+  			<td class="niveau">{$trolls[tout].niveau_actuel}</td>
   			<td><a href="#" onClick="EnterAllianceView({$trolls[tout].numero_guilde});">{$trolls[tout].guilde}</a></td>
   		</tr>
  	{/section}

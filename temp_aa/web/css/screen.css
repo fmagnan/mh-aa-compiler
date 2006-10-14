@@ -77,9 +77,13 @@ table#tous_les_trolls tr:hover a {
 	color:#FFE4E1;
 }
 
+table#tous_les_trolls tr td.numero, table#tous_les_trolls tr td.race,
+table#tous_les_trolls tr td.niveau {
+	text-align:center;	
+}
+
 table#tous_les_trolls tr td.numero {
 	font-weight:bold;
-	text-align:center;
 }
 
 fieldset#ajout_AA textarea {
