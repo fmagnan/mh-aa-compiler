@@ -133,8 +133,8 @@
 		function test_recupereTousLesTrolls() {
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
 			$tousLesTrolls = getTousLesTrolls('numero', 'ASC');
-			$this->assertEqual(1, count($tousLesTrolls));
-			$this->assertEqual($this->grobide, $tousLesTrolls[0]);
+			$this->assertEqual(2, count($tousLesTrolls));
+			$this->assertEqual($this->grobide, $tousLesTrolls[1]);
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('truncateTable.sql'));
 		}
 		

@@ -114,5 +114,21 @@
 			$this->assertEqual('18', $troll->getDegats());
 		}
 		
+		function test_miseAJourTrollAvecValeurSuperieure() {
+			$troll = new Troll($this->donneesDeTest);
+			$this->troll = $troll;
+			$donneesDeMiseAJour = array(
+				'nom' => 'DIAPPE',
+				'race' => 'Inconnue',
+				'attaque' => 'entre 18 et 20',
+				'degats' => 'supérieur à 20',
+			);
+			$troll->update($donneesDeMiseAJour);
+			$this->assertEqual('DIAPPE', $troll->getNom());
+			$this->assertEqual('Skrim', $troll->getRace());
+			$this->assertEqual('20', $troll->getAttaque());
+			$this->assertEqual('supérieur à 20', $troll->getDegats());
+		}
+		
 	}
 ?>
