@@ -3,7 +3,7 @@
 13;les lents papés trolls;13;
 14;Schtroumpfs Verts;8;
 19;La Guilde des Grospifs;5;
-24;Enfants de la Flamme;38;
+24;Enfants de la Flamme;37;
 30;Farting Brothers;2;
 34;Les boustifailleurs;9;
 35;Les Trollonisateurs;47;
@@ -65,8 +65,8 @@
 256;Les fumeurs de trolls;2;
 261;Les Nécromunistes;10;
 266;Parti des Ragoûts Onctueux et de l'Utopie Trõllis;1;
-281;La Horde;68;
-282;*Les Fourmis*;2;
+281;La Horde;69;
+282;*Les Fourmis*;1;
 283;La tribu du Houblon;18;
 284;Nighthunters;22;
 285;ProfiTröll;12;
@@ -89,7 +89,7 @@
 370;La putain de guilde;2;
 371;DarkPatroll;46;
 377;Peace & Trolls;1;
-385;Tueur de Kon;5;
+385;Tueur de Kon;4;
 403;Nettoyeurs des bas fonds;2;
 406;Les PsykoTrolls;4;
 407;La horde des AperiKuB;36;
@@ -111,7 +111,7 @@
 514;Kornichon;2;
 523;Les Faucheurs d'Ame;8;
 525;MOUNTY TRöLL;39;
-530;O.T.A.N. Organisation des Trolls Adepts de Naheulb;48;
+530;O.T.A.N. Organisation des Trolls Adepts de Naheulb;47;
 533;Confrérie du Tonneau;26;
 534;L'Ordre des Princes Magifères;7;
 535;La Voie du Troll !;26;
@@ -368,7 +368,7 @@
 1866;OURS de Toulouse;7;
 1867;Les Traulois;2;
 1870;GPHY;30;
-1875;La Belle Compagnie;17;
+1875;La Belle Compagnie;18;
 1882;Le Pack De Crocs;17;
 1884;0==][=====&gt;  Ghost Predator's Army  &lt;=====];1;
 1886;Tunga;6;
@@ -409,7 +409,7 @@
 2015;Les Horti-Trollonisateurs;12;
 2017;La Dernière Lueur;2;
 2018;La Guilde du Caillou Pas Blanc;6;
-2022;The Guïldekeut Art;31;
+2022;The Guïldekeut Art;32;
 2030;Les Anges De La Mort;13;
 2031;Les Kinettrolls;7;
 2035;Orifån;23;
@@ -555,7 +555,7 @@
 2466;^^* Bregan D'aerthe *^^;9;
 2467;Confrérie du Troll;5;
 2468;La  Fabuleuse Guilde des Espiègles;3;
-2471;&lt;&lt;&lt; Les tueurs de gnu &gt;&gt;&gt;;14;
+2471;&lt;&lt;&lt; Les tueurs de gnu &gt;&gt;&gt;;13;
 2472;Zöldîk;3;
 2475;Voie de la Cendre;2;
 2477;Cuistot et Marmitons;10;
@@ -570,7 +570,7 @@
 2521;les loups de kiev;8;
 2524;- Aucune Guilde -;4;
 2527;Trollopolis, le Royaume Ardent;30;
-2529;La Tribu de l'Oubli;3;
+2529;La Tribu de l'Oubli;2;
 2531;Les Parias;4;
 2534;Les même pas peur;6;
 2538;Les Minotrolls;3;
@@ -609,7 +609,7 @@
 2617;Des Gnu, des Armes, de la Bière, Nom de Dieu;10;
 2619;TAWART'HAGUEUL  CORPORATION;21;
 2624;D.T. Mangetout;16;
-2630;troll pour tous, dents pourries;16;
+2630;troll pour tous, dents pourries;15;
 2632;La S.E.C.T.E.;18;
 2633;Républik.;7;
 2635;L'Ordre des Chevaliers de la Tulipe Noire;3;
@@ -683,7 +683,7 @@
 2804;OveRien;12;
 2806;tro'lyon;1;
 2808;L.W.D.S : Les Warhunters De Skaven;12;
-2810;ViVenDi UniVerSaLe GuiLde;16;
+2810;ViVenDi UniVerSaLe GuiLde;17;
 2811;Véda;18;
 2812;Les Disciples de Kounalis;6;
 2813;Obscurantis;16;
@@ -718,7 +718,7 @@
 2867;Le secret de la montagne des trölls pëdés;8;
 2870;Qu'est-ce que tu fous sur ma case ?;4;
 2871;l'A.N.P.E;13;
-2872;Les Orgues de C'te Ligne;13;
+2872;Les Orgues de C'te Ligne;14;
 2873;la guild'bar, club echangiste de trolls et autres;1;
 2878;A.K.P.;5;
 2879;Les Samouraîs Daïto Ryu Aïki Ju-Jutsu;2;
@@ -757,7 +757,7 @@
 2956;La Brigade du Chef Chaudard;1;
 2958;Tous au boulot!;7;
 2961;La Secte du Miam Rafraîchissant;1;
-2962;OmbreNoire;4;
+2962;OmbreNoire;3;
 2963;Les Marchands de Gnons;2;
 2965;Poutres In Black;5;
 2966;I.N.R.I;2;
@@ -841,7 +841,7 @@
 3107;Réminiscence;9;
 3109;L'Arche Sinistre;3;
 3111;Kama Putra;6;
-3112;Les Trolls Mercenaires;11;
+3112;Les Trolls Mercenaires;12;
 3113;&lt;&lt;&lt;Les adorateurs de la patate chaude&gt;;3;
 3114;demons of the black hell;2;
 3115;les super trolls;1;
@@ -855,7 +855,7 @@
 3124;Les trolls noir de Lordearon;1;
 3125;SP-X;6;
 3127;Les Chevaliers errants;1;
-3128;P&amp;T;10;
+3128;P&amp;T;11;
 3129;troll'afêtes;5;
 3130;Sapaudia Trolls;3;
 3131;ô pal !;2;
@@ -865,7 +865,7 @@
 3136;The Four Gowaptrolls Of The Apocalypse;5;
 3137;MountyHunters;4;
 3138;Les Chevaliers de la Rose;3;
-3139;L'Empire des Sens;12;
+3139;L'Empire des Sens;10;
 3140;Les trolls Tris, Davy et Adri;3;
 3141;MOI LE BOSS;1;
 3142;Tanelorn;6;
@@ -875,7 +875,7 @@
 3146;mountyteam;2;
 3147;LesToxyTrolls;7;
 3148;Pantheon Hindou;1;
-3149;La suprématie de sang Skrim;8;
+3149;La suprématie de sang Skrim;9;
 3150;Les 4 Trõlls-à-Sticks;4;
 3151;La Poisonnerie des Trolls Fans à Tort;8;
 3152;La Triade;1;
@@ -893,5 +893,5 @@
 3164;Affreux, Sales et Gentils;4;
 3165;BADASOUND;1;
 3166;Lé Sàng Tàstïk;2;
-3167;Lïçènçe IV : Pérmîs de Vôôômïr;1;
-3168;La Secte des Faucheurs du Ragnarok;1;
+3167;Lïçènçe IV : Pérmîs de Vôôômïr;2;
+3168;La Secte des Faucheurs du Ragnarok;3;

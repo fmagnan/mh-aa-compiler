@@ -1,5 +1,5 @@
 <?php
-	include dirname(__FILE__).'/../lib/database.inc.php';
+	require_once dirname(__FILE__).'/../lib/database.inc.php';
 	require_once 'functionsForTests.inc.php';
 
 	class TestAccesBase extends UnitTestCase {
