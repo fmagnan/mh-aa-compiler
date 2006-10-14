@@ -1,14 +1,15 @@
 <?php
 	class TousLesTests extends GroupTest {
 		function TousLesTests() {
-        	parent::GroupTest('');
-        	$this->addTestFile(dirname(__FILE__).'/TestAccesBase.php');
-        	$this->addTestFile(dirname(__FILE__).'/TestTroll.php');
-        	$this->addTestFile(dirname(__FILE__).'/TestCompiler.php');
-        	$this->addTestFile(dirname(__FILE__).'/TestParser.php');
-        	$this->addTestFile(dirname(__FILE__).'/TestRecetteInsertion.php');
-        	$this->addTestFile(dirname(__FILE__).'/TestPublicInfos.php');
-        	$this->addTestFile(dirname(__FILE__).'/TestCoreFunctions.php');
+			$dirname = dirname(__FILE__);
+				parent::GroupTest('');
+        	$this->addTestFile($dirname.'/TestAccesBase.php');
+        	$this->addTestFile($dirname.'/TestCompiler.php');
+        	$this->addTestFile($dirname.'/TestParser.php');
+        	$this->addTestFile($dirname.'/TestPublicInfos.php');
+        	$this->addTestFile($dirname.'/TestRecetteInsertion.php');
+        	$this->addTestFile($dirname.'/TestTroll.php');
+        	
         }
 	}
 ?>
