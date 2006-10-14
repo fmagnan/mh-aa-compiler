@@ -1,5 +1,7 @@
 <?php
 
+require_once 'maintenance.inc.php';
+
 class PublicInfos {
 
     function PublicInfos() {
@@ -31,6 +33,8 @@ class PublicInfos {
     }
     
     function updatePublicInfos() {
+    	$this->getPublicInfosByFTP();
+    	stopSiteForMaintenance();
     	$tousLesTrolls = getTousLesTrolls('numero', 'ASC');
     	foreach($tousLesTrolls AS $infosTroll) {
     		$numero = intval($infosTroll['numero']);
@@ -41,6 +45,7 @@ class PublicInfos {
     		$infosTroll['guilde'] = $publicInfos['guilde'];
     		updateTrollInDB($infosTroll);
     	}
+    	restartSiteAfterMaintenance();
     }
     	
 }

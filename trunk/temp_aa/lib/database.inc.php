@@ -135,4 +135,5 @@ function connectToDB() {
 function disconnectFromDB() {
 	@mysql_close();
 }
+
 ?>

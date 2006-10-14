@@ -1,0 +1,1 @@
+INSERT INTO `global_data` ( `data_key` , `data_value` ) VALUES ('maintenance', '1');
