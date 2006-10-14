@@ -19,17 +19,22 @@ class Compiler {
 			$values['minimum'] = intval(trim($valuesArray[0]));
 			$values['maximum'] = intval(trim($valuesArray[1]));
 		}
-		elseif ($uniqueValue = $this->checkIfStringContainsPatternAndEraseIt('inférieur à', $inputString)) {}
-		elseif ($uniqueValue = $this->checkIfStringContainsPatternAndEraseIt('supérieur à', $inputString)) {}
-		elseif (($uniqueValue = intval(trim($inputString))) != 0) {}
-		else {
-			trigger_error('error[Compiler()]: wrong input data');
+		elseif ($uniqueValue = $this->checkIfStringContainsPatternAndEraseIt('inférieur à', $inputString)) {
+			$values['minimum'] = 0;
+			$values['maximum'] = intval($uniqueValue);
 		}
-		
-		if ($uniqueValue) {
+		elseif ($uniqueValue = $this->checkIfStringContainsPatternAndEraseIt('supérieur à', $inputString)) {
+			$values['minimum'] = intval($uniqueValue);
+			$values['maximum'] = 1000;
+		}
+		elseif (($uniqueValue = intval(trim($inputString))) != 0) {
 			$values['minimum'] = intval($uniqueValue);
 			$values['maximum'] = intval($uniqueValue);
 		}
+		else {
+			trigger_error('error[Compiler()]: wrong input data');
+		}
+				
 		return $values;
 	}
 	

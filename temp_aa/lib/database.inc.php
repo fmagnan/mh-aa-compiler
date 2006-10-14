@@ -78,6 +78,11 @@ function addslashesForArray($inputArray) {
 function getQueryForCreate($infosTroll) {
 	$data = addslashesForArray($infosTroll);
 
+	$sortileges = '';
+	if (array_key_exists('sortileges', $data)) {
+		$sortileges = $data['sortileges'];
+	}
+
 	$createTrollQuery = "INSERT INTO `mountyhall_troll` (`numero`, `nom`, `race`, `numero_guilde`, `guilde`, ".
 		"`niveau`, `niveau_actuel`, `vie`, `attaque`, `esquive`, `degats`, `regeneration`, `armure`, `vue`, ".
 		"`date_compilation`, `sortileges`) VALUES ".
@@ -85,7 +90,7 @@ function getQueryForCreate($infosTroll) {
 		"'{$data['guilde']}',{$data['niveau']},{$data['niveau_actuel']},".
 		"'{$data['vie']}','{$data['attaque']}','{$data['esquive']}',".
 		"'{$data['degats']}','{$data['regeneration']}','{$data['armure']}',".
-		"'{$data['vue']}','{$data['date_compilation']}','{$data['sortileges']}')";
+		"'{$data['vue']}','{$data['date_compilation']}','$sortileges')";
 	return $createTrollQuery;
 }
 
