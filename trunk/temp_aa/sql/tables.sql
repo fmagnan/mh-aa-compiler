@@ -1,3 +1,5 @@
+CREATE DATABASE `pbem` CHARACTER SET `utf8` COLLATE `utf8_general_ci`;
+  
 CREATE TABLE `mountyhall_troll` (
 	`numero` INT(11) NOT NULL,
 	`nom` VARCHAR(50) NOT NULL,
@@ -16,11 +18,11 @@ CREATE TABLE `mountyhall_troll` (
 	`date_compilation` DATETIME NOT NULL,
 	`sortileges` TINYTEXT DEFAULT '',
 	PRIMARY KEY (numero, nom, race)
-) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+) CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE `global_data` (
   `data_key` varchar(50) NOT NULL default '',
   `data_value` varchar(50) NOT NULL default '',
   PRIMARY KEY  (`data_key`)
-) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+) CHARACTER SET utf8 COLLATE utf8_general_ci;
         
