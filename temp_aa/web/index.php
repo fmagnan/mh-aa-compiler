@@ -40,6 +40,13 @@ if (array_key_exists('id', $_REQUEST)) {
 		$sortilegeAAjouter = $_REQUEST['ajout_sortilege'];
 		addKnownSpell($intvalId, $sortilegeAAjouter);
 	}
+	if (array_key_exists('action', $_REQUEST)) {
+		if ('delete' == $_REQUEST['action']) {
+			$sortilegeASupprimer = $_REQUEST['sortilege'];
+			deleteSpell($intvalId, $sortilegeASupprimer);
+		}
+	}
+	
 	$infosTrollFromDB = getInfosTrollFromDB($intvalId);
 	$smarty->assign('id', $id);
 	$smarty->assign('ficheTroll', $infosTrollFromDB);

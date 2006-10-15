@@ -1,5 +1,6 @@
 <?
 require_once dirname(__FILE__).'/../etc/config.inc.php';
+require_once dirname(__FILE__).'/../etc/constants.inc.php';
 
 function isNotEmptyInputArray($inputArray) {
 	$isNotEmptyInputArray = FALSE;
@@ -43,9 +44,34 @@ function addKnownSpell($trollNumber, $spell) {
 		}
 		$spellsList = implode(';', $spellsArray);
 	}
-	$addSpellQuery = "UPDATE mountyhall_troll SET `sortileges`='".$spellsList."' WHERE `numero`=".$trollNumber;
+	$addSpellQuery = "UPDATE `mountyhall_troll` SET `sortileges`='".$spellsList."' WHERE `numero`=".$trollNumber;
 	connectToDB();
 	mysql_query($addSpellQuery);
+	disconnectFromDB();
+}
+	
+function deleteSpell($trollNumber, $spell) {
+	global $SORTILEGES;
+	
+	if (!in_array($spell, $SORTILEGES)) {
+		trigger_error('Unknown spell ' . $spell);	
+		return null;
+	}	
+
+	$spellsList = getSpellsList($trollNumber);
+	$spellsArray = explode(';', $spellsList);
+	
+	$restrictedSpellsArray = array();
+	foreach ($spellsArray AS $knownSpell) {
+		if ($spell != $knownSpell) {
+			$restrictedSpellsArray[] = $knownSpell;
+		}
+	}	
+
+	$restrictedSpellsList = implode(';', $restrictedSpellsArray);
+	$deleteQuery = "UPDATE `mountyhall_troll` SET `sortileges`='".$restrictedSpellsList."' WHERE `numero`=".$trollNumber;
+	connectToDB();
+	$resourceId = mysql_query($deleteQuery);
 	disconnectFromDB();
 }
 
