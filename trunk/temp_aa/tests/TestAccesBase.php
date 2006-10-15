@@ -178,5 +178,39 @@
 			$this->assertEqual('Analyse Anatomique', $listeDeSorts);
 		}
 		
+		function test_supprimeSortilegeAvecErreur() {
+			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
+			addKnownSpell(2097, 'Analyse Anatomique');
+			deleteSpell(2097, 'Sort inconnu');
+			$this->assertError('Unknown spell Sort inconnu');
+		}
+		
+		function test_supprimeSortilegeUnique() {
+			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
+			addKnownSpell(2097, 'Analyse Anatomique');
+			$listeDeSorts = getSpellsList(2097);
+			$this->assertEqual('Analyse Anatomique', $listeDeSorts);
+			deleteSpell(2097, 'Analyse Anatomique');
+			$listeDeSorts = getSpellsList(2097);
+			$this->assertEqual('', $listeDeSorts);
+		}
+		
+		function test_supprimeSortilegeParmiPlusieurs() {
+			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
+			addKnownSpell(2097, 'Analyse Anatomique');
+			addKnownSpell(2097, 'Armure Ethérée');
+			addKnownSpell(2097, 'Sacrifice');
+			deleteSpell(2097, 'Analyse Anatomique');
+			$listeDeSorts = getSpellsList(2097);
+			$this->assertEqual('Armure Ethérée;Sacrifice', $listeDeSorts);
+		}
+		
+		function test_supprimeSortilegeDansListeVide() {
+			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
+			deleteSpell(2097, 'Analyse Anatomique');
+			$listeDeSorts = getSpellsList(2097);
+			$this->assertEqual('', $listeDeSorts);
+		}
+		
 	}
 ?>

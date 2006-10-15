@@ -1,5 +1,6 @@
 <?php
 
+global $SORTILEGES;
 $SORTILEGES = array(
 	"Analyse Anatomique", "Armure Ethérée", "Augmentation de l'Attaque", "Augmentation de l'Esquive",
 	"Augmentation des Dégâts", "Bulle d'Anti-Magie", "Explosion", "Faiblesse Passagère",
