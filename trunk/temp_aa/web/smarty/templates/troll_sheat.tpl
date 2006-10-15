@@ -21,7 +21,12 @@
 				{else}
 					<ul>
 					{section name=sortilegesConnus loop=$sortilegesConnus}
-						<li>{$sortilegesConnus[$smarty.section.sortilegesConnus.index]}</li>
+						<li>
+							{$sortilegesConnus[$smarty.section.sortilegesConnus.index]}
+							<a href="index.php?action=delete&sortilege={$sortilegesConnus[$smarty.section.sortilegesConnus.index]}&id={$id}&typeSort={$typeSort}&fieldSort={$fieldSort}">
+								<img src="images/supprime_sort.png" />
+							</a>
+						</li>
 					{/section}
 					</ul>
 				{/if}
@@ -33,7 +38,6 @@
 			{/section}
 		</select>
 		<input type="submit" name="ajout_sort" value="Ajouter un sortilège" />
-		<input type="hidden" name="numero" value="{$ficheTroll.numero}">
 		<input type="hidden" name="id" value="{$id}">
 		<input type="hidden" name="typeSort" value="{$typeSort}">
 		<input type="hidden" name="fieldSort" value="{$fieldSort}">
