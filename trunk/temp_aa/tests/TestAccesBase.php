@@ -150,5 +150,33 @@
 			$this->assertEqual($referenceQuery, $query);
 		}
 		
+		function test_ajoutePremierSortilege() {
+			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
+			$listeDeSorts = getSpellsList(2097);
+			$this->assertEqual('', $listeDeSorts);
+			addKnownSpell(2097, 'Analyse Anatomique');
+			$listeDeSorts = getSpellsList(2097);
+			$this->assertEqual('Analyse Anatomique', $listeDeSorts);
+		}
+		
+		function test_ajoutePlusieursSortileges() {
+			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
+			addKnownSpell(2097, 'Analyse Anatomique');
+			addKnownSpell(2097, 'Armure Ethérée');
+			addKnownSpell(2097, 'Vision Accrue');
+			$listeDeSorts = getSpellsList(2097);
+			$this->assertEqual('Analyse Anatomique;Armure Ethérée;Vision Accrue', $listeDeSorts);
+		}
+		
+		function test_ajouteSortilegeDejaConnu() {
+			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
+			addKnownSpell(2097, 'Analyse Anatomique');
+			$listeDeSorts = getSpellsList(2097);
+			$this->assertEqual('Analyse Anatomique', $listeDeSorts);
+			addKnownSpell(2097, 'Analyse Anatomique');
+			$listeDeSorts = getSpellsList(2097);
+			$this->assertEqual('Analyse Anatomique', $listeDeSorts);
+		}
+		
 	}
 ?>

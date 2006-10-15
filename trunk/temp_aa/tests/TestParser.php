@@ -6,6 +6,8 @@
 	class TestParser extends UnitTestCase {
     	
     	function test_recuperationInfosPubliquesTrollInconnu() {
+    		error_log("--à--" . ' ' . utf8_encode("--à--"));	
+    	
     		$parser = new Parser('rien');
     		$publicInfos = getPublicInfos(1559, dirname(__FILE__));
     		$this->assertError('Troll n°1559 does not exist');

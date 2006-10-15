@@ -19,6 +19,36 @@ function getQueryForAllTrollsInOrder($fieldSort, $typeSort) {
 	return 'SELECT * FROM mountyhall_troll WHERE 1=1 ORDER BY '.$fieldSort.' '.$typeSort; 
 }
 
+function getSpellsList($trollNumber) {
+	$selectQuery = "SELECT `sortileges` FROM mountyhall_troll WHERE `numero`=".$trollNumber;
+	connectToDB();
+	$resourceId = mysql_query($selectQuery);
+	if (FALSE != $resourceId) {
+		$row = mysql_fetch_assoc($resourceId);
+		$spellsList = $row['sortileges'];
+	}
+	disconnectFromDB();
+	return $spellsList;
+}
+
+function addKnownSpell($trollNumber, $spell) {
+	$spellsList = getSpellsList($trollNumber);
+	if ('' == $spellsList) {
+		$spellsList .= $spell;
+	}
+	else {
+		$spellsArray = explode(';', $spellsList);	
+		if (!in_array($spell, $spellsArray)) {
+			$spellsArray[] = $spell;
+		}
+		$spellsList = implode(';', $spellsArray);
+	}
+	$addSpellQuery = "UPDATE mountyhall_troll SET `sortileges`='".$spellsList."' WHERE `numero`=".$trollNumber;
+	connectToDB();
+	mysql_query($addSpellQuery);
+	disconnectFromDB();
+}
+
 function getTousLesTrolls($fieldSort, $typeSort) {
 	$tousLesTrolls = array();
 	connectToDB();
