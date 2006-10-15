@@ -4,6 +4,7 @@ PASSWORD=$1
 ROOT_DIRECTORY=/mountyhall/AA/
 
 ./ncftpreplace.sh ${PASSWORD} "etc/settings.inc.php" ${ROOT_DIRECTORY}etc
+./ncftpreplace.sh ${PASSWORD} "etc/constants.inc.php" ${ROOT_DIRECTORY}etc
 ./ncftpreplace.sh ${PASSWORD} "lib/*.php" ${ROOT_DIRECTORY}lib
 ./ncftpreplace.sh ${PASSWORD} "sql/*.sql" ${ROOT_DIRECTORY}sql
 ./ncftpreplace.sh ${PASSWORD} "web/*.php" ${ROOT_DIRECTORY}web
