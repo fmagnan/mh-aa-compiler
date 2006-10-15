@@ -2,6 +2,10 @@ body {
 	background-color:#C0C0C0;
 }
 
+a img {
+	border:none;
+}
+
 h3 {
 	color:#FFFFE0;
 }
@@ -115,7 +119,7 @@ ul#menu li a:hover {
 	color:#FFFFE0;
 }
 
-ul#fiche_troll {
+form#fiche_troll {
 	padding:20px;
 	border:2px #7B68EE solid;
 	background-color:#D8BFD8;
@@ -127,6 +131,15 @@ ul#fiche_troll {
 	top:25%;
 }
 
-ul#fiche_troll li {
+form#fiche_troll ul {
+	padding-left:2px;
+}
+
+form#fiche_troll li {
 	list-style-type:none;
+}
+
+form#fiche_troll ul li ul li {
+	list-style-type:disc;
+	margin-left:20px;
 }
