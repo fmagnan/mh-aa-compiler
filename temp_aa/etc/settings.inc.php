@@ -1,6 +1,7 @@
 <?php
 
 require_once dirname(__FILE__). '/../lib/maintenance.inc.php';
+require_once 'constants.inc.php';
 
 header('Content-type: text/html; charset=utf-8');
 error_reporting(0);
