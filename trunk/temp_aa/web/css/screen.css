@@ -40,8 +40,8 @@ fieldset#ajout_AA {
 
 
 table#tous_les_trolls, fieldset#ajout_AA {
-	width:55%;
-	margin-left:2%;
+	width:60%;
+	margin-left:1%;
 	border:2px #7B68EE solid;
 	border-collapse:collapse;
 	font-size:0.8em;
@@ -97,7 +97,7 @@ fieldset#ajout_AA textarea {
 
 ul#menu {
 	padding:30px;
-	left:60%;
+	right:1%;
 	position:fixed;
 	top:2%;
 	border:2px #7B68EE solid;
@@ -125,8 +125,8 @@ form#fiche_troll {
 	background-color:#D8BFD8;
 	font-size:0.8em;
 	-moz-border-radius:10px;
-	width:30%;
-	left:60%;
+	width:32%;
+	right:1%;
 	position:fixed;
 	top:25%;
 }
