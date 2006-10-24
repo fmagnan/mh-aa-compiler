@@ -1,6 +1,6 @@
 
-[MountyHall] Sort AA sur GROBIDE - N° 31629)
-Expéditeur (Id) 	MountyHall 	Date d'envoi 	01/03/2006 17:51:34
+[MountyHall] Sort AA sur Cradoc - N° 1)
+Expéditeur (Id) 	MountyHall 	Date d'envoi 	03/10/2006 08:05:26
 Destinataire(s) 	alacasar
  
 ================================
@@ -10,17 +10,17 @@ MOUNTYHALL - La Terre des Trõlls
 Troll n°27441 : alacasar
 
 Vous avez été impliqué dans un événement : SORT.
-Il était alors : 01/03/2006 17:51:34.
+Il était alors : 03/10/2006 08:05:26.
 ***********************************************************
 
-Le Troll Ciblé : GROBIDE - N° 31629)
-Niveau : 22
-Points de Vie : Excellent (entre 70 et 90)
+Le Troll Ciblé : Cradoc - N° 1)
+Niveau : 29
+Points de Vie : Excellent (entre 110 et 120)
 Blessure (Approximatif) : 0 %
-Dés d'Attaque : Remarquable (entre 14 et 16)
-Dés d'Esquive : Très Fort (entre 12 et 14)
-Dés de Dégât : Très Fort (entre 10 et 12)
-Dés de Régénération : Moyen (entre 3 et 4)
+Dés d'Attaque : Moyen (entre 18 et 20)
+Dés d'Esquive : Très Fort (entre 10 et 12)
+Dés de Dégât : Excellent (entre 11 et 13)
+Dés de Régénération : Remarquable (entre 4 et 5)
 Armure : Exceptionnel (entre 12 et 14)
 Vue : Moyen (entre 3 et 4)
 
