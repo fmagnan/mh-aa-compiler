@@ -4,9 +4,9 @@
 
 	class TestAccesBase extends UnitTestCase {
 		
-		var $grobide = array(
-			'numero' => 31629,
-			'nom' => 'GROBIDE',
+		var $cradoc = array(
+			'numero' => 1,
+			'nom' => 'Cradoc',
 			'race' => 'Inconnue',
 			'numero_guilde' => 1,
 			'guilde' => '-',
@@ -56,11 +56,11 @@
 		}
 		
 		function test_ecritureTrollEnBase() {
-			$createQuery = getQueryForCreate($this->grobide);
+			$createQuery = getQueryForCreate($this->cradoc);
 			$referenceQuery = "INSERT INTO `mountyhall_troll` (`numero`, `nom`, `race`, `numero_guilde`,".
 				" `guilde`, `niveau`, `niveau_actuel`, `vie`, `attaque`, `esquive`, `degats`, `regeneration`,".
 				" `armure`, `vue`, `date_compilation`, `sortileges`) VALUES ".
-				"(31629,'GROBIDE','Inconnue',1,'-',28,29,'entre 95 et 115','entre 17 et 19','entre 10 et 12',".
+				"(1,'Cradoc','Inconnue',1,'-',28,29,'entre 95 et 115','entre 17 et 19','entre 10 et 12',".
 				"'entre 12 et 14','entre 3 et 4','entre 12 et 14','entre 2 et 4','2006-06-25 14:09:23','')";
 			$this->assertEqual($referenceQuery, $createQuery);
 		}
@@ -77,8 +77,8 @@
 		}
 		
 		function test_suppressionTrollEnBase() {
-			$deleteQuery = getQueryForDelete(31629);
-			$this->assertEqual("DELETE FROM `mountyhall_troll` WHERE `numero` = 31629", $deleteQuery);
+			$deleteQuery = getQueryForDelete(1);
+			$this->assertEqual("DELETE FROM `mountyhall_troll` WHERE `numero` = 1", $deleteQuery);
 		}
 		
 		function test_ModificationTrollEnBaseSansTableau() {
@@ -93,7 +93,7 @@
 		
 		function test_ModificationTrollEnBase() {
 			$donneesDeModification = array(
-				'numero'=> 31629,
+				'numero'=> 1,
 				'niveau' => 29,
 				'degats' => 'entre 13 et 15',
 				'regeneration' => '5',
@@ -101,20 +101,20 @@
 			);
 			$updateQuery = getQueryForUpdate($donneesDeModification);
 			$this->assertEqual(
-				"UPDATE `mountyhall_troll` SET `numero`=31629,`niveau`=29,`degats`='entre 13 et 15',`regeneration`='5',".
-				"`date_compilation`='2006-10-02 08:52:45' WHERE `numero`=31629", $updateQuery);
+				"UPDATE `mountyhall_troll` SET `numero`=1,`niveau`=29,`degats`='entre 13 et 15',`regeneration`='5',".
+				"`date_compilation`='2006-10-02 08:52:45' WHERE `numero`=1", $updateQuery);
 		}
 		
 		function test_ModificationTrollEnBaseAvecApostrophe() {
 			$donneesDeModification = array(
-				'numero'=> 31629,
+				'numero'=> 1,
 				'niveau' => 29,
 				'guilde' => "La guil'de des apo'strophes",
 			);
 			$updateQuery = getQueryForUpdate($donneesDeModification);
 			$this->assertEqual(
-				"UPDATE `mountyhall_troll` SET `numero`=31629,`niveau`=29,".
-				"`guilde`='La guil\'de des apo\'strophes' WHERE `numero`=31629", $updateQuery);
+				"UPDATE `mountyhall_troll` SET `numero`=1,`niveau`=29,".
+				"`guilde`='La guil\'de des apo\'strophes' WHERE `numero`=1", $updateQuery);
 		}
 		
 		function test_recuperationInfosTrollEnBaseSansNumero() {
@@ -124,8 +124,8 @@
 		
 		function test_recuperationInfosTrollEnBase() {
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
-			$infosTrolls = getInfosTrollFromDB(31629);
-			$array_diff_assoc = array_diff_assoc($this->grobide, $infosTrolls);
+			$infosTrolls = getInfosTrollFromDB(1);
+			$array_diff_assoc = array_diff_assoc($this->cradoc, $infosTrolls);
 			$this->assertTrue(empty($array_diff_assoc));
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('truncateTable.sql'));
 		}
@@ -134,7 +134,7 @@
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
 			$tousLesTrolls = getTousLesTrolls('numero', 'ASC');
 			$this->assertEqual(2, count($tousLesTrolls));
-			$this->assertEqual($this->grobide, $tousLesTrolls[1]);
+			$this->assertEqual($this->cradoc, $tousLesTrolls[0]);
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('truncateTable.sql'));
 		}
 		

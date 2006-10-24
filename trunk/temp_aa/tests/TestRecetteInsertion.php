@@ -75,11 +75,11 @@
     	
     	function test_miseAJourTrollAvecDatePlusRecente() {
     		$compiledInfosTroll = array(
-	    		'numero' => 31629,
-    			'nom' => 'Grobide',
+	    		'numero' => 1,
+    			'nom' => 'Cradoc',
     			'race' => 'Skrim',
-    			'numero_guilde' => 1,
-    			'guilde' => '-',
+    			'numero_guilde' => 2299,
+    			'guilde' => 'Le Sombre Ragnarok',
 	    		'niveau' => 29,
 	    		'niveau_actuel' => 29,
     			'vie' => 'entre 110 et 120',
@@ -94,7 +94,7 @@
     		);
     		
     		shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
-    		$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAAGrobide.txt'), $this->pathToPublicFiles);
+    		$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAA.txt'), $this->pathToPublicFiles);
     		
     		$array_diff = array_diff_assoc($compiledInfosTroll, $infosTroll);
     		$this->assertTrue(empty($array_diff));
@@ -102,13 +102,13 @@
     	
     	function test_miseAJourTrollAvecDatePlusAncienne() {
     		$compiledInfosTroll = array(
-	    		'numero' => 31629,
-    			'nom' => 'Grobide',
+	    		'numero' => 1,
+    			'nom' => 'Cradoc',
     			'race' => 'Skrim',
-    			'numero_guilde' => 1,
-    			'guilde' => '-',
+    			'numero_guilde' => 2299,
+    			'guilde' => 'Le Sombre Ragnarok',
 	    		'niveau' => 28,
-	    		'niveau_actuel' => 29,
+	    		'niveau_actuel' => 48,
     			'vie' => 'entre 95 et 115',
     			'attaque' => 'entre 17 et 19',
     			'esquive' => '12',
@@ -121,7 +121,7 @@
     		);
     		
     		shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
-    		$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAAGrobideAncien.txt'), $this->pathToPublicFiles);
+    		$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAAAncien.txt'), $this->pathToPublicFiles);
     		
     		$array_diff = array_diff_assoc($compiledInfosTroll, $infosTroll);
     		$this->assertTrue(empty($array_diff));
