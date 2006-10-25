@@ -3,6 +3,7 @@
 	{include file='header.tpl'}
 	<body>
 		{include file='javascript.tpl'}
+		{include file='top_banner.tpl'}
 		{include file='menu.tpl'}
 		{include file='trolls_list.tpl'}
 		{include file='troll_sheat.tpl'}

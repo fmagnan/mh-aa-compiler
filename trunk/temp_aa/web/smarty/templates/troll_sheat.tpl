@@ -1,15 +1,15 @@
 {if isset($id)}
-	<table class="cadre">
+	<table class="cadre" id="fiche_troll">
 		<tr class="haut">
-			<td class="coin_haut_gauche"></td>
-			<td class="bandeau_haut_gauche"></td>
-			<td class="bandeau_haut_droit"></td>
-			<td class="coin_haut_droit"></td>
+			<th class="coin_haut_gauche"></th>
+			<th class="bandeau_haut_gauche"></th>
+			<th class="bandeau_haut_droit"></th>
+			<th class="coin_haut_droit"></th>
 		</tr>
 		<tr class="centre">
 			<td class="bandeau_gauche"></td>
 			<td class="fond" colspan="2">
-				<form id="fiche_troll" method="post">
+				<form method="post">
 					<ul>
 						<li><strong>Numéro : </strong>{$ficheTroll.numero}</li>
 						<li><strong>Nom : </strong>{$ficheTroll.nom}</li>
