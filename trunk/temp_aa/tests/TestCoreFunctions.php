@@ -5,8 +5,8 @@
     	
     	function test_calculAgeAnalyse() {
     		$dateCompilation = '2006-10-08 00:00:00';
-    		$this->assertEqual('5 jours', getAgeAnalyse($dateCompilation));
+    		$referenceTimeStamp = mktime ( 15, 42, 13, 10, 13, 2006);
+    		$this->assertEqual('5 jours', getAgeAnalyse($referenceTimeStamp, $dateCompilation));
     	}
-    	
     }
 ?>

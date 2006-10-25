@@ -182,9 +182,22 @@ function deleteTrollInDB($trollId) {
 	disconnectFromDB();
 }
 
-function connectToDB() {
-	$link = mysql_connect( _HOST_ , _USER_ , _PWD_ ) or trigger_error('error[connectToDB()]: unable to connect to database');
- 	@mysql_select_db( _DB_ ) or trigger_error('error[connectToDB()]: unable to select a database');
+function connectToDB($host='', $user='', $password='', $database='') {
+	if ($host == '') {
+		$host = _HOST_;
+	}
+	if ($user == '') {
+		$user = _USER_;
+	}
+	if ($password == '') {
+		$password = _PWD_;
+	}
+	if ($database == '') {
+		$database = _DB_;
+	}
+	
+	$link = mysql_connect($host, $user, $password) or trigger_error('error[connectToDB()]: unable to connect to database');
+ 	@mysql_select_db($database) or trigger_error('error[connectToDB()]: unable to select a database');
  	return $link;
 }
 
