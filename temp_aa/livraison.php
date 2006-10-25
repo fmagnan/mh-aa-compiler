@@ -13,11 +13,11 @@ $httpPassword= $argv[3];
 
 
 $wgetCommand = 'wget --http-user='.$httpUser.' --http-password='.$httpPassword.' http://sirherbert.free.fr/mountyhall/AA/web/';
-$activationCode = 'doubleZero';
+
 $ncftpCommand = dirname(__FILE__) . '/ncftpreplace.sh ' . $ftpPassword;
 $remote_root_directory = ' /mountyhall/AA/';
 
-shell_exec($wgetCommand . 'stopSiteForMaintenance.php?activation_code='.$activationCode);
+activatePageByWget('stopSiteForMaintenance.php');
 
 uploadByFTP('/etc/settings.inc.php', 'etc');
 uploadByFTP('/etc/constants.inc.php', 'etc');
@@ -30,7 +30,7 @@ uploadByFTP('/web/images/*.*', 'web/images');
 uploadByFTP('/web/js/*.js', 'web/js');
 uploadByFTP('/web/smarty/templates/*.tpl', 'web/smarty/templates');
 
-shell_exec($wgetCommand . 'restartSiteAfterMaintenance.php?activation_code='.$activationCode);
+activatePageByWget('restartSiteAfterMaintenance.php');
 
 function uploadByFTP($localPattern, $destinationFolder) {
 	global $ncftpCommand;
@@ -42,4 +42,11 @@ function uploadByFTP($localPattern, $destinationFolder) {
 	}
 }
 
+function activatePageByWget($pageURL) {
+	global $wgetCommand;
+	$activationCode = 'doubleZero';
+	
+	shell_exec($wgetCommand . $pageURL . '?activation_code='.$activationCode);
+	shell_exec('rm ' . $pageURL . '*');
+}
 ?>
