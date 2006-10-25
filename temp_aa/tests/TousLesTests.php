@@ -10,6 +10,7 @@
         	$this->addTestFile($dirname.'/TestPublicInfos.php');
         	$this->addTestFile($dirname.'/TestRecetteInsertion.php');
         	$this->addTestFile($dirname.'/TestTroll.php');
+        	$this->addTestFile($dirname.'/TestCoreFunctions.php');
         }
 	}
 ?>

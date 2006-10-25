@@ -4,7 +4,16 @@ require_once 'maintenance.inc.php';
 
 class PublicInfos {
 
+	var $localFTPDestinationFolder;
+	var $localReferenceFolder;
+
     function PublicInfos() {
+    	$this->localDestinationFolder = dirname(__FILE__).'/../pub/';
+    	$this->localReferenceFolder = $this->localFTPDestinationFolder;
+    }
+    
+    function setLocalDestinationFolder($folderPath) {
+    	$this->localReferenceFolder = $folderPath;
     }
     
     function getPublicInfosByFTP() {
@@ -20,7 +29,7 @@ class PublicInfos {
     
     function getFileByFTP($fileName) {
     	$remoteFileName = "http://www.mountyhall.com/ftp/".$fileName;
-    	$localFileName = dirname(__FILE__).'/../pub/'.$fileName;
+    	$localFileName = $this->localDestinationFolder . $fileName;
     	
     	$remoteHandle = @fopen($remoteFileName, "r");
     	$localHandle = @fopen($localFileName, "w");
@@ -58,13 +67,15 @@ class PublicInfos {
     		foreach($tousLesTrolls AS $infosTroll) {
 	    		$numero = intval($infosTroll['numero']);
 	    		
-	    		$publicInfos = getPublicInfos($numero, dirname(__FILE__).'/../pub');
-	    		$infosTroll['nom'] = $publicInfos['nom'];
-    			$infosTroll['race'] = $publicInfos['race'];
-    			$infosTroll['niveau_actuel'] = intval($publicInfos['niveau_actuel']);
-    			$infosTroll['numero_guilde'] = intval($publicInfos['numero_guilde']);
-    			$infosTroll['guilde'] = $publicInfos['guilde'];
-    			updateTrollInDB($infosTroll);
+	    		$publicInfos = getPublicInfos($numero, $this->localReferenceFolder);
+	    		if ($publicInfos != null) {
+	    			$infosTroll['nom'] = $publicInfos['nom'];
+    				$infosTroll['race'] = $publicInfos['race'];
+    				$infosTroll['niveau_actuel'] = intval($publicInfos['niveau_actuel']);
+    				$infosTroll['numero_guilde'] = intval($publicInfos['numero_guilde']);
+	    			$infosTroll['guilde'] = $publicInfos['guilde'];
+    				updateTrollInDB($infosTroll);
+	    		}
     		}
     		restartSiteAfterMaintenance();
     	}

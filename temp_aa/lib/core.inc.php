@@ -1,4 +1,5 @@
-<?
+<?php
+
 require_once 'Parser.class.php';
 require_once 'Troll.class.php';
 require_once 'database.inc.php';
@@ -85,34 +86,36 @@ function getPublicInfos($numero, $pathToPublicFiles) {
      		}
 		}
 	}
-
+	
 	if (!array_key_exists('nom', $publicInfos)) {
 		trigger_error('Troll n°'.$numero.' does not exist');
 		return null;
 	}
-   		
-   	if (1 == $publicInfos['numero_guilde']) {
-   		$publicInfos['guilde'] = '-';
+   	else {	
+   		if (1 == $publicInfos['numero_guilde']) {
+   			$publicInfos['guilde'] = '-';
+   		}
+   		else {
+   			$handle = @fopen($pathToPublicFiles.'/Public_Guildes.txt', "r");
+			if ($handle) {
+	  			while (!feof($handle)) {
+   					$line = fgets($handle);
+   					$trollInfosArray = explode(';', $line);
+   					if ($publicInfos['numero_guilde'] == intval($trollInfosArray[0])) {
+	     				$publicInfos['guilde'] = $trollInfosArray[1];
+     					fclose($handle);
+     					break;
+   	 				}
+   				}
+			}
+   		}
    	}
-   	else {
-   		$handle = @fopen($pathToPublicFiles.'/Public_Guildes.txt', "r");
-		if ($handle) {
-  			while (!feof($handle)) {
-   				$line = fgets($handle);
-   				$trollInfosArray = explode(';', $line);
-   				if ($publicInfos['numero_guilde'] == intval($trollInfosArray[0])) {
-     				$publicInfos['guilde'] = $trollInfosArray[1];
-     				fclose($handle);
-     				break;
-   	 			}
-   			}
-		}
-   	}
+   	
    	return $publicInfos;
 }
 
-function getAgeAnalyse($dateCompilation) {
-	$dateDuJour = explode('-', date('Y-m-d', time()));
+function getAgeAnalyse($referenceTimeStamp, $dateCompilation) {
+	$dateDuJour = explode('-', date('Y-m-d', $referenceTimeStamp));
 	$dateAnalyse = explode('-', substr($dateCompilation, 0, 10));
 	$timeDateDuJour = mktime(0, 0, 0, $dateDuJour[1], $dateDuJour[2], $dateDuJour[0]);
 	$timeAnalyse = mktime(0, 0, 0, $dateAnalyse[1], $dateAnalyse[2], $dateAnalyse[0]);
