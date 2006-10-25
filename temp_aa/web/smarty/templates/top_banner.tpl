@@ -1,0 +1,1 @@
+<div id="top_banner"></div>
