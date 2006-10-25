@@ -50,7 +50,7 @@ if (array_key_exists('id', $_REQUEST)) {
 	$infosTrollFromDB = getInfosTrollFromDB($intvalId);
 	$smarty->assign('id', $id);
 	$smarty->assign('ficheTroll', $infosTrollFromDB);
-	$ageAnalyse = getAgeAnalyse($infosTrollFromDB['date_compilation']);
+	$ageAnalyse = getAgeAnalyse(time(), $infosTrollFromDB['date_compilation']);
 	$smarty->assign('ageAnalyse', $ageAnalyse);
 	$listeSortileges = getSpellsList($intvalId);
 	if ('' == $listeSortileges) {
