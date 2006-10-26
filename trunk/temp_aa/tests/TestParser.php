@@ -8,7 +8,7 @@
     	function test_recuperationInfosPubliquesTrollInconnu() {
     		$parser = new Parser('rien');
     		$publicInfos = getPublicInfos(1559, dirname(__FILE__));
-    		$this->assertError('Troll n°1559 does not exist');
+    		$this->assertError('Troll n°1559 does not exist anymore');
     		$this->assertNull($publicInfos);
     	}
     	
@@ -147,7 +147,7 @@
     	function test_creationAvecTrollInconnu() {
     		$parser = new Parser(file_get_contents(dirname(__FILE__).'/messageBotAATrollInconnu.txt'));
     		$data = $parser->parseDataAndRetrieveInfos(dirname(__FILE__));
-    		$this->assertError('Troll n°1559 does not exist');
+    		$this->assertError('Troll n°1559 does not exist anymore');
     		$this->assertNull($data);
     	}
     	

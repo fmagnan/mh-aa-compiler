@@ -4,6 +4,7 @@
 require_once dirname(__FILE__).'/../Smarty/Smarty.class.php';
 require_once dirname(__FILE__).'/../lib/core.inc.php';
 require_once dirname(__FILE__).'/../etc/settings.inc.php';
+require_once dirname(__FILE__).'/../lib/Troll.class.php';
 
 $smarty = new Smarty();
 
@@ -48,18 +49,12 @@ if (array_key_exists('id', $_REQUEST)) {
 	}
 	
 	$infosTrollFromDB = getInfosTrollFromDB($intvalId);
+	$currentTroll = new Troll($infosTrollFromDB);
 	$smarty->assign('id', $id);
-	$smarty->assign('ficheTroll', $infosTrollFromDB);
-	$ageAnalyse = getAgeAnalyse(time(), $infosTrollFromDB['date_compilation']);
+	$smarty->assign('ficheTroll', $currentTroll);
+	$ageAnalyse = $currentTroll->getAgeAnalyse(time());
 	$smarty->assign('ageAnalyse', $ageAnalyse);
-	$listeSortileges = getSpellsList($intvalId);
-	if ('' == $listeSortileges) {
-		$smarty->assign('aucunSortConnu', 'aucun sort connu');
-	}
-	else {
-		$sortilegesConnus = explode(';', $listeSortileges);
-		$smarty->assign('sortilegesConnus', $sortilegesConnus);
-	}
+	$smarty->assign('sortilegesConnus', $currentTroll->getListeSortileges());
 }
 
 $smarty->display('main_template.tpl');

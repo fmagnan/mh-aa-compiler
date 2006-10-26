@@ -8,7 +8,7 @@ class PublicInfos {
 	var $localReferenceFolder;
 
     function PublicInfos() {
-    	$this->localDestinationFolder = dirname(__FILE__).'/../pub/';
+    	$this->localFTPDestinationFolder = dirname(__FILE__).'/../pub/';
     	$this->localReferenceFolder = $this->localFTPDestinationFolder;
     }
     

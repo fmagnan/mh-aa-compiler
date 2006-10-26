@@ -70,7 +70,7 @@ function processAnalysis($analysis, $pathToPublicFiles) {
 
 function getPublicInfos($numero, $pathToPublicFiles) {
 	$publicInfos = array();
-	$handle = @fopen($pathToPublicFiles.'/Public_Trolls.txt', "r");
+	$handle = fopen($pathToPublicFiles.'/Public_Trolls.txt', "r");
 	if ($handle) {
 		while (!feof($handle)) {
    			$line = fgets($handle);
@@ -88,7 +88,8 @@ function getPublicInfos($numero, $pathToPublicFiles) {
 	}
 	
 	if (!array_key_exists('nom', $publicInfos)) {
-		trigger_error('Troll n°'.$numero.' does not exist');
+		trigger_error('Troll n°'.$numero.' does not exist anymore');
+		deleteTrollInDB($numero);
 		return null;
 	}
    	else {	
@@ -120,7 +121,7 @@ function getAgeAnalyse($referenceTimeStamp, $dateCompilation) {
 	$timeDateDuJour = mktime(0, 0, 0, $dateDuJour[1], $dateDuJour[2], $dateDuJour[0]);
 	$timeAnalyse = mktime(0, 0, 0, $dateAnalyse[1], $dateAnalyse[2], $dateAnalyse[0]);
 	
-	$valeurAge = ($timeDateDuJour - $timeAnalyse) / 3600 / 24;
+	$valeurAge = round(($timeDateDuJour - $timeAnalyse) / 3600 / 24);
 	
 	if ($valeurAge == 0) {
 		return 'analyse du jour';
