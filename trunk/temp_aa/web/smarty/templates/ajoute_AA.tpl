@@ -2,7 +2,14 @@
 <html>
 	{include file='header.tpl'}
 	<body>
+		{include file='top_banner.tpl'}
 		{include file='menu.tpl'}
+		<h3>{$messageResultat}</h3>
+		{if isset($logContent)}
+			<div class="log_result">
+				<pre>{$logContent}</pre>
+			</div>
+		{/if}
 		<form method="post">
 			<fieldset id="ajout_AA">
 				<legend>Message du Bot</legend>
@@ -11,11 +18,5 @@
 				<input type="submit" name="valider" value="Valider" />
 			</fieldset>
 		</form>
-		<h3>{$messageResultat}</h3>
-		{if isset($logContent)}
-			<div class="log_result">
-				<pre>{$logContent}</pre>
-			</div>
-		{/if}
 	</body>
 </html>
