@@ -14,8 +14,8 @@
 			<a href="index.php?fieldSort=race&typeSort=DESC"><img src="images/fleche_haut.png" /></a>
 		</th>
  		<th class="bandeau_haut_gauche">Niveau
-			<a href="index.php?fieldSort=niveau&typeSort=ASC"><img src="images/fleche_bas.png" /></a>
-			<a href="index.php?fieldSort=niveau&typeSort=DESC"><img src="images/fleche_haut.png" /></a>
+			<a href="index.php?fieldSort=niveau_actuel&typeSort=ASC"><img src="images/fleche_bas.png" /></a>
+			<a href="index.php?fieldSort=niveau_actuel&typeSort=DESC"><img src="images/fleche_haut.png" /></a>
 		</th>
  		<th class="bandeau_haut_gauche">
  			Guilde

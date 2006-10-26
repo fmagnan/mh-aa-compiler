@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Compiler.class.php';
-require_once 'database.inc.php';
+require_once 'core.inc.php';
 
 class Troll {
 	
@@ -65,6 +65,10 @@ class Troll {
 		return $this->data['race'];
 	}
 	
+	function getNiveauActuel() {
+		return $this->data['niveau_actuel'];
+	}
+	
 	function getNiveau() {
 		return $this->data['niveau'];
 	}
@@ -101,5 +105,29 @@ class Troll {
 		return $this->data;
 	}
 	
+	function getGuilde() {
+		$guilde = $this->data['guilde'];
+		$numeroGuilde = $this->data['numero_guilde']; 
+		error_log($guilde);
+		if (1 == $numeroGuilde && '-' == $guilde) {
+			return 'Aucune';
+		}
+		else {
+			return $guilde . ' ('.$numeroGuilde.')';
+		} 
+	}
+	
+	function getAgeAnalyse($referenceTimeStamp) {
+		return getAgeAnalyse($referenceTimeStamp, $this->data['date_compilation']);
+	}
+	
+	function getListeSortileges() {
+		if ('' == $this->data['sortileges']) {
+			return 'Aucun sort connu';
+		}
+		else {
+			return explode(';',$this->data['sortileges']);
+		}
+	}
 }
 ?>

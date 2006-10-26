@@ -11,23 +11,22 @@
 			<td class="fond" colspan="2">
 				<form method="post">
 					<ul>
-						<li><strong>Numéro : </strong>{$ficheTroll.numero}</li>
-						<li><strong>Nom : </strong>{$ficheTroll.nom}</li>
-						<li><strong>Race : </strong>{$ficheTroll.race}</li>
-						<li><strong>Guilde : </strong>{$ficheTroll.guilde} -- ({$ficheTroll.numero_guilde})</li>
-						<li><strong>Niveau au moment de l'analyse : </strong>{$ficheTroll.niveau}</li>
-						<li><strong>Niveau Actuel : </strong>{$ficheTroll.niveau_actuel}</li>
-						<li><strong>Points de vie : </strong>{$ficheTroll.vie}</li>
-						<li><strong>Dés d'Attaque : </strong>{$ficheTroll.attaque}</li>
-						<li><strong>Dés d'Esquive : </strong>{$ficheTroll.esquive}</li>
-						<li><strong>Dés de Dégâts : </strong>{$ficheTroll.degats}</li>
-						<li><strong>Dés de Régénération : </strong>{$ficheTroll.regeneration}</li>
-						<li><strong>Armure : </strong>{$ficheTroll.armure}</li>
-						<li><strong>Vue : </strong>{$ficheTroll.vue}</li>
+						<li><strong>{$ficheTroll->getNom()}</strong> ({$ficheTroll->getNumero()}) -- {$ficheTroll->getRace()} {$ficheTroll->getNiveauActuel()}</li>
+						<li><strong>Points de vie : </strong>{$ficheTroll->getVie()}</li>
+						<li><strong>Dés d'Attaque : </strong>{$ficheTroll->getAttaque()}</li>
+						<li><strong>Dés d'Esquive : </strong>{$ficheTroll->getEsquive()}</li>
+						<li><strong>Dés de Dégâts : </strong>{$ficheTroll->getDegats()}</li>
+						<li><strong>Dés de Régénération : </strong>{$ficheTroll->getRegeneration()}</li>
+						<li><strong>Armure : </strong>{$ficheTroll->getArmure()}</li>
+						<li><strong>Vue : </strong>{$ficheTroll->getVue()}</li>
+						<br />
+						<li><strong>Guilde : </strong>{$ficheTroll->getGuilde()}</li>
+						<li><strong>Niveau au moment de l'analyse : </strong>{$ficheTroll->getNiveau()}</li>
+						<li><strong>Age de l'analyse : </strong>{$ageAnalyse}</li>
 						<li>
 							<strong>Sortilèges : </strong>
-							{if isset($aucunSortConnu)}
-								{$aucunSortConnu}
+							{if !is_array($sortilegesConnus)}
+								{$sortilegesConnus}
 							{else}
 								<ul>
 								{section name=sortilegesConnus loop=$sortilegesConnus}

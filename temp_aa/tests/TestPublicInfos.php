@@ -38,7 +38,7 @@
     		$publicInfos = new PublicInfos();
     		$publicInfos->setLocalDestinationFolder(dirname(__FILE__) . '/pub/');
     		$trolls = $publicInfos->updatePublicInfos();
-    		$this->assertError('Troll n°31902 does not exist');
+    		$this->assertError('Troll n°31902 does not exist anymore');
     	}
     	
     	function tearDown() {
