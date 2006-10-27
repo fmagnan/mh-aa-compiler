@@ -49,7 +49,7 @@ class Parser {
 		$lineArray = explode(':', $lineInString);
 		$partieDroite = trim($lineArray[1]);
 		$nomEtNumero = explode('- N°', $partieDroite);
-		$numero = intval(substr(trim($nomEtNumero[1]), 0, strlen(trim($nomEtNumero[1]))-1));
+		$numero = intval(trim($nomEtNumero[1]));
 		return $numero;
 	}
 	

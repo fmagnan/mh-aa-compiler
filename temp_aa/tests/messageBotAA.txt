@@ -1,5 +1,5 @@
 
-[MountyHall] Sort AA sur Cradoc - N° 1)
+[MountyHall] Sort AA sur Cradoc - N° 1
 Expéditeur (Id) 	MountyHall 	Date d'envoi 	03/10/2006 08:05:26
 Destinataire(s) 	alacasar
  
@@ -13,7 +13,7 @@ Vous avez été impliqué dans un événement : SORT.
 Il était alors : 03/10/2006 08:05:26.
 ***********************************************************
 
-Le Troll Ciblé : Cradoc - N° 1)
+Le Troll Ciblé : Cradoc - N° 1
 Niveau : 29
 Points de Vie : Excellent (entre 110 et 120)
 Blessure (Approximatif) : 0 %
