@@ -3,6 +3,11 @@ body {
 	background-repeat:repeat;
 }
 
+iframe[name],div[style] {
+	display:none;
+	visibility:hidden;
+}
+
 div#top_banner {
 	background-image:url("../images/bandeau_haut.jpg");
 	background-repeat:repeat-x;

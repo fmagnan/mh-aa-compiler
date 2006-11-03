@@ -12,12 +12,12 @@ $httpUser= $argv[2];
 $httpPassword= $argv[3];
 
 
-$wgetCommand = 'wget --http-user='.$httpUser.' --http-password='.$httpPassword.' http://sirherbert.free.fr/mountyhall/AA/web/';
+$wgetCommand = 'wget --http-user='.$httpUser.' --http-password='.$httpPassword.' http://sirherbert.byethost32.com/AA/web/';
 
 $ncftpCommand = dirname(__FILE__) . '/ncftpreplace.sh ' . $ftpPassword;
-$remote_root_directory = ' /mountyhall/AA/';
+$remote_root_directory = ' /htdocs/AA/';
 
-activatePageByWget('stopSiteForMaintenance.php');
+//activatePageByWget('stopSiteForMaintenance.php');
 
 uploadByFTP('/etc/settings.inc.php', 'etc');
 uploadByFTP('/etc/constants.inc.php', 'etc');
@@ -30,7 +30,7 @@ uploadByFTP('/web/images/*.*', 'web/images');
 uploadByFTP('/web/js/*.js', 'web/js');
 uploadByFTP('/web/smarty/templates/*.tpl', 'web/smarty/templates');
 
-activatePageByWget('restartSiteAfterMaintenance.php');
+//activatePageByWget('restartSiteAfterMaintenance.php');
 
 function uploadByFTP($localPattern, $destinationFolder) {
 	global $ncftpCommand;
