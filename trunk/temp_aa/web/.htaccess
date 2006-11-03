@@ -1,4 +1,0 @@
-PerlSetVar AuthFile mountyhall/AA/hidden/passlist
-AuthName "Acces Restreint"
-AuthType Basic
-require valid-user
