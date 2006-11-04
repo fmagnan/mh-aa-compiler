@@ -45,6 +45,10 @@
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('truncateTable.sql'));
 		}
 		
+		function tearDown() {
+			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('truncateTable.sql'));
+		}
+		
 		function test_ecritureTrollEnBaseSansTableau() {
 			$result = createTrollInDB('donnee non valide');
 			$this->assertError('error: input data is not an array');
@@ -210,6 +214,32 @@
 			deleteSpell(2097, 'Analyse Anatomique');
 			$listeDeSorts = getSpellsList(2097);
 			$this->assertEqual('', $listeDeSorts);
+		}
+		
+		function test_ajouteSortilegesAvecApostrophes() {
+			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
+			addKnownSpell(2097, 'Analyse Anatomique');
+			$listeDeSorts = getSpellsList(2097);
+			$this->assertEqual('Analyse Anatomique', $listeDeSorts);
+			addKnownSpell(2097, 'Augmentation de l\'Esquive');
+			$listeDeSorts = getSpellsList(2097);
+			$this->assertEqual('Analyse Anatomique;Augmentation de l\'Esquive', $listeDeSorts);
+			addKnownSpell(2097, 'Sacrifice');
+			$listeDeSorts = getSpellsList(2097);
+			$this->assertEqual('Analyse Anatomique;Augmentation de l\'Esquive;Sacrifice', $listeDeSorts);
+		}
+		
+		function test_supprimeSortilegeAvecApostrophe() {
+			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
+			$AA = 'Analyse Anatomique';
+			$AdE = 'Augmentation de l\'Esquive';
+			$AdA = 'Augmentation de l\'Attaque';
+			addKnownSpell(2097, $AA);
+			addKnownSpell(2097, $AdE);
+			addKnownSpell(2097, $AdA);
+			deleteSpell(2097, $AdE);
+			$listeDeSorts = getSpellsList(2097);
+			$this->assertEqual($AA.';'.$AdA, $listeDeSorts);
 		}
 		
 	}

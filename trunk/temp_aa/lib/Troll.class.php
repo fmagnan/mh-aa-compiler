@@ -108,7 +108,6 @@ class Troll {
 	function getGuilde() {
 		$guilde = $this->data['guilde'];
 		$numeroGuilde = $this->data['numero_guilde']; 
-		error_log($guilde);
 		if (1 == $numeroGuilde && '-' == $guilde) {
 			return 'Aucune';
 		}

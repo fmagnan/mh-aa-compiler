@@ -19,7 +19,6 @@ if (array_key_exists('aa', $_POST)) {
 	if ($infosTroll != null) {
 		$messageResultat = "Enregistrement pris en compte avec les infos suivantes :";
 		$log_content = print_r($infosTroll, TRUE);
-		
 	}
 	else {
 		$messageResultat = "Impossible d'intégrer l'enregistrement avec les données suivantes :";
