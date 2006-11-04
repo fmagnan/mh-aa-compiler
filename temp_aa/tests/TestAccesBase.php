@@ -158,88 +158,96 @@
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
 			$listeDeSorts = getSpellsList(2097);
 			$this->assertEqual('', $listeDeSorts);
-			addKnownSpell(2097, 'Analyse Anatomique');
+			addKnownSpell(2097, 'AA');
 			$listeDeSorts = getSpellsList(2097);
-			$this->assertEqual('Analyse Anatomique', $listeDeSorts);
+			$this->assertEqual('AA', $listeDeSorts);
 		}
 		
 		function test_ajoutePlusieursSortileges() {
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
-			addKnownSpell(2097, 'Analyse Anatomique');
-			addKnownSpell(2097, 'Armure Ethérée');
-			addKnownSpell(2097, 'Vision Accrue');
+			addKnownSpell(2097, 'AA');
+			addKnownSpell(2097, 'AE');
+			addKnownSpell(2097, 'VA');
 			$listeDeSorts = getSpellsList(2097);
-			$this->assertEqual('Analyse Anatomique;Armure Ethérée;Vision Accrue', $listeDeSorts);
+			$this->assertEqual('AA;AE;VA', $listeDeSorts);
 		}
 		
 		function test_ajouteSortilegeDejaConnu() {
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
-			addKnownSpell(2097, 'Analyse Anatomique');
+			addKnownSpell(2097, 'AA');
 			$listeDeSorts = getSpellsList(2097);
-			$this->assertEqual('Analyse Anatomique', $listeDeSorts);
-			addKnownSpell(2097, 'Analyse Anatomique');
+			$this->assertEqual('AA', $listeDeSorts);
+			addKnownSpell(2097, 'AA');
 			$listeDeSorts = getSpellsList(2097);
-			$this->assertEqual('Analyse Anatomique', $listeDeSorts);
+			$this->assertEqual('AA', $listeDeSorts);
 		}
 		
 		function test_supprimeSortilegeAvecErreur() {
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
-			addKnownSpell(2097, 'Analyse Anatomique');
+			addKnownSpell(2097, 'AA');
 			deleteSpell(2097, 'Sort inconnu');
 			$this->assertError('Unknown spell Sort inconnu');
 		}
 		
 		function test_supprimeSortilegeUnique() {
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
-			addKnownSpell(2097, 'Analyse Anatomique');
+			addKnownSpell(2097, 'AA');
 			$listeDeSorts = getSpellsList(2097);
-			$this->assertEqual('Analyse Anatomique', $listeDeSorts);
-			deleteSpell(2097, 'Analyse Anatomique');
+			$this->assertEqual('AA', $listeDeSorts);
+			deleteSpell(2097, 'AA');
 			$listeDeSorts = getSpellsList(2097);
 			$this->assertEqual('', $listeDeSorts);
 		}
 		
 		function test_supprimeSortilegeParmiPlusieurs() {
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
-			addKnownSpell(2097, 'Analyse Anatomique');
-			addKnownSpell(2097, 'Armure Ethérée');
-			addKnownSpell(2097, 'Sacrifice');
-			deleteSpell(2097, 'Analyse Anatomique');
+			addKnownSpell(2097, 'AA');
+			addKnownSpell(2097, 'AE');
+			addKnownSpell(2097, 'Sacro');
+			deleteSpell(2097, 'AA');
 			$listeDeSorts = getSpellsList(2097);
-			$this->assertEqual('Armure Ethérée;Sacrifice', $listeDeSorts);
+			$this->assertEqual('AE;Sacro', $listeDeSorts);
 		}
 		
 		function test_supprimeSortilegeDansListeVide() {
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
-			deleteSpell(2097, 'Analyse Anatomique');
+			deleteSpell(2097, 'AA');
 			$listeDeSorts = getSpellsList(2097);
 			$this->assertEqual('', $listeDeSorts);
 		}
 		
 		function test_ajouteSortilegesAvecApostrophes() {
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
-			addKnownSpell(2097, 'Analyse Anatomique');
+			addKnownSpell(2097, 'AA');
 			$listeDeSorts = getSpellsList(2097);
-			$this->assertEqual('Analyse Anatomique', $listeDeSorts);
-			addKnownSpell(2097, 'Augmentation de l\'Esquive');
+			$this->assertEqual('AA', $listeDeSorts);
+			addKnownSpell(2097, 'AdE');
 			$listeDeSorts = getSpellsList(2097);
-			$this->assertEqual('Analyse Anatomique;Augmentation de l\'Esquive', $listeDeSorts);
-			addKnownSpell(2097, 'Sacrifice');
+			$this->assertEqual('AA;AdE', $listeDeSorts);
+			addKnownSpell(2097, 'Sacro');
 			$listeDeSorts = getSpellsList(2097);
-			$this->assertEqual('Analyse Anatomique;Augmentation de l\'Esquive;Sacrifice', $listeDeSorts);
+			$this->assertEqual('AA;AdE;Sacro', $listeDeSorts);
 		}
 		
 		function test_supprimeSortilegeAvecApostrophe() {
 			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
-			$AA = 'Analyse Anatomique';
-			$AdE = 'Augmentation de l\'Esquive';
-			$AdA = 'Augmentation de l\'Attaque';
+			$AA = 'AA';
+			$AdE = 'AdE';
+			$AdA = 'AdA';
 			addKnownSpell(2097, $AA);
 			addKnownSpell(2097, $AdE);
 			addKnownSpell(2097, $AdA);
 			deleteSpell(2097, $AdE);
 			$listeDeSorts = getSpellsList(2097);
 			$this->assertEqual($AA.';'.$AdA, $listeDeSorts);
+		}
+		
+		function test_ajouteSortAvecApostropheSeul() {
+			shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
+			$AdE = 'AdE';
+			addKnownSpell(2097, $AdE);
+			$listeDeSorts = getSpellsList(2097);
+			$this->assertEqual($AdE, $listeDeSorts);
 		}
 		
 	}

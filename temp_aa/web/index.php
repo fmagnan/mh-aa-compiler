@@ -44,6 +44,7 @@ if (array_key_exists('id', $_REQUEST)) {
 	if (array_key_exists('action', $_REQUEST)) {
 		if ('delete' == $_REQUEST['action']) {
 			$sortilegeASupprimer = $_REQUEST['sortilege'];
+			echo 'sortilege à supprimer = ' . $sortilegeASupprimer;
 			deleteSpell($intvalId, $sortilegeASupprimer);
 		}
 	}
