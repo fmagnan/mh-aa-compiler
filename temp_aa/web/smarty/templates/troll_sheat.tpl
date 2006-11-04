@@ -29,22 +29,22 @@
 								{$sortilegesConnus}
 							{else}
 								<ul>
-								{section name=sortilegesConnus loop=$sortilegesConnus}
+								{foreach item=clef_sort from=$sortilegesConnus}
 									<li>
-										{$sortilegesConnus[$smarty.section.sortilegesConnus.index]}
-										<a href="index.php?action=delete&sortilege={$sortilegesConnus[$smarty.section.sortilegesConnus.index]}&id={$id}&typeSort={$typeSort}&fieldSort={$fieldSort}">
+										{$sortileges[$clef_sort]}
+										<a href="index.php?action=delete&sortilege={$clef_sort}&id={$id}&typeSort={$typeSort}&fieldSort={$fieldSort}">
 											<img src="images/supprime_sort.png" />
 										</a>
 									</li>
-								{/section}
+								{/foreach}
 								</ul>
 							{/if}
 						</li>
 					</ul>
 					<select name="ajout_sortilege">
-						{section name=sortileges loop=$sortileges}
-							<option>{$sortileges[$smarty.section.sortileges.index]}</option>
-						{/section}
+						{foreach key=clef_sort item=nom_sort from=$sortileges}
+							<option value="{$clef_sort}">{$nom_sort}</option>
+						{/foreach}
 					</select>
 					<input type="submit" name="ajout_sort" value="Ajouter un sortilège" />
 					<input type="hidden" name="id" value="{$id}">
