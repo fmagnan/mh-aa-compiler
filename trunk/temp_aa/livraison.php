@@ -3,7 +3,7 @@
 require_once 'lib/maintenance.inc.php';
 
 if(!isset($argv[1]) || !isset($argv[2]) || !isset($argv[3])) {
-	echo 'usage : php4 livraison.php <ftpPassword> <httpUser> <httpPassword>' . "\n";
+	echo 'usage : [php4|php5] livraison.php <ftpPassword> <httpUser> <httpPassword>' . "\n";
 	die();
 }
 
@@ -17,7 +17,7 @@ $wgetCommand = 'wget --http-user='.$httpUser.' --http-password='.$httpPassword.'
 $ncftpCommand = dirname(__FILE__) . '/ncftpreplace.sh ' . $ftpPassword;
 $remote_root_directory = ' /htdocs/AA/';
 
-//activatePageByWget('stopSiteForMaintenance.php');
+activatePageByWget('stopSiteForMaintenance.php');
 
 uploadByFTP('/etc/settings.inc.php', 'etc');
 uploadByFTP('/etc/constants.inc.php', 'etc');
@@ -30,7 +30,7 @@ uploadByFTP('/web/images/*.*', 'web/images');
 uploadByFTP('/web/js/*.js', 'web/js');
 uploadByFTP('/web/smarty/templates/*.tpl', 'web/smarty/templates');
 
-//activatePageByWget('restartSiteAfterMaintenance.php');
+activatePageByWget('restartSiteAfterMaintenance.php');
 
 function uploadByFTP($localPattern, $destinationFolder) {
 	global $ncftpCommand;
@@ -45,6 +45,8 @@ function uploadByFTP($localPattern, $destinationFolder) {
 function activatePageByWget($pageURL) {
 	global $wgetCommand;
 	$activationCode = 'doubleZero';
+	
+	echo $wgetCommand . $pageURL . '?activation_code='.$activationCode;
 	
 	shell_exec($wgetCommand . $pageURL . '?activation_code='.$activationCode);
 	shell_exec('rm ' . $pageURL . '*');

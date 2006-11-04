@@ -45,7 +45,7 @@ function addKnownSpell($trollNumber, $spell) {
 		$spellsList = implode(';', $spellsArray);
 	}
 	
-	$addSpellQuery = "UPDATE `mountyhall_troll` SET `sortileges`=\"".$spellsList."\" WHERE `numero`=".$trollNumber;
+	$addSpellQuery = "UPDATE `mountyhall_troll` SET `sortileges`='".$spellsList."' WHERE `numero`=".$trollNumber;
 	
 	connectToDB();
 	mysql_query($addSpellQuery);
@@ -55,9 +55,7 @@ function addKnownSpell($trollNumber, $spell) {
 function deleteSpell($trollNumber, $spell) {
 	global $SORTILEGES;
 	
-	$spell = stripslashes($spell);
-	
-	if (!in_array($spell, $SORTILEGES)) {
+	if (!array_key_exists($spell, $SORTILEGES)) {
 		trigger_error('Unknown spell ' . $spell);	
 		return null;
 	}	
@@ -73,7 +71,7 @@ function deleteSpell($trollNumber, $spell) {
 	}	
 
 	$restrictedSpellsList = implode(';', $restrictedSpellsArray);
-	$deleteQuery = "UPDATE `mountyhall_troll` SET `sortileges`=\"".$restrictedSpellsList."\" WHERE `numero`=".$trollNumber;
+	$deleteQuery = "UPDATE `mountyhall_troll` SET `sortileges`='".$restrictedSpellsList."' WHERE `numero`=".$trollNumber;
 	connectToDB();
 	$resourceId = mysql_query($deleteQuery);
 	disconnectFromDB();
