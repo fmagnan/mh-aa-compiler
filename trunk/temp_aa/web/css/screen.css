@@ -1,6 +1,7 @@
 body {
 	background-image:url("../images/fond.jpg");
 	background-repeat:repeat;
+	font-size:0.8em;
 }
 
 iframe[name],div[style] {
@@ -8,7 +9,7 @@ iframe[name],div[style] {
 	visibility:hidden;
 }
 
-div#top_banner {
+/*div#top_banner {
 	background-image:url("../images/bandeau_haut.jpg");
 	background-repeat:repeat-x;
 	margin-top:-8px;
@@ -16,7 +17,7 @@ div#top_banner {
 	margin-right:-8px;
 	padding-top:105px;
 	padding-left:0;
-}
+}*/
 
 a img {
 	border:none;
@@ -55,7 +56,7 @@ fieldset#ajout_AA {
 }
 
 table#tous_les_trolls, fieldset#ajout_AA {
-	width:55%;
+	width:63%;
 	text-align:left;
 }
 
@@ -104,12 +105,11 @@ fieldset#ajout_AA textarea {
 div#menu {
 	position:fixed;
 	right:-4px;
-	top:110px;
+	top:30px;
 	width:160px;
 	height:210px;
 	background-image:url("../images/menu.jpg");
 	background-repeat:no-repeat;
-	font-size:0.6em;
 }
 
 div#menu ul {
@@ -132,15 +132,14 @@ div#menu li a:hover {
 }
 
 table.cadre {
-	font-size:0.6em;
 	border-collapse:collapse;
 }
 
 table#fiche_troll {
-	width:28%;
-	right:17%;
+	width:35%;
+	right:1%;
 	position:fixed;
-	top:130px;
+	top:300px;
 }
 
 th.coin_haut_gauche, td.coin_bas_gauche, th.coin_haut_droit, td.coin_bas_droit, th.bandeau_haut_droit {
