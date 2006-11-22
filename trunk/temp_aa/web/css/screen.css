@@ -1,7 +1,7 @@
 body {
 	background-image:url("../images/fond.jpg");
 	background-repeat:repeat;
-	font-size:0.8em;
+	font-size:10px;
 }
 
 iframe[name],div[style] {
@@ -33,7 +33,6 @@ div.erreur {
 	border:2px dotted red;
 	text-align:center;
 	width:55%;
-	font-size:1.2em;
 	font-weight:bold;
 	margin-bottom:30px;
 }
@@ -105,7 +104,7 @@ fieldset#ajout_AA textarea {
 div#menu {
 	position:fixed;
 	right:-4px;
-	top:30px;
+	top:5px;
 	width:160px;
 	height:210px;
 	background-image:url("../images/menu.jpg");
@@ -139,7 +138,7 @@ table#fiche_troll {
 	width:35%;
 	right:1%;
 	position:fixed;
-	top:300px;
+	top:220px;
 }
 
 th.coin_haut_gauche, td.coin_bas_gauche, th.coin_haut_droit, td.coin_bas_droit, th.bandeau_haut_droit {
