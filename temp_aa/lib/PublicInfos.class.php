@@ -12,7 +12,7 @@ class PublicInfos {
     	$this->localReferenceFolder = $this->localFTPDestinationFolder;
     }
     
-    function setLocalDestinationFolder($folderPath) {
+    function setLocalReferenceFolder($folderPath) {
     	$this->localReferenceFolder = $folderPath;
     }
     
@@ -29,7 +29,7 @@ class PublicInfos {
     
     function getFileByFTP($fileName) {
     	$remoteFileName = "http://www.mountyhall.com/ftp/".$fileName;
-    	$localFileName = $this->localDestinationFolder . $fileName;
+    	$localFileName = $this->localFTPDestinationFolder . $fileName;
     	
     	$remoteHandle = @fopen($remoteFileName, "r");
     	$localHandle = @fopen($localFileName, "w");

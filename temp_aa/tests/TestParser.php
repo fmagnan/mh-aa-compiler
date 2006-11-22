@@ -2,12 +2,14 @@
 	require_once dirname(__FILE__).'/../lib/Parser.class.php';
 	require_once dirname(__FILE__).'/functionsForTests.inc.php';
 	require_once dirname(__FILE__).'/../lib/core.inc.php';
-		
+	
+	define('PUBLIC_INFOS_PATH', dirname(__FILE__) . '/pub/');
+	
 	class TestParser extends UnitTestCase {
     	
     	function test_recuperationInfosPubliquesTrollInconnu() {
     		$parser = new Parser('rien');
-    		$publicInfos = getPublicInfos(1559, dirname(__FILE__));
+    		$publicInfos = getPublicInfos(1559, PUBLIC_INFOS_PATH);
     		$this->assertError('Troll n°1559 does not exist anymore');
     		$this->assertNull($publicInfos);
     	}
@@ -77,17 +79,17 @@
     	
     	function test_recuperationInfosPubliques() {
     		$parser = new Parser('rien');
-    		$publicInfos = getPublicInfos(6807, dirname(__FILE__));
+    		$publicInfos = getPublicInfos(6807, PUBLIC_INFOS_PATH);
 			$this->assertEqual("Herb'", $publicInfos['nom']);
     		$this->assertEqual('Durakuir', $publicInfos['race']);
     		$this->assertEqual('3053', $publicInfos['numero_guilde']);
     		$this->assertEqual('Les 12 salopards', $publicInfos['guilde']);
-    		$this->assertEqual(42, $publicInfos['niveau_actuel']);
+    		$this->assertEqual(44, $publicInfos['niveau_actuel']);
     	}
     	
     	function test_recuperationInfosPubliquesSansGuilde() {
     		$parser = new Parser('rien');
-    		$publicInfos = getPublicInfos(31725, dirname(__FILE__));
+    		$publicInfos = getPublicInfos(31725, PUBLIC_INFOS_PATH);
     		$this->assertEqual('Madjestoet', $publicInfos['nom']);
     		$this->assertEqual('Skrim', $publicInfos['race']);
     		$this->assertEqual('1', $publicInfos['numero_guilde']);
@@ -103,7 +105,7 @@
     			'numero_guilde' => 147,
     			'guilde' => 'X-Trolls',
     			'niveau' => 22,
-    			'niveau_actuel' => 22,
+    			'niveau_actuel' => 23,
     			'vie' => 'entre 120 et 140',
     			'attaque' => 'entre 4 et 6',
     			'esquive' => 'entre 7 et 9',
@@ -113,7 +115,7 @@
     			'vue' => 'entre 3 et 5',
     			'date_compilation' => '2006-09-30 16:12:05',
     		);
-    		$infosTroll = $parser->parseDataAndRetrieveInfos(dirname(__FILE__));
+    		$infosTroll = $parser->parseDataAndRetrieveInfos(PUBLIC_INFOS_PATH);
     		
     		$diff_assoc = array_diff_assoc($referenceInfos, $infosTroll);
     		$this->assertTrue(empty($diff_assoc));
@@ -128,7 +130,7 @@
     			'numero_guilde' => 2435,
     			'guilde' => 'Les questeurs du Vent',
     			'niveau' => 28,
-    			'niveau_actuel' => 28,
+    			'niveau_actuel' => 29,
     			'vie' => 'entre 95 et 115',
     			'attaque' => 'entre 3 et 5',
     			'esquive' => 'entre 12 et 14',
@@ -138,7 +140,7 @@
     			'vue' => 'entre 5 et 7',
     			'date_compilation' => '2006-10-07 18:49:44', 
     		);
-    		$infosTroll = $parser->parseDataAndRetrieveInfos(dirname(__FILE__));
+    		$infosTroll = $parser->parseDataAndRetrieveInfos(PUBLIC_INFOS_PATH);
     		
     		$diff_assoc = array_diff_assoc($referenceInfos, $infosTroll);
     		$this->assertTrue(empty($diff_assoc));
@@ -146,7 +148,7 @@
     	
     	function test_creationAvecTrollInconnu() {
     		$parser = new Parser(file_get_contents(dirname(__FILE__).'/messageBotAATrollInconnu.txt'));
-    		$data = $parser->parseDataAndRetrieveInfos(dirname(__FILE__));
+    		$data = $parser->parseDataAndRetrieveInfos(PUBLIC_INFOS_PATH);
     		$this->assertError('Troll n°1559 does not exist anymore');
     		$this->assertNull($data);
     	}
@@ -160,7 +162,7 @@
     			'numero_guilde' => 147,
     			'guilde' => 'X-Trolls',
     			'niveau' => 22,
-    			'niveau_actuel' => 22,
+    			'niveau_actuel' => 23,
     			'vie' => 'entre 120 et 140',
     			'attaque' => 'entre 4 et 6',
     			'esquive' => 'entre 7 et 9',
@@ -170,7 +172,7 @@
     			'vue' => 'entre 3 et 5',
     			'date_compilation' => '',
     		);
-    		$infosTroll = $parser->parseDataAndRetrieveInfos(dirname(__FILE__));
+    		$infosTroll = $parser->parseDataAndRetrieveInfos(PUBLIC_INFOS_PATH);
     		
     		$diff_assoc = array_diff_assoc($referenceInfos, $infosTroll);
     		$this->assertTrue(empty($diff_assoc));
