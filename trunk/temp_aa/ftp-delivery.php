@@ -3,7 +3,7 @@
 require_once 'lib/maintenance.inc.php';
 
 if(!isset($argv[1]) || !isset($argv[2]) || !isset($argv[3])) {
-	echo 'usage : [php4|php5] livraison.php <ftpPassword> <httpUser> <httpPassword>' . "\n";
+	echo 'usage : [php4|php5] '.$argv[0].' <ftpPassword> <httpUser> <httpPassword>' . "\n";
 	die();
 }
 
@@ -12,10 +12,10 @@ $httpUser= $argv[2];
 $httpPassword= $argv[3];
 
 
-$wgetCommand = 'wget --http-user='.$httpUser.' --http-password='.$httpPassword.' http://sirherbert.byethost32.com/AA/web/';
+$wgetCommand = 'wget --http-user='.$httpUser.' --http-password='.$httpPassword.' http://slx0.dyndns.org/AA/web/';
 
 $ncftpCommand = dirname(__FILE__) . '/ncftpreplace.sh ' . $ftpPassword;
-$remote_root_directory = ' /htdocs/AA/';
+$remote_root_directory = ' /AA/';
 
 activatePageByWget('stopSiteForMaintenance.php');
 
@@ -24,7 +24,6 @@ uploadByFTP('/etc/constants.inc.php', 'etc');
 uploadByFTP('/lib/*.php', 'lib');
 uploadByFTP('/sql/*.sql', 'sql');
 uploadByFTP('/web/*.php', 'web');
-uploadByFTP('/web/.htaccess', 'web');
 uploadByFTP('/web/css/*.css', 'web/css');
 uploadByFTP('/web/images/*.*', 'web/images');
 uploadByFTP('/web/js/*.js', 'web/js');
