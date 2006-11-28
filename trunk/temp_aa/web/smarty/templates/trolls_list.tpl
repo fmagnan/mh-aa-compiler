@@ -40,7 +40,9 @@
   			</td>
   			<td class="race  fond">{$trolls[tout].race}</td>
   			<td class="niveau  fond">{$trolls[tout].niveau_actuel}</td>
-  			<td class="fond" colspan="2"><a href="#" onClick="EnterAllianceView({$trolls[tout].numero_guilde});">{$trolls[tout].guilde}</a></td>
+  			<td class="fond" colspan="2">
+  				<a href="#" onClick="EnterAllianceView({$trolls[tout].numero_guilde});">{$trolls[tout].guilde}</a>
+  			</td>
   			<td class="bandeau_droit"></td>
   		</tr>
  	{/section}

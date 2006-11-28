@@ -1,63 +1,53 @@
 {if isset($id)}
-	<table class="cadre" id="fiche_troll">
-		<tr class="haut">
-			<th class="coin_haut_gauche"></th>
-			<th class="bandeau_haut_gauche"></th>
-			<th class="bandeau_haut_droit"></th>
-			<th class="coin_haut_droit"></th>
-		</tr>
-		<tr class="centre">
-			<td class="bandeau_gauche"></td>
-			<td class="fond" colspan="2">
-				<form method="post">
-					<ul>
-						<li><strong>{$ficheTroll->getNom()}</strong> ({$ficheTroll->getNumero()}) -- {$ficheTroll->getRace()} {$ficheTroll->getNiveauActuel()}</li>
-						<li><strong>Points de vie : </strong>{$ficheTroll->getVie()}</li>
-						<li><strong>Dés d'Attaque : </strong>{$ficheTroll->getAttaque()}</li>
-						<li><strong>Dés d'Esquive : </strong>{$ficheTroll->getEsquive()}</li>
-						<li><strong>Dés de Dégâts : </strong>{$ficheTroll->getDegats()}</li>
-						<li><strong>Dés de Régénération : </strong>{$ficheTroll->getRegeneration()}</li>
-						<li><strong>Armure : </strong>{$ficheTroll->getArmure()}</li>
-						<li><strong>Vue : </strong>{$ficheTroll->getVue()}</li>
-						<br />
-						<li><strong>Guilde : </strong>{$ficheTroll->getGuilde()}</li>
-						<li><strong>Niveau au moment de l'analyse : </strong>{$ficheTroll->getNiveau()}</li>
-						<li><strong>Age de l'analyse : </strong>{$ageAnalyse}</li>
-						<li>
-							<strong>Sortilèges : </strong>
-							{if !is_array($sortilegesConnus)}
-								{$sortilegesConnus}
-							{else}
-								<ul>
-								{foreach item=clef_sort from=$sortilegesConnus}
-									<li>
-										{$sortileges[$clef_sort]}
-										<a href="index.php?action=delete&sortilege={$clef_sort}&id={$id}&typeSort={$typeSort}&fieldSort={$fieldSort}">
-											<img src="images/supprime_sort.png" />
-										</a>
-									</li>
-								{/foreach}
-								</ul>
-							{/if}
-						</li>
-					</ul>
-					<select name="ajout_sortilege">
-						{foreach key=clef_sort item=nom_sort from=$sortileges}
-							<option value="{$clef_sort}">{$nom_sort}</option>
-						{/foreach}
-					</select>
-					<input type="submit" name="ajout_sort" value="Ajouter un sortilège" />
-					<input type="hidden" name="id" value="{$id}">
-					<input type="hidden" name="typeSort" value="{$typeSort}">
-					<input type="hidden" name="fieldSort" value="{$fieldSort}">
-				</form>
-			</td>
-			<td class="bandeau_droit"></td>
-		</tr>
-		<tr class="bas">
-			<td class="coin_bas_gauche"></td>
-			<td class="bandeau_bas" colspan="2"></td>
-			<td class="coin_bas_droit"></td>
-		</tr>
-	</table>
-	{/if}
+	<div id="fiche_troll">
+		<form method="post">
+			<ul>
+				<li>
+					<a href="#" onClick="EnterPJView({$ficheTroll->getNumero()});">{$ficheTroll->getNom()}</a>
+					({$ficheTroll->getNumero()}) -- {$ficheTroll->getRace()} {$ficheTroll->getNiveauActuel()}
+				</li>
+				<li><strong>Points de vie : </strong>{$ficheTroll->getVie()}</li>
+				<li><strong>Dés d'Attaque : </strong>{$ficheTroll->getAttaque()}</li>
+				<li><strong>Dés d'Esquive : </strong>{$ficheTroll->getEsquive()}</li>
+				<li><strong>Dés de Dégâts : </strong>{$ficheTroll->getDegats()}</li>
+				<li><strong>Dés de Régénération : </strong>{$ficheTroll->getRegeneration()}</li>
+				<li><strong>Armure : </strong>{$ficheTroll->getArmure()}</li>
+				<li><strong>Vue : </strong>{$ficheTroll->getVue()}</li>
+				<br />
+				<li>
+					<a href="#" onClick="EnterAllianceView({$ficheTroll->getNumeroGuilde()});">{$ficheTroll->getNomGuilde()}</a>
+					-- ({$ficheTroll->getNumeroGuilde()})
+				</li>
+				<li><strong>Niveau au moment de l'analyse : </strong>{$ficheTroll->getNiveau()}</li>
+				<li><strong>Age de l'analyse : </strong>{$ageAnalyse}</li>
+				<li>
+					<strong>Sortilèges : </strong>
+					{if !is_array($sortilegesConnus)}
+						{$sortilegesConnus}
+					{else}
+						<ul>
+							{foreach item=clef_sort from=$sortilegesConnus}
+								<li>
+									{$sortileges[$clef_sort]}
+									<a href="index.php?action=delete&sortilege={$clef_sort}&id={$id}&typeSort={$typeSort}&fieldSort={$fieldSort}">
+										<img src="images/supprime_sort.png" />
+									</a>
+								</li>
+							{/foreach}
+						</ul>
+					{/if}
+				</li>
+			</ul>
+			<select name="ajout_sortilege">
+				{foreach key=clef_sort item=nom_sort from=$sortileges}
+					<option value="{$clef_sort}">{$nom_sort}</option>
+				{/foreach}
+			</select>
+			<br />
+			<input type="submit" name="ajout_sort" value="Ajouter un sortilège" />
+			<input type="hidden" name="id" value="{$id}">
+			<input type="hidden" name="typeSort" value="{$typeSort}">
+			<input type="hidden" name="fieldSort" value="{$fieldSort}">
+		</form>
+	</div>
+{/if}
