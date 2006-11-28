@@ -1,23 +1,13 @@
 body {
 	background-image:url("../images/fond.jpg");
 	background-repeat:repeat;
-	font-size:10px;
+	font-size:12px;
 }
 
 iframe[name],div[style] {
 	display:none;
 	visibility:hidden;
 }
-
-/*div#top_banner {
-	background-image:url("../images/bandeau_haut.jpg");
-	background-repeat:repeat-x;
-	margin-top:-8px;
-	margin-left:-7px;
-	margin-right:-8px;
-	padding-top:105px;
-	padding-left:0;
-}*/
 
 a img {
 	border:none;
@@ -55,7 +45,8 @@ fieldset#ajout_AA {
 }
 
 table#tous_les_trolls, fieldset#ajout_AA {
-	width:63%;
+	margin-top:10px;
+	width:68%;
 	text-align:left;
 }
 
@@ -101,32 +92,31 @@ fieldset#ajout_AA textarea {
 	height:300px;
 }
 
-div#menu {
+#menu, #fiche_troll {
 	position:fixed;
-	right:-4px;
+	right:5px;
+	border:1px solid black;
+	background-color:#F8E3C8;
+	width:30%;
+}
+
+#menu {
 	top:5px;
-	width:160px;
-	height:210px;
-	background-image:url("../images/menu.jpg");
-	background-repeat:no-repeat;
 }
 
-div#menu ul {
-	padding-top:60px;
-	padding-left:60px;
-}
-
-div#menu li {
+#menu li {
 	list-style-type:square;
+	display:inline;
+	margin-right:10px;
 }
 
-div#menu li a {
+#menu li a, #fiche_troll li a {
 	text-decoration:none;
 	font-weight:bold;
 	color:#4F382A;
 }
 
-div#menu li a:hover {
+#menu li a:hover, #fiche_troll li a:hover {
 	color:#E7A557;
 }
 
@@ -134,11 +124,31 @@ table.cadre {
 	border-collapse:collapse;
 }
 
-table#fiche_troll {
-	width:35%;
-	right:1%;
-	position:fixed;
-	top:220px;
+#fiche_troll {
+	top:80px;
+	padding:0;
+}
+
+#fiche_troll ul {
+	padding-left:8px;
+}
+
+#fiche_troll input, #fiche_troll select {
+	margin-left:8px;
+}
+
+#fiche_troll select, #fiche_troll input {
+	margin-bottom:8px;
+}
+
+#fiche_troll li {
+	list-style-type:none;
+	padding:0;
+}
+
+#fiche_troll ul li ul li {
+	list-style-type:disc;
+	margin-left:20px;
 }
 
 th.coin_haut_gauche, td.coin_bas_gauche, th.coin_haut_droit, td.coin_bas_droit, th.bandeau_haut_droit {
@@ -223,17 +233,4 @@ td.bandeau_droit {
 
 td.fond {
 	background-color:#F8E3C8;
-}
-
-table#fiche_troll ul {
-	padding-left:2px;
-}
-
-table#fiche_troll li {
-	list-style-type:none;
-}
-
-table#fiche_troll ul li ul li {
-	list-style-type:disc;
-	margin-left:20px;
 }
