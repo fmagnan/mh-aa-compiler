@@ -105,15 +105,19 @@ class Troll {
 		return $this->data;
 	}
 	
-	function getGuilde() {
+	function getNumeroGuilde() {
+		return $this->data['numero_guilde'];
+	}
+	
+	function getNomGuilde() {
 		$guilde = $this->data['guilde'];
-		$numeroGuilde = $this->data['numero_guilde']; 
-		if (1 == $numeroGuilde && '-' == $guilde) {
+		 
+		if ('-' == $guilde) {
 			return 'Aucune';
 		}
 		else {
-			return $guilde . ' ('.$numeroGuilde.')';
-		} 
+			return $guilde;
+		}
 	}
 	
 	function getAgeAnalyse($referenceTimeStamp) {

@@ -69,7 +69,8 @@
 			$this->assertEqual('supérieur à 20', $troll->getAttaque());
 			$this->assertEqual('entre 14 et 16', $troll->getEsquive());
 			$this->assertEqual('entre 18 et 20', $troll->getDegats());
-			$this->assertEqual('Saigneurs des Profondeurs (2441)', $troll->getGuilde());
+			$this->assertEqual('Saigneurs des Profondeurs', $troll->getNomGuilde());
+			$this->assertEqual(2441, $troll->getNumeroGuilde());
 			$this->assertEqual('entre 4 et 5', $troll->getRegeneration());
 			$this->assertEqual('inférieur à 3', $troll->getVue());
 			$this->assertEqual('entre 12 et 14', $troll->getArmure());
@@ -156,7 +157,8 @@
 				'sortileges' => '',
 			);
 			$trollSansGuilde = new Troll($infosTrollSansGuilde);
-			$this->assertEqual('Aucune', $trollSansGuilde->getGuilde());
+			$this->assertEqual('Aucune', $trollSansGuilde->getNomGuilde());
+			$this->assertEqual(1, $trollSansGuilde->getNumeroGuilde());
 		}
 		
 	}
