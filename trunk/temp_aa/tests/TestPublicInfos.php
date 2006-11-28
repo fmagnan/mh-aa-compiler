@@ -15,16 +15,16 @@
     		$this->assertTrue($result);
     	}
     	    		
-    	function test_recupereListeGuilde() {
+		function test_recupereListeGuilde() {
     		$publicInfos = new PublicInfos();
     		$result = $publicInfos->getAllianceListByFTP();
     		$this->assertTrue($result);
-    	}    		
+    	}   		
     	
     	function test_metAJourInfosPubliques() {
     		shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertIncompleteData.sql'));
     		$publicInfos = new PublicInfos();
-    		$publicInfos->setLocalReferenceFolder(dirname(__FILE__) . '/pub/');
+    		$publicInfos->setLocalPublicFolder(dirname(__FILE__) . '/pub/');
     		$publicInfos->updatePublicInfos();
     		$infosTroll = getInfosTrollFromDB(3);
     		$this->assertEqual(46, $infosTroll['niveau_actuel']);
@@ -36,7 +36,7 @@
     	function test_metAJourInfosPubliquesAvecTrollInconnu() {
     		shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertVanishedTrollAmongRealTrolls.sql'));
     		$publicInfos = new PublicInfos();
-    		$publicInfos->setLocalReferenceFolder(dirname(__FILE__) . '/pub/');
+    		$publicInfos->setLocalPublicFolder(dirname(__FILE__) . '/pub/');
     		$trolls = $publicInfos->updatePublicInfos();
     		$this->assertError('Troll n°31902 does not exist anymore');
     	}

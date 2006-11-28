@@ -4,16 +4,16 @@ require_once 'maintenance.inc.php';
 
 class PublicInfos {
 
-	var $localFTPDestinationFolder;
-	var $localReferenceFolder;
+	var $defaultLocalPublicFolder;
+	var $localPublicFolder;
 
     function PublicInfos() {
-    	$this->localFTPDestinationFolder = dirname(__FILE__).'/../pub/';
-    	$this->localReferenceFolder = $this->localFTPDestinationFolder;
+    	$this->defaultLocalPublicFolder = dirname(__FILE__).'/../pub/';
+    	$this->localPublicFolder = $this->defaultLocalPublicFolder;
     }
     
-    function setLocalReferenceFolder($folderPath) {
-    	$this->localReferenceFolder = $folderPath;
+    function setlocalPublicFolder($folderPath) {
+    	$this->localPublicFolder = $folderPath;
     }
     
     function getPublicInfosByFTP() {
@@ -29,7 +29,7 @@ class PublicInfos {
     
     function getFileByFTP($fileName) {
     	$remoteFileName = "http://www.mountyhall.com/ftp/".$fileName;
-    	$localFileName = $this->localFTPDestinationFolder . $fileName;
+    	$localFileName = $this->defaultLocalPublicFolder . $fileName;
     	
     	$remoteHandle = @fopen($remoteFileName, "r");
     	$localHandle = @fopen($localFileName, "w");
@@ -67,7 +67,7 @@ class PublicInfos {
     		foreach($tousLesTrolls AS $infosTroll) {
 	    		$numero = intval($infosTroll['numero']);
 	    		
-	    		$publicInfos = getPublicInfos($numero, $this->localReferenceFolder);
+	    		$publicInfos = getPublicInfos($numero, $this->localPublicFolder);
 	    		if ($publicInfos != null) {
 	    			$infosTroll['nom'] = $publicInfos['nom'];
     				$infosTroll['race'] = $publicInfos['race'];
