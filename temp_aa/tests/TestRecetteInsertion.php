@@ -10,7 +10,7 @@
 		
 		function setUp() {
 			$this->currentDirectory = dirname(__FILE__);
-    		$this->pathToPublicFiles = $this->currentDirectory . '/../pub';
+    		$this->pathToPublicFiles = $this->currentDirectory . '/pub';
 		}
     	
     	function test_insertionImpossibleCarChampManquant() {
