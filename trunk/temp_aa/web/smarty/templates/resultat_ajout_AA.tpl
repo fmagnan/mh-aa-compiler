@@ -2,9 +2,12 @@
 <html>
 	{include file='header.tpl'}
 	<body>
-		{include file='menu.tpl'}
-		{include file='javascript.tpl'}
-		{include file='trolls_list.tpl'}
-		{include file='troll_sheat.tpl'}
+		{include file='top_banner.tpl'}
+		<h3>{$messageResultat}</h3>
+		{if isset($logContent)}
+			<div class="log_result">
+				<pre>{$logContent}</pre>
+			</div>
+		{/if}
 	</body>
 </html>
