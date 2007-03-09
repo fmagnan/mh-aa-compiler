@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+  <Description about="urn:mozilla:install-manifest">
+  
+    <em:id>mh-aa-compiler@sirherbert.free.fr</em:id>
+    <em:name>MountyHall AA compiler</em:name>
+    <em:version>1.0</em:version>
+    <em:description>This extension helps to send AA information</em:description>
+    <em:creator>Herb'</em:creator>
+    <em:homepageURL>http://sirherbert.free.fr</em:homepageURL>
+    
+    <!-- Firefox -->
+    <em:targetApplication>
+      <Description>
+        <em:id>{bebe2ceb-3dca-4796-3f44-e32947b496f8}</em:id>
+        <em:minVersion>1.5</em:minVersion>
+        <em:maxVersion>1.5.0.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+
+  </Description>
+
+</RDF>

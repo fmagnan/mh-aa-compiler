@@ -1,0 +1,5 @@
+content	mh-aa-compiler	content/
+overlay	chrome://browser/content/browser.xul	chrome://mh-aa-compiler/content/overlay.xul
+
+skin	mh-aa-compiler	classic/1.0	skin/
+style	chrome://global/content/customizeToolbar.xul
