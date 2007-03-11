@@ -27,13 +27,19 @@ class Troll {
 		}
 	}
 	
-	function update($infos) {
+	function update($infos, $isTrollUpgradingSinceLastTime = true) {
 		if (isNotEmptyInputArray($infos)) {
 			foreach ($infos AS $fieldName => $fieldValue) {
 				if (!in_array($fieldName, $this->primaryKeyFieldsNames) &&
 					in_array($fieldName, $this->dataFieldsNames)) {
-					$compiler = new Compiler($this->data[$fieldName]);
-					$compiler->analyse($fieldValue);
+					if ($fieldName == 'armure' || $fieldName == 'niveau') {
+						$compiler = new Compiler($infos[$fieldName]);
+					}
+					else {
+						$compiler = new Compiler($this->data[$fieldName]);
+						$compiler->analyse($fieldValue, $isTrollUpgradingSinceLastTime);
+					}
+					
 					$minimumValue = $compiler->getMinimumValue();
 					$maximumValue = $compiler->getMaximumValue();
 					if ($minimumValue == $maximumValue) {

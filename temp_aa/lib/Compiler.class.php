@@ -4,6 +4,7 @@ class Compiler {
 	
 	var $minimumValue;
 	var $maximumValue;
+	var $isUpgradingSinceLastAnalysis;
 	
 	function Compiler($inputString) {
 		$values = $this->getValuesFromString($inputString);
@@ -46,7 +47,7 @@ class Compiler {
 		return $result;
 	}
 	
-	function analyse($newData) {
+	function analyse($newData, $isTrollUpgradingSinceLastTime = true) {
 		$newValues = $this->getValuesFromString($newData);
 		if ($newValues['maximum'] < $this->getMinimumValue()) {
 			trigger_error('Compiler->analyse(): valeur maximale['.$newValues['maximum'].
@@ -61,7 +62,14 @@ class Compiler {
 			if ($newMinimumValue > $referenceMinimumValue) {
 				$this->minimumValue = $newMinimumValue;
 			}
-			$this->maximumValue = $newMaximumValue;
+			
+			if ($isTrollUpgradingSinceLastTime !== true && $newMaximumValue > $referenceMaximumValue) {
+				$this->maximumValue = $referenceMaximumValue;
+			}
+			else {
+				$this->maximumValue = $newMaximumValue;
+			}
+		
 		}
 	}
 	

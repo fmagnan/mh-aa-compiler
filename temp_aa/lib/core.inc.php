@@ -8,6 +8,46 @@ function debugArray($array) {
 	error_log(print_r($array, TRUE));
 }
 
+function isUpgradeFoundBetween($debut, $fin, $eventsFilePath) {
+	$isUpgradeFound = false;
+	$fileHandler = fopen($eventsFilePath, 'r');
+	if ($fileHandler) {
+		while (!feof($fileHandler)) {
+     		$entireLine = trim(fgets($fileHandler, 4096));
+     		preg_match("/(<td .*>)(.*\/.*\/.*:.*:.*)(<\/td>)/i", $entireLine, $dateCellArray);
+     		
+     		if (!empty($dateCellArray)) {
+     			$dateCell = $dateCellArray[2];
+     			$dateElements = explode(' ', $dateCell);
+     			$dayDate = $dateElements[0];
+     			$dayDateElements = explode('/', $dayDate);
+     			$timeDate = $dateElements[1];
+     			$timeDateElements = explode(':',$timeDate);
+     			$upgradeTimeStamp = mktime($timeDateElements[0], $timeDateElements[1], $timeDateElements[2], $dayDateElements[1], $dayDateElements[0], $dayDateElements[2]);
+     			
+     			if ($upgradeTimeStamp > $debut && $upgradeTimeStamp < $fin) {
+     				$isUpgradeFound = true;
+     			}
+     		}
+   		}
+   		fclose($fileHandler);
+	}
+	else {
+		return true;
+	}
+	
+	return $isUpgradeFound;
+}
+
+function getPathToEventsFile($numeroTroll, $eventsFilePath = false) {
+	if ($eventsFilePath != false) {
+		return $eventsFilePath;
+	}
+	else {
+		return 'http://games.mountyhall.com/mountyhall/View/PJView_Events.php?ai_IDPJ='.$numeroTroll.'&as_EventType=AMELIORATION&as_Action=Afficher';
+	}
+}
+
 function getTimeStampFromTrollDate($dateCompilation) {
 	$date = explode('-', trim(substr($dateCompilation, 0, 10)));
     $time = explode(':', trim(substr($dateCompilation,11,strlen($dateCompilation))));
@@ -24,7 +64,7 @@ function isDataOk($infosTroll) {
 	return TRUE;
 }
 
-function processAnalysis($analysis, $pathToPublicFiles) {
+function processAnalysis($analysis, $pathToPublicFiles, $pathToEventFiles = false) {
 	$parser = new Parser($analysis);
 	
 	$infosTroll = $parser->parseDataAndRetrieveInfos($pathToPublicFiles);
@@ -43,17 +83,27 @@ function processAnalysis($analysis, $pathToPublicFiles) {
     else {
     	$timeStamp = getTimeStampFromTrollDate($infosTroll['date_compilation']);
     	$timeStampInDB = getTimeStampFromTrollDate($infosFromDB['date_compilation']);
+    	
     	if ($timeStamp > $timeStampInDB) {
 			$referenceInfos = $infosFromDB;
    			$updatingInfos = $infosTroll;
+   			$startDate = $timeStampInDB;
+   			$endDate = $timeStamp;
 		}
     	else {
 	  		$referenceInfos = $infosTroll;
     		$updatingInfos = $infosFromDB;
+    		$startDate = $timeStamp;
+   			$endDate = $timeStampInDB;
     	}
+    	
     	$referenceInfos['sortileges'] = '';
     	$troll = new Troll($referenceInfos);
-    	$troll->update($updatingInfos);
+    	$isTrollUpgradingSinceLastTime = isUpgradeFoundBetween($startDate, $endDate, getPathToEventsFile($troll->getNumero(), $pathToEventFiles));
+    	
+    	error_log($isTrollUpgradingSinceLastTime);
+    	
+    	$troll->update($updatingInfos, $isTrollUpgradingSinceLastTime);
     	$updateData = $troll->getDonnees();
     	$updateData['date_compilation'] = $updatingInfos['date_compilation'];
     	$updateData['nom'] = $infosTroll['nom'];
