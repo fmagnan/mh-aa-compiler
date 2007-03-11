@@ -137,6 +137,32 @@
 			$this->assertEqual('supérieur à 20', $troll->getDegats());
 		}
 		
+		function test_miseAJourTrollAvecAmelioration() {
+			$troll = new Troll($this->donneesDeTest);
+			$donneesDeMiseAJour = array(
+				'nom' => 'DIAPPE',
+				'race' => 'Inconnue',
+				'esquive' => 'entre 15 et 17',
+			);
+			$troll->update($donneesDeMiseAJour);
+			$this->assertEqual('DIAPPE', $troll->getNom());
+			$this->assertEqual('Skrim', $troll->getRace());
+			$this->assertEqual('entre 15 et 17', $troll->getEsquive());
+		}
+		
+		function test_miseAJourTrollSansAmelioration() {
+			$troll = new Troll($this->donneesDeTest);
+			$donneesDeMiseAJour = array(
+				'nom' => 'DIAPPE',
+				'race' => 'Inconnue',
+				'esquive' => 'entre 15 et 17',
+			);
+			$troll->update($donneesDeMiseAJour, false);
+			$this->assertEqual('DIAPPE', $troll->getNom());
+			$this->assertEqual('Skrim', $troll->getRace());
+			$this->assertEqual('entre 15 et 16', $troll->getEsquive());
+		}
+		
 		function test_creationTrollSansGuilde() {
 			$infosTrollSansGuilde = array(
 				'numero' => 72332,

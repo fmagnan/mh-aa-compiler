@@ -7,20 +7,22 @@
 
 		var $currentDirectory;
 		var $pathToPublicFiles;
+		var $pathToEventsFile;
 		
 		function setUp() {
 			$this->currentDirectory = dirname(__FILE__);
     		$this->pathToPublicFiles = $this->currentDirectory . '/pub';
+    		$this->pathToEventsFile = $this->pathToPublicFiles . '/eventsFromCradoc.php';
 		}
     	
     	function test_insertionImpossibleCarChampManquant() {
-    		$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAAChampManquantSquatman.txt'), $this->pathToPublicFiles);
+    		$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAAChampManquantSquatman.txt'), $this->pathToPublicFiles, $this->pathToEventsFile);
     		$this->assertError('isDataOk(): date_compilation is null, AA creation is aborted');
     		$this->assertNull($infosTroll);
     	}
     	
     	function test_insertionImpossibleCarTrollInconnu() {
-    		$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAATrollInconnu.txt'), $this->pathToPublicFiles);
+    		$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAATrollInconnu.txt'), $this->pathToPublicFiles, $this->pathToEventsFile);
     		$this->assertError('Troll n°1559 does not exist anymore');
     		$this->assertNull($infosTroll);
     	}
@@ -43,7 +45,7 @@
     			'date_compilation' => '2006-09-30 16:12:05',
     		);
     	
-			$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAASquatman.txt'), $this->pathToPublicFiles);
+			$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAASquatman.txt'), $this->pathToPublicFiles, $this->pathToEventsFile);
 			
 			$array_diff_assoc = array_diff_assoc($referenceInfosTroll, $infosTroll);
     		$this->assertTrue(empty($array_diff_assoc));
@@ -67,13 +69,13 @@
     			'date_compilation' => '2006-10-07 18:49:44', 
     		);
     	
-			$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAABoorajEnSelectionALaMain.txt'), $this->pathToPublicFiles);
+			$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAABoorajEnSelectionALaMain.txt'), $this->pathToPublicFiles, $this->pathToEventsFile);
 			
 			$array_diff_assoc = array_diff_assoc($referenceInfosTroll, $infosTroll);
     		$this->assertTrue(empty($array_diff_assoc));
     	}
     	
-    	function test_miseAJourTrollAvecDatePlusRecente() {
+    	function test_miseAJourTrollAvecDatePlusRecenteAvecAmelioration() {
     		$compiledInfosTroll = array(
 	    		'numero' => 1,
     			'nom' => 'Cradoc',
@@ -89,12 +91,40 @@
     			'regeneration' => 'entre 4 et 5',
     			'armure' => 'entre 12 et 14',
     			'vue' => 'entre 3 et 4',
+    			'date_compilation' => '2007-12-12 08:05:26',
+    			'sortileges' => '',
+    		);
+    		
+    		shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
+    		$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAARecent.txt'), $this->pathToPublicFiles, $this->pathToEventsFile);
+    		
+    		$array_diff = array_diff_assoc($compiledInfosTroll, $infosTroll);
+    		$this->assertTrue(empty($array_diff));
+    	}
+    	
+    	function test_miseAJourTrollAvecDatePlusRecenteMaisSansAmelioration() {
+    		
+    		$compiledInfosTroll = array(
+	    		'numero' => 1,
+    			'nom' => 'Cradoc',
+    			'race' => 'Skrim',
+    			'numero_guilde' => 2299,
+    			'guilde' => 'Le Sombre Ragnarok',
+	    		'niveau' => 29,
+	    		'niveau_actuel' => 29,
+    			'vie' => 'entre 110 et 115',
+    			'attaque' => 'entre 18 et 19',
+    			'esquive' => 'entre 10 et 12',
+    			'degats' => 'entre 12 et 13',
+    			'regeneration' => '4',
+    			'armure' => 'entre 12 et 14',
+    			'vue' => 'entre 3 et 4',
     			'date_compilation' => '2006-10-03 08:05:26',
     			'sortileges' => '',
     		);
     		
     		shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
-    		$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAA.txt'), $this->pathToPublicFiles);
+    		$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAA.txt'), $this->pathToPublicFiles, $this->pathToEventsFile);
     		
     		$array_diff = array_diff_assoc($compiledInfosTroll, $infosTroll);
     		$this->assertTrue(empty($array_diff));
@@ -121,7 +151,7 @@
     		);
     		
     		shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
-    		$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAAAncien.txt'), $this->pathToPublicFiles);
+    		$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAAAncien.txt'), $this->pathToPublicFiles, $this->pathToEventsFile);
     		
     		$array_diff = array_diff_assoc($compiledInfosTroll, $infosTroll);
     		$this->assertTrue(empty($array_diff));
@@ -148,7 +178,7 @@
     		);
     		
     		shell_exec(getMySQLCommandLine() . getAbsolutePathForFile('insertTroll.sql'));
-    		$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAANebuchadnezzar.txt'), $this->pathToPublicFiles);
+    		$infosTroll = processAnalysis(file_get_contents($this->currentDirectory.'/messageBotAANebuchadnezzar.txt'), $this->pathToPublicFiles, $this->pathToEventsFile);
     		
     		$array_diff = array_diff_assoc($compiledInfosTroll, $infosTroll);
     		$this->assertTrue(empty($array_diff));

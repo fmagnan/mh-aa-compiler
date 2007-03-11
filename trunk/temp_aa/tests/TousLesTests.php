@@ -11,6 +11,7 @@
         	$this->addTestFile($dirname.'/TestRecetteInsertion.php');
         	$this->addTestFile($dirname.'/TestTroll.php');
         	$this->addTestFile($dirname.'/TestCoreFunctions.php');
+        	$this->addTestFile($dirname.'/TestTrollUpgrades.php');
         }
 	}
 ?>

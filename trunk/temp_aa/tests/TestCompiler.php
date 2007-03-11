@@ -64,6 +64,13 @@
     		$this->assertEqual(130, $compiler->getMaximumValue());
 		}
 		
+		function test_nouvelleDonneeSuperieureEtEgaleAReferenceSimpleSansAmelioration() {
+    		$compiler = new Compiler('120');
+    		$compiler->analyse('entre 120 et 130', false);
+    		$this->assertEqual(120, $compiler->getMinimumValue());
+    		$this->assertEqual(120, $compiler->getMaximumValue());
+		}
+		
 		function test_nouvelleDonneeSuperieureAReferenceSimple() {
     		$compiler = new Compiler('120');
     		$compiler->analyse('entre 150 et 160');
@@ -90,6 +97,13 @@
     		$compiler->analyse('entre 130 et 150');
     		$this->assertEqual(130, $compiler->getMinimumValue());
     		$this->assertEqual(150, $compiler->getMaximumValue());
+		}
+		
+		function test_nouvelleDonneeSuperieureEtEgaleAReferenceDoubleSansAmelioration() {
+    		$compiler = new Compiler('entre 120 et 140');
+    		$compiler->analyse('entre 130 et 150', false);
+    		$this->assertEqual(130, $compiler->getMinimumValue());
+    		$this->assertEqual(140, $compiler->getMaximumValue());
 		}
 		
 		function test_nouvelleDonneeSuperieureAReferenceDouble() {
