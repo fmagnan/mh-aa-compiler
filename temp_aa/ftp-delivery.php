@@ -2,21 +2,14 @@
 
 require_once 'lib/maintenance.inc.php';
 
-if(!isset($argv[1]) || !isset($argv[2]) || !isset($argv[3])) {
-	echo 'usage : [php4|php5] '.$argv[0].' <ftpPassword> <httpUser> <httpPassword>' . "\n";
-	die();
-}
+$ftpPassword= $ftpConfig['ftpPassword'];
+$httpUser= $ftpConfig['httpUser'];
+$httpPassword= $ftpConfig['httpPassword'];
+$host = $ftpConfig['host'];
 
-$ftpPassword= $argv[1];
-$httpUser= $argv[2];
-$httpPassword= $argv[3];
-
-
-$wgetCommand = 'wget --http-user='.$httpUser.' --http-password='.$httpPassword.' http://slx0.dyndns.org/AA/web/';
+$wgetCommand = 'wget --http-user='.$httpUser.' --http-password='.$httpPassword.' ' . $host;
 
 $ncftpCommand = dirname(__FILE__) . '/ncftpreplace.sh ' . $ftpPassword;
-$remote_root_directory = ' /AA/';
-
 activatePageByWget('stopSiteForMaintenance.php');
 
 uploadByFTP('/etc/settings.inc.php', 'etc');
@@ -33,21 +26,21 @@ activatePageByWget('restartSiteAfterMaintenance.php');
 
 function uploadByFTP($localPattern, $destinationFolder) {
 	global $ncftpCommand;
-	global $remote_root_directory;
+	global $ftpConfig;
 	
 	$lib = glob(dirname(__FILE__) . $localPattern);
 	foreach ($lib AS $filePath) {
-		shell_exec($ncftpCommand . ' ' . $filePath . ' ' . $remote_root_directory . $destinationFolder);
+		shell_exec($ncftpCommand . ' ' . $filePath . ' ' . $ftpConfig['remoteRootDirectory'] . $destinationFolder);
 	}
 }
 
 function activatePageByWget($pageURL) {
 	global $wgetCommand;
 	$activationCode = 'doubleZero';
+	$completeLineCommand = $wgetCommand . $pageURL . '?activation_code='.$activationCode;
+	echo $completeLineCommand;
 	
-	echo $wgetCommand . $pageURL . '?activation_code='.$activationCode;
-	
-	shell_exec($wgetCommand . $pageURL . '?activation_code='.$activationCode);
+	shell_exec($completeLineCommand);
 	shell_exec('rm ' . $pageURL . '*');
 }
 ?>
