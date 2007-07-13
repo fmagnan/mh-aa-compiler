@@ -58,6 +58,7 @@ function addButtonToBodyDocument() {
 
 function mainEventListener() {
 	var currentUrl = getURL().toString().toLowerCase();
+	alert('hop');
 	if (currentUrl.indexOf(messageMountyHallUrl) != -1) {
 		addButtonToBodyDocument();	
 	}
